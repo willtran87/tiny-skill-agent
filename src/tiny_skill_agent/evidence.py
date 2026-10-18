@@ -2,12 +2,13 @@
 
 import json
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Any, Iterable, Mapping
 
 from langchain.agents.middleware import AgentMiddleware
 from langchain_core.messages import AIMessage, ToolMessage
 from langchain_core.tools import BaseTool
+from langgraph.types import Command
 
 
 EVIDENCE_KINDS = {"directive", "data"}
@@ -60,6 +61,24 @@ class EvidenceMetadataMiddleware(AgentMiddleware):
         self.registry = {tool.name: tool for tool in tools}
 
     def _attach(self, request: Any, response: Any) -> Any:
+        if isinstance(response, Command):
+            tool = self.registry.get(request.tool_call["name"])
+            if tool is None or (tool.metadata or {}).get("_meta", {}).get("kind") not in EVIDENCE_KINDS:
+                return response
+            update = response.update
+            if not isinstance(update, Mapping):
+                raise ValueError("Evidence Command requires a mapping update with tool messages")
+            messages = update.get("messages", [])
+            if not isinstance(messages, (list, tuple)) or not any(
+                isinstance(message, ToolMessage) and message.tool_call_id == request.tool_call["id"]
+                for message in messages
+            ):
+                raise ValueError("Evidence Command requires a matching ToolMessage in update['messages']")
+            return replace(response, update={**update, "messages": [
+                self._attach(request, message)
+                if isinstance(message, ToolMessage) and message.tool_call_id == request.tool_call["id"]
+                else message for message in messages
+            ]})
         if not isinstance(response, ToolMessage) or response.status != "success":
             return response
         call = request.tool_call

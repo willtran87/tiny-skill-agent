@@ -7,12 +7,15 @@ A small LangChain `create_agent` / LangGraph ReAct example with local Markdown s
 ```text
 src/tiny_skill_agent/
   agent.py               ReAct agent, skill tools, and CLI
+  assessment.py          Portable criteria/evidence API, schemas, reconciliation
+  adapters.py            LangChain messages/models and LangGraph state node
   evidence.py            Tool metadata, provenance, evidence spans, validation
   sample_skills/         Bundled example SKILL.md files
 notebooks/
   agent_starter.ipynb    Configurable Ollama/OpenAI underwriting example
 docs/
   DESIGN.md              Data structures, flow, and trust boundaries
+  INTEGRATION.md         Direct API and framework integration examples
   RESEARCH.md            Related papers and evaluation guidance
 tests/                   Provenance and assessment tests
 ```
@@ -42,9 +45,24 @@ The notebook assigns short IDs to observed sources (`S`), labeled criteria (`C`)
 | `insufficient_evidence` | Available evidence cannot decide the criterion. |
 | `not_applicable` | Evidence shows the criterion's stated scope excludes the case. |
 
-`result["structured_response"]` contains supported findings with one or more resolved fact citations. `result["criterion_assessments"]` contains all four statuses. `result["source_coverage"]` and `result["coverage"]` expose missing assessments; `decision_ready` is false when evidence is insufficient. Citation validation confirms that referenced spans appeared in observed sources. It does not prove the model's interpretation or the upstream data is correct.
+`result["structured_response"]` contains accepted case findings with one or more resolved fact citations. `result["criterion_assessments"]` contains all four statuses. Source assessments are provisional; case reconciliation can overturn them, and `disagreements` retains those changes for review. Coverage exposes missing assessments. `decision_ready` is false when coverage is incomplete, evidence is insufficient, criteria are absent, or a source match disagrees with the case. Citation validation confirms that referenced spans appeared in observed sources. It does not prove the model's interpretation or the upstream data is correct.
 
 See [docs/DESIGN.md](docs/DESIGN.md) for the schema and flow, and [docs/RESEARCH.md](docs/RESEARCH.md) for related research.
+
+## Use in an existing application
+
+The notebook delegates to a reusable API with no notebook globals:
+
+```python
+from tiny_skill_agent import AssessmentConfig, assess
+
+result = assess(
+    criteria=criteria, evidence=evidence, model=assessment_callable,
+    config=AssessmentConfig(batch_size=1), request="Review this case.",
+)
+```
+
+`criteria` and `evidence` are typed records or matching dictionaries; `model` is a callable accepting a payload and returning structured assessments. Classification labels are supplied by the caller. `inputs_from_messages` converts observed LangChain tool messages, `make_langchain_assessor` wraps structured chat models, and `make_assessment_node` adapts the API to dictionary state in a LangGraph. See [docs/INTEGRATION.md](docs/INTEGRATION.md) for complete examples and compatibility boundaries. No additional orchestration framework is introduced.
 
 ## Add a skill or tool
 

@@ -6,6 +6,8 @@
 
 The assessment compares each **observed data source** with every **observed labeled criterion**, then reconciles all observed sources for the case. It aims to recover single-source and cross-source strengths and concerns while exposing incomplete assessment coverage.
 
+The reusable `assess(criteria=..., evidence=..., model=..., config=...)` API lives in [`assessment.py`](../src/tiny_skill_agent/assessment.py). [`adapters.py`](../src/tiny_skill_agent/adapters.py) converts LangChain messages and models or exposes a LangGraph node. The notebook is a configuration and display client. The core accepts explicit criteria with arbitrary classifications; bracketed labels are a convention of the message adapter. See [INTEGRATION.md](INTEGRATION.md) for API examples and migration details.
+
 ## IDs and source records
 
 | ID | Assigned by code | Contains |
@@ -35,12 +37,12 @@ flowchart TD
     H --> I
     I --> J[Validate IDs, statuses, and evidence scope]
     J --> K[Retry missing and unconfirmed negative assessments]
-    K --> L[Retain valid source matches and case matches]
+    K --> L[Use case judgments and retain source disagreements for review]
     L --> M[Resolve citations and derive classification]
     M --> N[Findings, assessments, and coverage reports]
 ```
 
-The default `assessment_batch_size` is one criterion per model call because the sample local model was unreliable when asked for several assessments together. Each source call receives spans from that source; a cited `E` ID from another source is rejected. The case call receives all spans and source assessments, so one finding can cite several sources. Bounded retries target missing assessments. Valid source matches survive a case pass that misses or downgrades them.
+The default `AssessmentConfig.batch_size` is one criterion per model call because the sample local model was unreliable when asked for several assessments together. Each source call receives spans from that source; a cited `E` ID from another source is rejected. The case call receives all spans and the source assessments for its requested criteria, so one finding can cite several sources. Bounded retries target missing assessments. The case pass can overturn provisional source matches using contradictions, newer evidence, or exceptions. Disagreements remain visible, and a missing case assessment never promotes a source match automatically.
 
 Only observed data sources and observed labeled criteria are covered. A skill never read or data tool never called is outside this run's coverage.
 
@@ -78,10 +80,10 @@ Example:
 
 ## Final output and coverage
 
-`result["structured_response"]` is a `RootModel[list[EnrichedFinding]]`. Each matched finding contains the exact criterion and its full source identity, classification derived from its prefix, a reason, and one or more resolved fact citations:
+The API returns `AssessmentResult.findings`, a list of `Finding` models. The notebook displays it as `result["structured_response"]`, a `RootModel[list[Finding]]`. Each accepted case match contains the criterion ID and exact text, full source identity, classification supplied by the criterion, a reason, and one or more resolved fact citations:
 
 ```json
-[{"criterion": "[strength] Classify cash reserves of at least six months as a strength.",
+[{"criterion_id": "C2", "criterion": "[strength] Classify cash reserves of at least six months as a strength.",
   "criterion_source": "skill:underwriting-demo",
   "criterion_source_label": "Skill: underwriting-demo",
   "classification": "strength",
@@ -92,11 +94,11 @@ Example:
   "reason": "Eight months of reserves exceeds the six-month threshold."}]
 ```
 
-`facts` supports several spans from one source or across sources. Code deduplicates findings with identical criterion IDs and evidence-ID sets. This changes the previous single `fact`/`fact_source` output shape.
+`facts` supports several spans from one source or across sources. The API emits at most one case finding per criterion, with duplicate evidence IDs removed. Source candidates remain in `source_assessments`. This is criterion assessment coverage, not a guarantee that every distinct event satisfying a criterion becomes a separate finding.
 
-`result["source_assessments"]` holds accepted source/criterion assessments. `result["criterion_assessments"]` holds final case statuses, including non-matches. `result["criterion_inventory"]`, `result["source_catalog"]`, and `result["evidence_spans"]` expose run-local IDs.
+`result["source_assessments"]` holds accepted provisional source/criterion assessments. `result["criterion_assessments"]` holds final case statuses, including non-matches. `result["inputs"]` contains the portable criteria and evidence records with their original source identities; the message adapter's temporary `S` catalog is internal. `result["disagreements"]` identifies source matches overturned in the case pass.
 
-`result["source_coverage"]` reports missing source/criterion pairs. `result["coverage"]` reports `matched`, `no_match`, `insufficient_evidence`, `not_applicable`, missing and unconfirmed criterion IDs, plus errors. `complete` means all expected source and case assessments were returned and negative judgments confirmed. `decision_ready` additionally requires no `insufficient_evidence` statuses. Complete coverage does not establish semantic correctness.
+`result["source_coverage"]` reports missing source/criterion pairs. `result["coverage"]` reports `matched`, `no_match`, `insufficient_evidence`, `not_applicable`, missing and unconfirmed criterion IDs, plus errors. `complete` means all expected source and case assessments were returned and negative judgments confirmed. `decision_ready` additionally requires a nonempty criterion set, no `insufficient_evidence` statuses, and no source-match disagreements. Complete coverage does not establish semantic correctness.
 
 ## Trust boundaries and extensions
 
