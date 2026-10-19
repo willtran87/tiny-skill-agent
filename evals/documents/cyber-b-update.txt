@@ -1,0 +1,3 @@
+Supplement for Southbank Services, application D.
+MFA-protected privileged accounts: 12.
+The active inventory count remains the count provided in the original application.

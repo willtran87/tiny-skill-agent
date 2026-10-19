@@ -152,6 +152,99 @@ calls beyond the existing assessment pipeline.
 For a custom LangGraph graph, retain `make_assessment_node` below. This middleware
 uses the lifecycle of `create_agent`; arbitrary graphs do not invoke its hooks.
 
+### Explicit case isolation and prose guidelines
+
+For a conversation that can switch cases, enable `scope_from_context`. It reads
+an `AssessmentScope` from application-supplied invocation context, rather than
+checkpointed state or model-generated text. Context is supplied afresh on every
+invocation, including resume. The application owns the mapping from case ID to
+source IDs. Use immutable, globally unique document/version IDs; reusing the same
+source ID for different applicants would defeat that mapping. Shared guidelines
+may intentionally appear in more than one case scope.
+
+```python
+from tiny_skill_agent.middleware import AssessmentMiddleware, AssessmentScope
+from tiny_skill_agent.adapters import make_langchain_criterion_extractor
+
+# These tools accept a document_id argument; choose prefixes matching your IDs.
+tag_tool(data_tool, "data", source_arg="document_id", source_prefix="doc:")
+tag_tool(guidelines_tool, "directive", source_arg="document_id", source_prefix="guide:")
+tools = [data_tool, guidelines_tool]
+completion = AssessmentMiddleware(
+    assessment_model,
+    tools=tools,
+    system_prompt=prompt,
+    scope_from_context=lambda context: context,
+    criterion_extractor=make_langchain_criterion_extractor(
+        assessment_chat_model, method="json_schema",
+    ),
+)
+agent = create_agent(
+    chat_model, tools=tools, system_prompt=prompt, context_schema=AssessmentScope,
+    middleware=[EvidenceMetadataMiddleware(tools), completion],
+)
+run = agent.invoke(
+    {"messages": [{"role": "user", "content": "Review application-123 using property:v2."}]},
+    context=AssessmentScope(
+        case_id="application-123",
+        source_ids=["doc:application-123:v1", "guide:property:v2"],
+    ),
+)
+```
+
+`scope_from_context` can also select a nested scope from your existing context
+object. It must return a valid `AssessmentScope` or matching dictionary. Omitted
+or invalid scope cannot fall back to the previous case: assessment is unavailable
+and `assessment_error` is populated (or raised with `on_error="raise"`).
+
+The default message adapter validates provenance, then filters the run-local
+ledger **before** source deduplication, criterion extraction, or assessment.
+Every declared source must have an observed result, or extraction fails. Include
+all desired evidence and guideline sources; include `system_prompt` explicitly
+when it supplies criteria. Earlier observations for the same case remain eligible.
+There is no automatic scope inference when `scope_from_context` is omitted;
+legacy callers retain their existing behavior.
+
+Custom input mappers are also checked against the supplied scope: foreign or
+missing expected source IDs reject their output before assessment. They remain
+responsible for accurate source provenance. Configure their extraction inside
+the mapper, not simultaneously through the wrapper's `criterion_extractor` option.
+Direct adapter callers can use `source_scope_ids` for the same ledger filtering;
+the older `allowed_source_ids` parameter restricts only criterion sources.
+
+The optional `criterion_extractor` adds one structured call per permitted
+directive source **only when** an additional line explicitly names an allowed
+outcome label. This includes mixed labelled/prose documents. Existing bracketed
+criteria are retained deterministically. The model proposes additional exact
+quotations and classifications explicitly named in those quotations (for example,
+"is a concern" without brackets). Code assigns IDs and source labels, preserves
+the entire source as context, and rejects altered quotations, unapproved labels,
+overlapping rules, conflicting reclassification, a missing classification word or
+phrase in the quote, and declared incompleteness. Explanatory text must not be
+turned into a new assessment rule. Labelled-only sources with no additional
+explicit-label candidates need no model extraction call. Implicit categories such as "decline this risk"
+cannot automatically become `concern` under this conservative contract; use a
+reviewed upstream mapping or appropriately configured labels.
+No application facts are supplied to this extraction stage. Data sources never
+become guideline sources merely because they contain instruction-like text.
+
+Only explicit labels are supported; this is not a completeness check for rules
+with implicit categories elsewhere in a mixed document. Sources containing only
+implicit categories yield no criteria, so they cannot become decision-ready.
+
+The extractor uses the existing model provider and adds no dependencies or hidden
+retries. Parsing/truncation/provider failures make assessment unavailable rather
+than proceeding with partial criteria. A model can still omit a rule while
+claiming completeness or misinterpret its classification; exact citations do not
+prove semantic completeness. Custom labels and criterion-source allowlists are
+available through `inputs_from_messages` in a custom mapper.
+
+These options isolate **assessment inputs**. They preserve agent messages and
+do not enforce document access permissions, remove history from the agent's
+context, or validate the agent's free-text answer. Keep authorization at the tool
+boundary. Invocation context follows the standard
+[LangChain runtime interface](https://docs.langchain.com/oss/python/langchain/runtime).
+
 ## LangGraph state
 
 Use one assessment node in an existing graph. The default contract reads `state["assessment_input"]` and writes a JSON-serializable result under `state["assessment"]`:

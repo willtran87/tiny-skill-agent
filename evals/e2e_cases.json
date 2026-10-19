@@ -1,0 +1,44 @@
+{
+  "description": "Synthetic raw-document fixtures, frozen before the first live run. Criteria are invented. Gold is never given to the agent or assessment model.",
+  "sequences": [
+    {
+      "id": "property_switch",
+      "guideline": "property-guideline.md",
+      "source_kind": "tool",
+      "turns": [
+        {"id":"property_a", "case_id":"A", "documents":["property-a.md"], "expected":{
+          "criterion":"[concern] A building with a roof older than 20 years is a concern.", "classification":"concern", "status":"matched", "decision_ready":true,
+          "support":[["property-a.md","line:2","Warehouse 1: roof age is 24 years."],["property-a.md","line:3","Warehouse 2: roof age is 29 years."]],
+          "finding_support":[[0],[1]]}},
+        {"id":"property_b_missing", "case_id":"B", "documents":["property-b.json"], "expected":{
+          "criterion":"[concern] A building with a roof older than 20 years is a concern.", "classification":"concern", "status":"insufficient_evidence", "decision_ready":false,
+          "support":[["property-b.json","json:/buildings/0/roof_age_years","null"]], "finding_support":[]}},
+        {"id":"property_b_followup", "case_id":"B", "documents":["property-b.json","property-b-update.json"], "expected":{
+          "criterion":"[concern] A building with a roof older than 20 years is a concern.", "classification":"concern", "status":"no_match", "decision_ready":true,
+          "support":[["property-b-update.json","json:/buildings/0/roof_age_years","5"]], "finding_support":[]}}
+      ]
+    },
+    {
+      "id": "cyber_switch",
+      "guideline": "cyber-guideline.md",
+      "source_kind": "skill",
+      "turns": [
+        {"id":"cyber_c", "case_id":"C", "documents":["cyber-a.txt"], "expected":{
+          "criterion":"[strength] MFA protection on every active privileged account is a strength.", "classification":"strength", "status":"matched", "decision_ready":true,
+          "support":[["cyber-a.txt","line:2","Active privileged accounts: 8."],["cyber-a.txt","line:3","MFA-protected privileged accounts: 8."]], "finding_support":[[0,1]]}},
+        {"id":"cyber_d_missing", "case_id":"D", "documents":["cyber-b.txt"], "expected":{
+          "criterion":"[strength] MFA protection on every active privileged account is a strength.", "classification":"strength", "status":"insufficient_evidence", "decision_ready":false,
+          "support":[["cyber-b.txt","line:2","Active privileged accounts: 12."],["cyber-b.txt","line:3","The MFA-protected account count has not yet been provided."]], "finding_support":[]}},
+        {"id":"cyber_d_followup", "case_id":"D", "documents":["cyber-b.txt","cyber-b-update.txt"], "expected":{
+          "criterion":"[strength] MFA protection on every active privileged account is a strength.", "classification":"strength", "status":"matched", "decision_ready":true,
+          "support":[["cyber-b.txt","line:2","Active privileged accounts: 12."],["cyber-b-update.txt","line:2","MFA-protected privileged accounts: 12."]], "finding_support":[[0,1]]}}
+      ]
+    },
+    {
+      "id":"unlabelled_prose", "guideline":"unlabelled-guideline.txt", "source_kind":"tool",
+      "turns":[{"id":"unlabelled_criterion", "case_id":"E", "documents":["unlabelled-application.txt"], "expected":{
+        "criterion":"A building with a roof older than 20 years is a concern.", "classification":"concern", "status":"matched", "decision_ready":true,
+        "support":[["unlabelled-application.txt","line:2","Main building: roof age is 25 years."]], "finding_support":[[0]]}}]
+    }
+  ]
+}

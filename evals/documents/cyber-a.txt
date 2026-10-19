@@ -1,0 +1,3 @@
+Applicant: Northbank Services, application C.
+Active privileged accounts: 8.
+MFA-protected privileged accounts: 8.

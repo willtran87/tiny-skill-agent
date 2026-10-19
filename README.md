@@ -10,6 +10,7 @@ src/tiny_skill_agent/
   assessment.py          Portable criteria/evidence API, schemas, reconciliation
   adapters.py            LangChain messages/models and LangGraph state node
   middleware.py          Optional assessment on agent completion
+  criteria.py            Optional exact-quote extraction contract for prose rules
   evidence.py            Tool metadata, provenance, evidence spans, validation
   sample_skills/         Bundled example SKILL.md files
 notebooks/
@@ -79,6 +80,12 @@ For automatic assessment after the agent finishes, add the optional
 The default path records assessment failures while preserving the agent response;
 callers must check for an assessment and its `coverage.decision_ready` flag.
 
+For multi-case conversations, opt into an application-owned source scope using
+`AssessmentScope` and `scope_from_context`. For ordinary-prose guidelines, supply
+`make_langchain_criterion_extractor(...)`. Both are optional, reuse existing
+providers, and leave agent messages intact. See
+[case isolation and prose guidelines](docs/INTEGRATION.md#explicit-case-isolation-and-prose-guidelines).
+
 The included examples live in [src/tiny_skill_agent/sample_skills](src/tiny_skill_agent/sample_skills). Each skill is a directory containing a `SKILL.md` with `name` and `description` frontmatter. Use `--skills-dir` for your own skills. In the notebook, set `SKILLS_DIR` before creating the tools.
 
 Decorate a typed Python function with `@tool`, declare how its output should be used, and include it in the agent's tool list:
@@ -96,6 +103,11 @@ agent = create_agent(model, tools=tools, middleware=[EvidenceMetadataMiddleware(
 The middleware adds `_meta` to successful tool results. `collect_evidence` checks the observed call and registered tag before accepting a result as data or a directive. A classified criterion can come from a skill, directive tool, or system prompt.
 
 ## Verify
+
+The [end-to-end document evaluation](evals/README.md#end-to-end-documents-and-case-isolation)
+runs a live agent through raw-document tools, extraction, and completion
+middleware, comparing retained history with explicit case-scoped assessment.
+Run it with `.venv\Scripts\python -m evals.e2e`.
 
 See [evals/README.md](evals/README.md) for the eight-case assessment evaluation covering unrelated evidence, contradictions, exceptions, and multiple findings per criterion, including a saved local-model baseline. Run it against Ollama with `.venv\Scripts\python -m evals.run`.
 
