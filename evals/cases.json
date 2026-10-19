@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "description": "Synthetic, hand-authored underwriting scenarios; not expert-validated or representative of production accuracy.",
+  "cases": [
+    {
+      "id": "unrelated_financials", "category": "unrelated_evidence",
+      "criteria": [{"id": "C1", "text": "Flag a concern when annual fire-safety training completion is below 90% of employees.", "source_id": "guideline:training", "classification": "concern"}],
+      "evidence": [{"id": "E1", "source_id": "application:financials", "locator": "paragraph:1", "quote": "The applicant reported annual revenue of $8 million and 42 employees."}],
+      "expected": {"status": "insufficient_evidence", "required_evidence_ids": [], "findings": [], "rationale": "Revenue and headcount do not establish training completion. Absence of relevant evidence does not establish no_match."}
+    },
+    {
+      "id": "unrelated_lexical_overlap", "category": "unrelated_evidence",
+      "criteria": [{"id": "C1", "text": "Record a strength when all forklift operators completed certified forklift safety training during 2025.", "source_id": "skill:workplace-safety", "classification": "strength"}],
+      "evidence": [{"id": "E1", "source_id": "hr:2025", "locator": "line:1", "quote": "During 2025, all office accountants completed cybersecurity training. No forklift-operator training records were provided."}],
+      "expected": {"status": "insufficient_evidence", "required_evidence_ids": [], "findings": [], "rationale": "The training population and subject differ. Accountants completing cybersecurity training says nothing about forklift training."}
+    },
+    {
+      "id": "contradiction_unresolved", "category": "contradictions",
+      "criteria": [{"id": "C1", "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.", "source_id": "guideline:property", "classification": "concern"}],
+      "evidence": [
+        {"id": "E1", "source_id": "inspection:a", "locator": "line:1", "quote": "Warehouse A sprinkler system: inoperable on 2025-06-30.", "context": "Independent qualified inspection. Same inspection time and authority as inspection B; no precedence or correction is documented."},
+        {"id": "E2", "source_id": "inspection:b", "locator": "line:1", "quote": "Warehouse A sprinkler system: fully operational on 2025-06-30.", "context": "Independent qualified inspection. Same inspection time and authority as inspection A; no precedence or correction is documented."}
+      ],
+      "expected": {"status": "insufficient_evidence", "required_evidence_ids": ["E1", "E2"], "findings": [], "rationale": "Equally authoritative contemporaneous reports conflict. Both must be cited and the conflict cannot be resolved from these inputs."}
+    },
+    {
+      "id": "contradiction_explicit_correction", "category": "contradictions",
+      "criteria": [{"id": "C1", "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.", "source_id": "guideline:property", "classification": "concern"}],
+      "evidence": [
+        {"id": "E1", "source_id": "inspection:original", "locator": "line:1", "quote": "Report R1: Warehouse A sprinkler system was inoperable on 2025-06-30."},
+        {"id": "E2", "source_id": "inspection:correction", "locator": "line:1", "quote": "Signed correction to R1 by its original inspector, issued 2025-07-01: the inoperable entry was a transcription error. The sprinkler system was fully operational on 2025-06-30. This correction supersedes R1."}
+      ],
+      "expected": {"status": "no_match", "required_evidence_ids": ["E2"], "findings": [], "rationale": "The explicit correction resolves the conflict for the same date. This is not missing evidence or an exclusion from scope."}
+    },
+    {
+      "id": "exception_qualifies", "category": "exceptions",
+      "criteria": [{"id": "C1", "text": "For an occupied building, flag a concern for a roof older than 20 years, except when a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Assess as of 2025-07-01.", "source_id": "skill:roof", "classification": "concern"}],
+      "evidence": [
+        {"id": "E1", "source_id": "application:building", "locator": "line:1", "quote": "Building A is occupied and its roof is 25 years old as of 2025-07-01."},
+        {"id": "E2", "source_id": "engineering:roof", "locator": "line:1", "quote": "On 2025-03-01 a licensed engineer certified Building A's roof had 12 years of remaining useful life."}
+      ],
+      "expected": {"status": "no_match", "required_evidence_ids": ["E1", "E2"], "findings": [], "rationale": "The rule applies to this occupied building but its explicit exception defeats the concern. Certification is four months old and exceeds the 10-year threshold."}
+    },
+    {
+      "id": "exception_scope_exclusion", "category": "exceptions",
+      "criteria": [{"id": "C1", "text": "This rule applies only to commercial kitchens with deep-fat fryers. Flag a concern when the hood suppression system has not been serviced in the past six months.", "source_id": "system:restaurant-scope", "classification": "concern"}],
+      "evidence": [{"id": "E1", "source_id": "inspection:operations", "locator": "line:1", "quote": "This premises operates exclusively as a cold-food sandwich shop. It has no deep-fat fryers and no hot-cooking equipment."}],
+      "expected": {"status": "not_applicable", "required_evidence_ids": ["E1"], "findings": [], "rationale": "The explicit fryer scope excludes this premises. No service history is needed to establish the exclusion."}
+    },
+    {
+      "id": "multiple_concerns_one_source", "category": "multiple_findings",
+      "criteria": [{"id": "C1", "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.", "source_id": "guideline:roofs", "classification": "concern"}],
+      "evidence": [
+        {"id": "E1", "source_id": "schedule:buildings", "locator": "row:1", "quote": "Building A is occupied and has a 24-year-old roof."},
+        {"id": "E2", "source_id": "schedule:buildings", "locator": "row:2", "quote": "Building B is occupied and has a 31-year-old roof."},
+        {"id": "E3", "source_id": "schedule:buildings", "locator": "row:3", "quote": "Building C is occupied and has a 5-year-old roof."}
+      ],
+      "expected": {"status": "matched", "required_evidence_ids": ["E1", "E2"], "findings": [{"id": "building_a", "evidence_ids": ["E1"]}, {"id": "building_b", "evidence_ids": ["E2"]}], "rationale": "A and B each warrant a separate concern; C does not. A single combined finding fails the requested output granularity even if it cites both roofs."}
+    },
+    {
+      "id": "multiple_strengths_across_sources", "category": "multiple_findings",
+      "criteria": [{"id": "C1", "text": "Record a separate strength for each warehouse with monitored automatic sprinklers covering 100% of its floor area.", "source_id": "skill:fire-protection", "classification": "strength"}],
+      "evidence": [
+        {"id": "E1", "source_id": "inspection:north", "locator": "line:1", "quote": "North warehouse has monitored automatic sprinklers covering 100% of its floor area."},
+        {"id": "E2", "source_id": "inspection:south", "locator": "line:1", "quote": "South warehouse has monitored automatic sprinklers covering 100% of its floor area."}
+      ],
+      "expected": {"status": "matched", "required_evidence_ids": ["E1", "E2"], "findings": [{"id": "north", "evidence_ids": ["E1"]}, {"id": "south", "evidence_ids": ["E2"]}], "rationale": "Each warehouse qualifies independently, requiring two strength records under C1. Cross-source consolidation must preserve the separate findings."}
+    }
+  ]
+}

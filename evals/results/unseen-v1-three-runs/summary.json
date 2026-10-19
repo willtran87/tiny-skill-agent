@@ -1,0 +1,1220 @@
+{
+  "runs_completed": 3,
+  "unique_cases": 32,
+  "runs": [
+    {
+      "run": 1,
+      "cases": 32,
+      "strict_passes": 17,
+      "correct_statuses": 20,
+      "correct_readiness": 24,
+      "false_positive_findings": 2,
+      "ready_despite_expected_abstention": 1,
+      "ready_with_wrong_status": 6,
+      "incomplete_cases": 6,
+      "captured_errors": 22,
+      "model_calls": 120,
+      "elapsed_seconds": 230.36
+    },
+    {
+      "run": 2,
+      "cases": 32,
+      "strict_passes": 16,
+      "correct_statuses": 19,
+      "correct_readiness": 24,
+      "false_positive_findings": 2,
+      "ready_despite_expected_abstention": 1,
+      "ready_with_wrong_status": 6,
+      "incomplete_cases": 7,
+      "captured_errors": 25,
+      "model_calls": 121,
+      "elapsed_seconds": 215.747
+    },
+    {
+      "run": 3,
+      "cases": 32,
+      "strict_passes": 16,
+      "correct_statuses": 19,
+      "correct_readiness": 24,
+      "false_positive_findings": 2,
+      "ready_despite_expected_abstention": 1,
+      "ready_with_wrong_status": 6,
+      "incomplete_cases": 7,
+      "captured_errors": 25,
+      "model_calls": 121,
+      "elapsed_seconds": 224.575
+    }
+  ],
+  "status_agreement_cases": 31,
+  "decision_agreement_cases": 31,
+  "all_runs_passed_cases": 16,
+  "consistently_wrong_status_cases": [
+    "auto_incident_rate_calculation",
+    "auto_mileage_corrected_denominator",
+    "property_electrical_exception",
+    "cyber_service_account_exception",
+    "gl_hot_work_scope_exclusion",
+    "auto_multiple_expired_licences",
+    "property_building_specific_scope",
+    "wc_partial_payroll_period",
+    "wc_document_absence_is_concern",
+    "property_cross_source_alarm_and_value",
+    "cyber_restore_duration_cross_midnight",
+    "property_expired_exception_certificate"
+  ],
+  "cases": [
+    {
+      "id": "cyber_remote_access_unknown",
+      "category": "missing_information",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "missing",
+        "missing"
+      ],
+      "strict_passes": 1,
+      "status_correct_runs": 1,
+      "status_agreement": false,
+      "decision_agreement": false,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [],
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "coverage_complete"
+        ],
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "coverage_complete"
+        ]
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_pump_service_unknown",
+      "category": "missing_information",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "auto_driver_screening_unknown",
+      "category": "missing_information",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "gl_subcontract_limit_unknown",
+      "category": "missing_information",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "auto_incident_rate_calculation",
+      "category": "quantitative_boundaries",
+      "expected_status": "matched",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "property_reserves_exact_threshold",
+      "category": "quantitative_boundaries",
+      "expected_status": "matched",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_roof_exact_boundary",
+      "category": "quantitative_boundaries",
+      "expected_status": "no_match",
+      "statuses": [
+        "no_match",
+        "no_match",
+        "no_match"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "cyber_patch_coverage_boundary",
+      "category": "quantitative_boundaries",
+      "expected_status": "matched",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_alarm_equal_reports",
+      "category": "unresolved_conflict",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "coverage_complete"
+        ],
+        [
+          "coverage_complete"
+        ],
+        [
+          "coverage_complete"
+        ]
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "cyber_backup_immutability_conflict",
+      "category": "unresolved_conflict",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "auto_mileage_corrected_denominator",
+      "category": "temporal_and_corrections",
+      "expected_status": "no_match",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "property_later_repair_does_not_rewrite_history",
+      "category": "temporal_and_corrections",
+      "expected_status": "matched",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "atomic_findings_correct"
+        ],
+        [
+          "atomic_findings_correct"
+        ],
+        [
+          "atomic_findings_correct"
+        ]
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_electrical_exception",
+      "category": "exceptions_and_scope",
+      "expected_status": "no_match",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "cyber_service_account_exception",
+      "category": "exceptions_and_scope",
+      "expected_status": "no_match",
+      "statuses": [
+        "missing",
+        "missing",
+        "missing"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "coverage_complete",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "gl_hot_work_scope_exclusion",
+      "category": "exceptions_and_scope",
+      "expected_status": "not_applicable",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "auto_passenger_scope_exclusion",
+      "category": "exceptions_and_scope",
+      "expected_status": "not_applicable",
+      "statuses": [
+        "not_applicable",
+        "not_applicable",
+        "not_applicable"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_multiple_warehouse_concerns",
+      "category": "multiple_and_corroborated_findings",
+      "expected_status": "matched",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "auto_multiple_expired_licences",
+      "category": "multiple_and_corroborated_findings",
+      "expected_status": "matched",
+      "statuses": [
+        "missing",
+        "missing",
+        "missing"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "required_evidence_covered",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "cyber_multiple_restore_strengths",
+      "category": "multiple_and_corroborated_findings",
+      "expected_status": "matched",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_corroboration_not_two_events",
+      "category": "multiple_and_corroborated_findings",
+      "expected_status": "matched",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "gl_sister_company_evidence",
+      "category": "entity_and_period_alignment",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "cyber_prior_year_does_not_prove_current",
+      "category": "entity_and_period_alignment",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_building_specific_scope",
+      "category": "entity_and_period_alignment",
+      "expected_status": "not_applicable",
+      "statuses": [
+        "no_match",
+        "no_match",
+        "no_match"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct"
+        ],
+        [
+          "status_correct"
+        ],
+        [
+          "status_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "wc_partial_payroll_period",
+      "category": "entity_and_period_alignment",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "not_applicable",
+        "not_applicable",
+        "not_applicable"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "gl_document_submission_condition",
+      "category": "documentation_vs_activity",
+      "expected_status": "no_match",
+      "statuses": [
+        "no_match",
+        "no_match",
+        "no_match"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "wc_document_absence_is_concern",
+      "category": "documentation_vs_activity",
+      "expected_status": "matched",
+      "statuses": [
+        "no_match",
+        "no_match",
+        "no_match"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "wc_activity_explicitly_not_performed",
+      "category": "documentation_vs_activity",
+      "expected_status": "no_match",
+      "statuses": [
+        "no_match",
+        "no_match",
+        "no_match"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_inspection_date_unknown",
+      "category": "documentation_vs_activity",
+      "expected_status": "insufficient_evidence",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 3,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": false,
+      "pass_pattern": [
+        true,
+        true,
+        true
+      ],
+      "failure_checks": [
+        [],
+        [],
+        []
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "property_cross_source_alarm_and_value",
+      "category": "cross_source_synthesis",
+      "expected_status": "matched",
+      "statuses": [
+        "no_match",
+        "no_match",
+        "no_match"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct",
+          "coverage_complete",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "gl_loss_aggregation_without_duplicate",
+      "category": "cross_source_synthesis",
+      "expected_status": "matched",
+      "statuses": [
+        "matched",
+        "matched",
+        "matched"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 3,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "coverage_complete",
+          "readiness_correct"
+        ],
+        [
+          "coverage_complete",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": false
+    },
+    {
+      "id": "cyber_restore_duration_cross_midnight",
+      "category": "cross_source_synthesis",
+      "expected_status": "no_match",
+      "statuses": [
+        "insufficient_evidence",
+        "insufficient_evidence",
+        "insufficient_evidence"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        false,
+        false,
+        false
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "readiness_correct"
+        ],
+        [
+          "status_correct",
+          "readiness_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    },
+    {
+      "id": "property_expired_exception_certificate",
+      "category": "cross_source_synthesis",
+      "expected_status": "matched",
+      "statuses": [
+        "no_match",
+        "no_match",
+        "no_match"
+      ],
+      "strict_passes": 0,
+      "status_correct_runs": 0,
+      "status_agreement": true,
+      "decision_agreement": true,
+      "readiness": [
+        true,
+        true,
+        true
+      ],
+      "expected_readiness": true,
+      "pass_pattern": [
+        false,
+        false,
+        false
+      ],
+      "failure_checks": [
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ],
+        [
+          "status_correct",
+          "atomic_findings_correct"
+        ]
+      ],
+      "consistently_wrong_status": true
+    }
+  ]
+}

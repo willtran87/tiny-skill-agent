@@ -1,0 +1,1085 @@
+{
+  "state": "completed",
+  "metadata": {
+    "started_at": "2026-10-18T23:33:25.291725+00:00",
+    "model": "qwen3-coder:30b",
+    "model_settings": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096
+    },
+    "ollama_version": {
+      "version": "0.35.0"
+    },
+    "model_metadata": {
+      "name": "qwen3-coder:30b",
+      "model": "qwen3-coder:30b",
+      "modified_at": "2026-01-30T20:50:10.3385655-06:00",
+      "size": 18556700761,
+      "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3moe",
+        "families": [
+          "qwen3moe"
+        ],
+        "parameter_size": "30.5B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2048
+      },
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "git_commit": "2c2b2ba285fbca0ea3e83262e600fb15a159f14c",
+    "git_status": "M README.md\n M docs/DESIGN.md\n M docs/INTEGRATION.md\n M notebooks/agent_starter.ipynb\n M src/tiny_skill_agent/adapters.py\n M src/tiny_skill_agent/assessment.py\n M tests/test_adapters.py\n M tests/test_assessment.py\n?? evals/\n?? tests/test_evaluation.py\n?? tests/test_no_match_review.py",
+    "dataset_sha256": "fa263fe42f5e7c95751fbe8c195818cb1971761856042ec6c81b37b9da8e3ae7",
+    "assessment_prompt_sha256": "f75fa3f2404d4ed396fe981cb3a3dec21929e742607ec7c573b10a214daec7eb",
+    "no_match_review_prompt_sha256": "3e67f2414639ec14aabbf702f43721c009e4edc1b017d3762ba9626fb0a6e632",
+    "implementation_sha256": {
+      "src\\tiny_skill_agent\\assessment.py": "821067af9b20f5149fdb0e6d22dcb60b1176746a6330914b2571aa2adebe25f8",
+      "src\\tiny_skill_agent\\adapters.py": "9d0ecc126c492243a67e97855cd3ed8b31bb01cf5f66d10fd16a43febc5dff71",
+      "evals\\run.py": "5f10c80d506a16687fbab2cfdc5c71e6955cf922418d7c67ac9f21eec446f922"
+    },
+    "packages": {
+      "langchain": "1.4.2",
+      "langchain-ollama": "1.1.0",
+      "langgraph": "1.2.12",
+      "pydantic": "2.13.5"
+    },
+    "assessment_config": {
+      "batch_size": 1,
+      "retry_batch_size": 1,
+      "max_retries": 2,
+      "confirm_no_match": true
+    },
+    "planned_cases": 4,
+    "finished_at": "2026-10-18T23:33:37.984155+00:00"
+  },
+  "cases": [
+    {
+      "id": "missing_inspection_records",
+      "category": "missing_evidence",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "rationale": "Missing records do not establish that inspections did not occur. This criterion evaluates inspection activity, not submission of records."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The evidence indicates that no elevator inspection records were provided with the application, making it impossible to determine whether annual safety inspections occurred during 2025 for any elevator. Since there is insufficient information to confirm compliance with the criterion, the condition cannot be evaluated.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "application": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The evidence indicates that no elevator inspection records were provided with the application, making it impossible to determine whether annual safety inspections occurred during 2025 for any elevator. Since there is insufficient information to confirm compliance with the criterion, the condition cannot be evaluated.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [
+            "C1"
+          ],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {},
+        "no_match_reviews": {},
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+              "source_id": "policy:elevators",
+              "source_label": "",
+              "classification": "strength",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "application",
+              "source_label": "",
+              "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "application",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The evidence indicates that no elevator inspection records were provided with the application, making it impossible to determine whether annual safety inspections occurred during 2025 for any elevator. Since there is insufficient information to confirm compliance with the criterion, the condition cannot be evaluated.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.097
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "application": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The evidence indicates that no elevator inspection records were provided with the application, making it impossible to determine whether annual safety inspections occurred during 2025 for any elevator. Since there is insufficient information to confirm compliance with the criterion, the condition cannot be evaluated.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The evidence indicates that no elevator inspection records were provided with the application, making it impossible to determine whether annual safety inspections occurred during 2025 for any elevator. Since there is insufficient information to confirm compliance with the criterion, the condition cannot be evaluated.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.1
+        }
+      ],
+      "elapsed_seconds": 2.198,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The evidence indicates that no elevator inspection records were provided with the application, making it impossible to determine whether annual safety inspections occurred during 2025 for any elevator. Since there is insufficient information to confirm compliance with the criterion, the condition cannot be evaluated."
+      }
+    },
+    {
+      "id": "explicit_activity_did_not_occur",
+      "category": "affirmative_negative",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [],
+        "rationale": "An explicit statement that the activity did not occur disproves the all-elevators condition, unlike absent records."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, the evidence shows that Elevator A did not receive a safety inspection at any time during 2025. Since the condition is not met for all elevators, the strength cannot be recorded.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "manager:declaration": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, the evidence shows that Elevator A did not receive a safety inspection at any time during 2025. Since the condition is not met for all elevators, the strength cannot be recorded.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, the evidence shows that Elevator A did not receive a safety inspection at any time during 2025. Since the condition is not met for all elevators, the strength cannot be recorded.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. Evidence E1 explicitly states that Elevator A did not receive a safety inspection at any time during 2025, which directly contradicts the condition of the criterion. This decisive observation establishes that the criterion's condition is false.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "verdict": "supported"
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+              "source_id": "policy:elevators",
+              "source_label": "",
+              "classification": "strength",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "manager:declaration",
+              "source_label": "",
+              "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "manager:declaration",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, the evidence shows that Elevator A did not receive a safety inspection at any time during 2025. Since the condition is not met for all elevators, the strength cannot be recorded.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.151
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "manager:declaration": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, the evidence shows that Elevator A did not receive a safety inspection at any time during 2025. Since the condition is not met for all elevators, the strength cannot be recorded.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, the evidence shows that Elevator A did not receive a safety inspection at any time during 2025. Since the condition is not met for all elevators, the strength cannot be recorded.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.147
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. Evidence E1 explicitly states that Elevator A did not receive a safety inspection at any time during 2025, which directly contradicts the condition of the criterion. This decisive observation establishes that the criterion's condition is false.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 1.121
+        }
+      ],
+      "elapsed_seconds": 3.419,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, the evidence shows that Elevator A did not receive a safety inspection at any time during 2025. Since the condition is not met for all elevators, the strength cannot be recorded."
+      }
+    },
+    {
+      "id": "explicit_documentation_requirement",
+      "category": "affirmative_negative",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [],
+        "rationale": "The criterion explicitly evaluates document submission. Confirmed absence of submitted certificates disproves that condition without implying that inspections did not occur."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application to record a strength. However, the evidence shows that the application administrator confirms no elevator inspection certificates were supplied with the application. This directly contradicts the condition necessary for satisfying the criterion.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "application:receipt": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application to record a strength. However, the evidence shows that the application administrator confirms no elevator inspection certificates were supplied with the application. This directly contradicts the condition necessary for satisfying the criterion.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application to record a strength. However, the evidence shows that the application administrator confirms no elevator inspection certificates were supplied with the application. This directly contradicts the condition necessary for satisfying the criterion.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application. Evidence E1 explicitly states that 'no elevator inspection certificates were supplied with the application.' This directly supports a negative decision as it establishes that the documentation requirement was not met.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "verdict": "supported"
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+              "source_id": "policy:documentation",
+              "source_label": "",
+              "classification": "strength",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "application:receipt",
+              "source_label": "",
+              "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "application:receipt",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application to record a strength. However, the evidence shows that the application administrator confirms no elevator inspection certificates were supplied with the application. This directly contradicts the condition necessary for satisfying the criterion.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.288
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "application:receipt": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application to record a strength. However, the evidence shows that the application administrator confirms no elevator inspection certificates were supplied with the application. This directly contradicts the condition necessary for satisfying the criterion.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application to record a strength. However, the evidence shows that the application administrator confirms no elevator inspection certificates were supplied with the application. This directly contradicts the condition necessary for satisfying the criterion.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.11
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application. Evidence E1 explicitly states that 'no elevator inspection certificates were supplied with the application.' This directly supports a negative decision as it establishes that the documentation requirement was not met.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 0.973
+        }
+      ],
+      "elapsed_seconds": 3.372,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application to record a strength. However, the evidence shows that the application administrator confirms no elevator inspection certificates were supplied with the application. This directly contradicts the condition necessary for satisfying the criterion."
+      }
+    },
+    {
+      "id": "measured_below_threshold",
+      "category": "affirmative_negative",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [],
+        "rationale": "The supplied age for the correct building and date is below the threshold, directly disproving the concern condition."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The assessment concludes that Building A's roof is not more than 20 years old as of 2025-07-01, since the evidence indicates it is only 5 years old. This means the condition for flagging a concern is not met.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "inspection:roof": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The assessment concludes that Building A's roof is not more than 20 years old as of 2025-07-01, since the evidence indicates it is only 5 years old. This means the condition for flagging a concern is not met.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The assessment concludes that Building A's roof is not more than 20 years old as of 2025-07-01, since the evidence indicates it is only 5 years old. This means the condition for flagging a concern is not met.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires determining if Building A's roof is more than 20 years old as of 2025-07-01. Evidence E1 explicitly states that the roof is 5 years old as of 2025-07-01, which is significantly less than the 20-year threshold. This decisive observation directly contradicts the condition in the criterion.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "verdict": "supported"
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+              "source_id": "policy:roof",
+              "source_label": "",
+              "classification": "concern",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "inspection:roof",
+              "source_label": "",
+              "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:roof",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The assessment concludes that Building A's roof is not more than 20 years old as of 2025-07-01, since the evidence indicates it is only 5 years old. This means the condition for flagging a concern is not met.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.225
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:roof": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The assessment concludes that Building A's roof is not more than 20 years old as of 2025-07-01, since the evidence indicates it is only 5 years old. This means the condition for flagging a concern is not met.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The assessment concludes that Building A's roof is not more than 20 years old as of 2025-07-01, since the evidence indicates it is only 5 years old. This means the condition for flagging a concern is not met.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 1.126
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires determining if Building A's roof is more than 20 years old as of 2025-07-01. Evidence E1 explicitly states that the roof is 5 years old as of 2025-07-01, which is significantly less than the 20-year threshold. This decisive observation directly contradicts the condition in the criterion.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 1.186
+        }
+      ],
+      "elapsed_seconds": 3.539,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The assessment concludes that Building A's roof is not more than 20 years old as of 2025-07-01, since the evidence indicates it is only 5 years old. This means the condition for flagging a concern is not met."
+      }
+    }
+  ]
+}

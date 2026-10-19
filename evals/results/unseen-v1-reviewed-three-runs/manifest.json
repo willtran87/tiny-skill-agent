@@ -1,0 +1,62 @@
+{
+  "state": "interrupted",
+  "started_at": "2026-10-19T00:02:18.418421+00:00",
+  "planned_runs": 3,
+  "case_count": 32,
+  "model": "qwen3-coder:30b",
+  "model_settings": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 4096
+  },
+  "case_order": [
+    "cyber_remote_access_unknown",
+    "property_pump_service_unknown",
+    "auto_driver_screening_unknown",
+    "gl_subcontract_limit_unknown",
+    "auto_incident_rate_calculation",
+    "property_reserves_exact_threshold",
+    "property_roof_exact_boundary",
+    "cyber_patch_coverage_boundary",
+    "property_alarm_equal_reports",
+    "cyber_backup_immutability_conflict",
+    "auto_mileage_corrected_denominator",
+    "property_later_repair_does_not_rewrite_history",
+    "property_electrical_exception",
+    "cyber_service_account_exception",
+    "gl_hot_work_scope_exclusion",
+    "auto_passenger_scope_exclusion",
+    "property_multiple_warehouse_concerns",
+    "auto_multiple_expired_licences",
+    "cyber_multiple_restore_strengths",
+    "property_corroboration_not_two_events",
+    "gl_sister_company_evidence",
+    "cyber_prior_year_does_not_prove_current",
+    "property_building_specific_scope",
+    "wc_partial_payroll_period",
+    "gl_document_submission_condition",
+    "wc_document_absence_is_concern",
+    "wc_activity_explicitly_not_performed",
+    "property_inspection_date_unknown",
+    "property_cross_source_alarm_and_value",
+    "gl_loss_aggregation_without_duplicate",
+    "cyber_restore_duration_cross_midnight",
+    "property_expired_exception_certificate"
+  ],
+  "frozen_sha256": {
+    "evals\\unseen_cases_v1.json": "75be2099868b4b5cab8159fb7fb10ef0b8ea7e76b27efc3656ab3ef3e1b8ddd1",
+    "evals\\repeat.py": "bd8c8b3290e4d5165dc7a9be265b0553f7af1e82625f378a551bc719588b3dcd",
+    "evals\\run.py": "67a24087d61e0cf1404d167f428868f8f8c644a8f5ea149f757a1c630bc60636",
+    "src\\tiny_skill_agent\\assessment.py": "041aaeb2f94362e82e5519d8069bfd850c1e801878d7009a3f533bcf815ae91f",
+    "src\\tiny_skill_agent\\adapters.py": "6ff9f67ed3e401d408e84f9d3e774f6e4a4a4c76f174704244510727abb597f9"
+  },
+  "status_distribution": {
+    "insufficient_evidence": 10,
+    "matched": 12,
+    "no_match": 7,
+    "not_applicable": 3
+  },
+  "gold_not_expert_validated": true,
+  "interruption_reason": "Diagnostic run stopped to fix unsupported unresolved-conflict selections in the new predicate review contract. Partial outputs retained; excluded from final three-run comparison."
+}

@@ -16,13 +16,29 @@ from langgraph.types import Command
 
 from tiny_skill_agent import AssessmentInputs, Criterion, Evidence, assess
 from tiny_skill_agent.adapters import inputs_from_messages, make_assessment_node, make_langchain_assessor
-from tiny_skill_agent.assessment import CoverageDraft
+from tiny_skill_agent.assessment import PredicateDraft
 from tiny_skill_agent.evidence import EvidenceMetadataMiddleware, tag_tool
 
 
 def matched(payload):
+    if payload["stage"] == "decision_review":
+        return predicate(payload)
     return [{"criterion_id": key, "status": "matched", "evidence_ids": list(payload["evidence_spans"]),
+             "basis": "condition_met", "conflict": "none",
+             "findings": [{"subject": "Service", "evidence_ids": list(payload["evidence_spans"]),
+                           "reason": "The observation explicitly satisfies the stated criterion."}],
              "reason": "The observation explicitly satisfies the stated criterion."} for key in payload["criteria"]]
+
+
+def predicate(payload):
+    return [{"criterion_id": key, "condition_quote": payload["criteria"][key]["text"],
+             "scope_reason": "The supplied service is within the stated scope.",
+             "scope": "in_scope", "condition_reason": "The observation explicitly satisfies the stated criterion.",
+             "condition": "true", "exception_reason": "There is no exception in the supplied criterion.",
+             "exception": "does_not_apply", "evidence_ids": list(payload["evidence_spans"]), "conflict": "none",
+             "conflict_reason": "No incompatible observations are present in this evidence.",
+             "findings": [{"subject": "Service", "evidence_ids": list(payload["evidence_spans"]),
+                           "reason": "The observation explicitly satisfies the stated criterion."}]} for key in payload["criteria"]]
 
 
 class ToolModel(FakeMessagesListChatModel):
@@ -40,7 +56,7 @@ class StructuredModel:
         def invoke(messages):
             payload = json.loads(messages[-1][1])
             return {"raw": AIMessage(content="", response_metadata=self.metadata),
-                    "parsed": schema.model_validate(matched(payload)), "parsing_error": self.parsing_error}
+                    "parsed": schema.model_validate(predicate(payload)), "parsing_error": self.parsing_error}
         return RunnableLambda(invoke)
 
 
@@ -82,14 +98,15 @@ class AdapterTests(unittest.TestCase):
         inputs = self.inputs()
         result = assess(criteria=inputs.criteria, evidence=inputs.evidence,
                         model=make_langchain_assessor(model, method="json_schema"))
-        self.assertIs(model.schema, CoverageDraft)
+        self.assertIs(model.schema, PredicateDraft)
         self.assertEqual(model.options, {"include_raw": True, "method": "json_schema"})
         self.assertEqual(len(result.findings), 1)
+        self.assertTrue(result.coverage["decision_ready"])
         for broken in (StructuredModel(metadata={"done_reason": "length"}), StructuredModel(parsing_error="bad JSON")):
             failed = assess(criteria=inputs.criteria, evidence=inputs.evidence,
                             model=make_langchain_assessor(broken), config={"max_retries": 0})
             self.assertEqual(failed.findings, [])
-            self.assertEqual(len(failed.coverage["errors"]), 2)
+            self.assertEqual(len(failed.coverage["errors"]), 3)
 
     def test_compiled_langgraph_custom_state_and_checkpoint(self):
         inputs = self.inputs().model_dump(mode="json")
