@@ -1,0 +1,3 @@
+Applicant: Southbank Services, application D.
+Active privileged accounts: 12.
+The MFA-protected account count has not yet been provided.
