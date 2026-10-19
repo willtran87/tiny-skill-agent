@@ -1,0 +1,53 @@
+{
+  "payload": {
+    "stage": "criterion_extraction",
+    "source_id": "skill:cyber-guideline.md",
+    "text": "# Access-control skill\nCompare counts for the same applicant. All privileged accounts means the protected count equals the active inventory count.\n[strength] MFA protection on every active privileged account is a strength.\nDo not assume protection when the protected-account count is absent.",
+    "labels": [
+      "strength",
+      "concern"
+    ],
+    "known_criteria": {
+      "[strength] MFA protection on every active privileged account is a strength.": "strength"
+    },
+    "source_lines": {
+      "L1": "# Access-control skill",
+      "L2": "Compare counts for the same applicant. All privileged accounts means the protected count equals the active inventory count.",
+      "L4": "Do not assume protection when the protected-account count is absent."
+    }
+  },
+  "output": {
+    "reviewed_lines": [
+      {
+        "line_id": "L1",
+        "rule_quotes": []
+      },
+      {
+        "line_id": "L2",
+        "rule_quotes": [
+          "Compare counts for the same applicant. All privileged accounts means the protected count equals the active inventory count."
+        ]
+      },
+      {
+        "line_id": "L4",
+        "rule_quotes": [
+          "Do not assume protection when the protected-account count is absent."
+        ]
+      }
+    ],
+    "complete": true,
+    "criteria": [
+      {
+        "quote": "Compare counts for the same applicant. All privileged accounts means the protected count equals the active inventory count.",
+        "classification": "strength",
+        "classification_quote": "strength"
+      },
+      {
+        "quote": "Do not assume protection when the protected-account count is absent.",
+        "classification": "concern",
+        "classification_quote": "concern"
+      }
+    ],
+    "issues": []
+  }
+}

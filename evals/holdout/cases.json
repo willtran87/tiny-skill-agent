@@ -1,0 +1,428 @@
+{
+  "version": 1,
+  "description": "First-use synthetic holdout against frozen production implementation; not expert labeled. Gold and rationale are scoring-only.",
+  "cases": [
+    {
+      "id": "property",
+      "title": "Alder cold-storage buildings",
+      "mode": "explicit",
+      "guideline": "property-guideline.md",
+      "documents": [
+        "property-application.md"
+      ],
+      "expected": [
+        {
+          "quote": "[concern] A cold-storage building whose roof is more than 25 years old is a concern unless a complete roof replacement has been documented within the last 2 years.",
+          "classification": "concern",
+          "status": "matched",
+          "support": [
+            [
+              "property-application.md",
+              "line:15",
+              "North building roof age: 28 years; no complete replacement has occurred."
+            ],
+            [
+              "property-application.md",
+              "line:17",
+              "South building roof age: 31 years; no complete replacement has occurred."
+            ],
+            [
+              "property-application.md",
+              "line:19",
+              "East building had a complete roof replacement on 1 March 2026; its roof age is 0 years."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "rationale": "Identify North and South separately: 28 and 31 exceed 25, with no replacement exception. East is excluded by its documented replacement/current age.",
+          "implicit": false,
+          "id": "G1"
+        },
+        {
+          "quote": "Current sprinkler inspection certificates with no outstanding deficiencies for every cold-storage building are a strength.",
+          "classification": "strength",
+          "status": "matched",
+          "support": [
+            [
+              "property-application.md",
+              "line:43",
+              "Current sprinkler certificates cover North, South, and East; each records no outstanding deficiencies."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "All three buildings have current certificates and no deficiencies; the all-buildings requirement is established.",
+          "implicit": false,
+          "id": "G2"
+        },
+        {
+          "quote": "[concern] A cold-storage building with combustible insulated wall panels is a concern unless a current independent fire-engineering certification approves those panels.",
+          "classification": "concern",
+          "status": "no_match",
+          "support": [
+            [
+              "property-application.md",
+              "line:63",
+              "All three buildings have combustible insulated wall panels; current independent fire-engineering certification approves those panels in North, South, and East."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "The panels meet the trigger, but current independent approval for all three makes the stated exception apply; do not claim the panels are noncombustible.",
+          "implicit": false,
+          "id": "G3"
+        }
+      ]
+    },
+    {
+      "id": "cyber",
+      "title": "Birch hosted payroll services",
+      "mode": "mixed",
+      "guideline": "cyber-guideline.md",
+      "documents": [
+        "cyber-application.md"
+      ],
+      "expected": [
+        {
+          "quote": "[strength] MFA on every active privileged account is a strength.",
+          "classification": "strength",
+          "status": "no_match",
+          "support": [
+            [
+              "cyber-application.md",
+              "line:15",
+              "The current privileged-access inventory contains 24 active accounts."
+            ],
+            [
+              "cyber-application.md",
+              "line:17",
+              "MFA is enabled for 23 of the 24 active privileged accounts; the remaining account is an active emergency administrator without MFA."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "23/24 is not every account. The active emergency account is in scope and there is no exception; this is affirmative failure, not missing evidence.",
+          "implicit": false,
+          "id": "G1"
+        },
+        {
+          "quote": "A successful isolated recovery test within the last 90 days is a strength.",
+          "classification": "strength",
+          "status": "matched",
+          "support": [
+            [
+              "cyber-application.md",
+              "line:41",
+              "An isolated payroll recovery test succeeded on 15 August 2026; the test log records restored data and a successful application start."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "15 August is 46 days before 30 September, within 90; a successful isolated test is recorded.",
+          "implicit": false,
+          "id": "G2"
+        },
+        {
+          "quote": "Refer any account that stores unencrypted portable copies of payroll data for adverse treatment.",
+          "classification": "concern",
+          "status": "matched",
+          "support": [
+            [
+              "cyber-application.md",
+              "line:61",
+              "Two portable USB drives currently hold unencrypted payroll exports used by the support team."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "Unencrypted portable payroll copies meet the referral rule; the guideline's vocabulary maps adverse treatment to concern.",
+          "implicit": true,
+          "id": "G3"
+        }
+      ]
+    },
+    {
+      "id": "fleet",
+      "title": "Cedar regional haulage",
+      "mode": "mixed",
+      "guideline": "fleet-guideline.md",
+      "documents": [
+        "fleet-application.md"
+      ],
+      "expected": [
+        {
+          "quote": "[concern] A heavy goods vehicle with an unresolved brake defect is a concern.",
+          "classification": "concern",
+          "status": "insufficient_evidence",
+          "support": [
+            [
+              "fleet-application.md",
+              "line:15",
+              "Inspector A's signed 29 September 2026 inspection of vehicle H7 records an unresolved brake defect."
+            ],
+            [
+              "fleet-application.md",
+              "line:17",
+              "Inspector B's equally authoritative signed 29 September 2026 inspection of vehicle H7 records no brake defect; neither report corrects the other."
+            ],
+            [
+              "fleet-application.md",
+              "line:19",
+              "The other seven heavy goods vehicles have no brake defects; H7 is the only disputed vehicle."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "The equally authoritative H7 records conflict for the same date with no correction; abstain rather than select one report or emit a settled concern.",
+          "implicit": false,
+          "id": "G1"
+        },
+        {
+          "quote": "[strength] Completed annual driving-record reviews for all active drivers are a strength.",
+          "classification": "strength",
+          "status": "insufficient_evidence",
+          "support": [
+            [
+              "fleet-application.md",
+              "line:43",
+              "There are 18 active drivers. The broker has requested, but has not received, the annual driving-record review register."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "The register is missing. This does not prove that reviews were not performed; evidence is insufficient to establish all-driver coverage.",
+          "implicit": false,
+          "id": "G2"
+        },
+        {
+          "quote": "Give favorable treatment when verified telematics show a harsh-braking rate below 2 events per 1000 miles across the active fleet.",
+          "classification": "strength",
+          "status": "matched",
+          "support": [
+            [
+              "fleet-application.md",
+              "line:63",
+              "The verified active-fleet telematics report records 54 harsh-braking events over 36000 miles during the reporting period."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "54 / 36000 * 1000 = 1.5, strictly below 2. Favorable treatment maps to strength.",
+          "implicit": true,
+          "id": "G3"
+        }
+      ]
+    },
+    {
+      "id": "manufacturing",
+      "title": "Dune precision fabrication",
+      "mode": "implicit",
+      "guideline": "manufacturing-guideline.md",
+      "documents": [
+        "manufacturing-application.md"
+      ],
+      "expected": [
+        {
+          "quote": "Decline operations using a production press without an interlocked guard.",
+          "classification": "concern",
+          "status": "matched",
+          "support": [
+            [
+              "manufacturing-application.md",
+              "line:15",
+              "Production press P4 remains in daily use without an interlocked guard; the proposed retrofit has not been ordered."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "P4 is in use and unguarded; a proposed retrofit is not completion. Decline maps to concern.",
+          "implicit": true,
+          "id": "G1"
+        },
+        {
+          "quote": "Allow positive credit when completed hot-work permits and fire-watch records cover every hot-work job in the last 12 months.",
+          "classification": "strength",
+          "status": "matched",
+          "support": [
+            [
+              "manufacturing-application.md",
+              "line:39",
+              "The complete 12-month hot-work register lists 9 jobs; signed permits and completed fire-watch records are attached for all 9."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "All 9 jobs have both required records over the required period; positive credit maps to strength.",
+          "implicit": true,
+          "id": "G2"
+        },
+        {
+          "quote": "Refer a finishing area with flammable liquids in open containers, except while the liquids are inside an approved enclosed dispensing system.",
+          "classification": "concern",
+          "status": "no_match",
+          "support": [
+            [
+              "manufacturing-application.md",
+              "line:59",
+              "The finishing-area liquids are entirely inside an approved enclosed dispensing system; no containers are open outside it."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "The recorded enclosed system meets the exception and there is no open-container exposure outside it; no concern should be emitted.",
+          "implicit": true,
+          "id": "G3"
+        }
+      ]
+    },
+    {
+      "id": "hospitality",
+      "title": "Elm urban hotel",
+      "mode": "explicit",
+      "guideline": "hospitality-guideline.md",
+      "documents": [
+        "hospitality-application.md"
+      ],
+      "expected": [
+        {
+          "quote": "[concern] A hotel kitchen suppression system with service overdue by more than 30 days is a concern.",
+          "classification": "concern",
+          "status": "no_match",
+          "support": [
+            [
+              "hospitality-application.md",
+              "line:15",
+              "The kitchen suppression system's scheduled service date was 31 August 2026. It remains unserviced as of 30 September 2026, exactly 30 days overdue."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "Exactly 30 days does not exceed 30; preserve the strict greater-than threshold despite the service being overdue.",
+          "implicit": false,
+          "id": "G1"
+        },
+        {
+          "quote": "[concern] An unfenced guest swimming pool is a concern; this rule applies only to properties operating a guest swimming pool.",
+          "classification": "concern",
+          "status": "not_applicable",
+          "support": [
+            [
+              "hospitality-application.md",
+              "line:39",
+              "The property does not operate a guest swimming pool. The enclosed lobby fountain is decorative and unavailable for swimming."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "No guest pool means the rule is out of scope; do not label this an in-scope negative or treat the fountain as a pool.",
+          "implicit": false,
+          "id": "G2"
+        },
+        {
+          "quote": "Unrestricted cash covering at least 6 months of fixed operating costs is a strength.",
+          "classification": "strength",
+          "status": "matched",
+          "support": [
+            [
+              "hospitality-application.md",
+              "line:59",
+              "Unrestricted cash is 780000 dollars; fixed operating costs are 120000 dollars per month. Restricted customer deposits are excluded from the cash figure."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "780000/120000 = 6.5 months, at least 6; restricted deposits were excluded and should not be added.",
+          "implicit": false,
+          "id": "G3"
+        }
+      ]
+    },
+    {
+      "id": "contractor",
+      "title": "Fir mechanical installations",
+      "mode": "mixed",
+      "guideline": "contractor-guideline.md",
+      "documents": [
+        "contractor-application.md"
+      ],
+      "expected": [
+        {
+          "quote": "[strength] Current insurance certificates for every active subcontractor are a strength.",
+          "classification": "strength",
+          "status": "matched",
+          "support": [
+            [
+              "contractor-application.md",
+              "line:15",
+              "The active subcontractor register contains 4 firms; all 4 have current insurance certificates covering the proposed policy period."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "All four active subcontractors are covered by current certificates; the population and validity period are established.",
+          "implicit": false,
+          "id": "G1"
+        },
+        {
+          "quote": "Refer contracts that transfer structural design responsibility to the applicant unless an executed agreement delegates that responsibility to an insured licensed engineer.",
+          "classification": "concern",
+          "status": "matched",
+          "support": [
+            [
+              "contractor-application.md",
+              "line:39",
+              "The current Riverside contract transfers structural design responsibility to Fir. No executed agreement delegates that responsibility to an engineer."
+            ]
+          ],
+          "finding_groups": [
+            [
+              0
+            ]
+          ],
+          "rationale": "Design responsibility is contractually assumed and no executed delegation supports the exception; referral maps to concern.",
+          "implicit": true,
+          "id": "G2"
+        },
+        {
+          "quote": "Allow positive credit for a documented rescue drill for every crew scheduled for confined-space entry during the policy period.",
+          "classification": "strength",
+          "status": "insufficient_evidence",
+          "support": [
+            [
+              "contractor-application.md",
+              "line:59",
+              "Two crews are scheduled for confined-space entry during the policy period; rescue-drill records have been requested but are not yet supplied."
+            ]
+          ],
+          "finding_groups": [],
+          "rationale": "Two crews are in scope but drill records are missing; absence of records does not prove drills did not happen or establish positive credit.",
+          "implicit": true,
+          "id": "G3"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+START cyber_remote_access_unknown
+  source questionnaire:it: 3.1s
+  source broker:email: 3.1s
+  case whole_case: 3.4s
+  decision_review whole_case: 3.1s
+  consistency_review whole_case: 2.8s
+RESULT cyber_remote_access_unknown: PASS; status=insufficient_evidence; findings=0/0
+START property_pump_service_unknown
+  source survey:equipment: 3.2s
+  source facilities:email: 2.9s
+  case whole_case: 3.5s
+  decision_review whole_case: 3.0s
+  consistency_review whole_case: 2.2s
+RESULT property_pump_service_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_driver_screening_unknown
+  source fleet:application: 2.6s
+  source broker:followup: 2.3s
+  case whole_case: 2.6s
+  decision_review whole_case: 3.0s
+  no_match_review whole_case: 2.0s
+  consistency_review whole_case: 2.5s
+RESULT auto_driver_screening_unknown: PASS; status=insufficient_evidence; findings=0/0
+START gl_subcontract_limit_unknown
+  source contractor:schedule: 2.7s
+  source broker:certificate_request: 2.6s
+  case whole_case: 3.6s
+  decision_review whole_case: 3.3s
+  no_match_review whole_case: 1.8s
+  consistency_review whole_case: 2.4s
+RESULT gl_subcontract_limit_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_incident_rate_calculation
+  source lossrun:2025: 3.2s
+  source fleet:2025: 3.2s
+  case whole_case: 4.0s
+  decision_review whole_case: 4.0s
+  consistency_review whole_case: 3.0s
+RESULT auto_incident_rate_calculation: PASS; status=matched; findings=1/1
+START property_reserves_exact_threshold
+  source finance:certified: 3.4s
+  case whole_case: 3.5s
+  decision_review whole_case: 3.3s
+  consistency_review whole_case: 2.2s
+RESULT property_reserves_exact_threshold: PASS; status=matched; findings=1/1
+START property_roof_exact_boundary
+  source survey:unit7: 2.8s
+  case whole_case: 2.8s
+  decision_review whole_case: 2.6s
+  no_match_review whole_case: 2.0s
+  consistency_review whole_case: 2.4s
+RESULT property_roof_exact_boundary: PASS; status=no_match; findings=0/0
+START cyber_patch_coverage_boundary
+  source security:patch_export: 3.8s
+  case whole_case: 3.4s
+  decision_review whole_case: 3.5s
+  consistency_review whole_case: 2.3s
+RESULT cyber_patch_coverage_boundary: PASS; status=matched; findings=1/1
+START property_alarm_equal_reports
+  source alarm:provider_a: 3.4s
+  source alarm:provider_b: 2.7s
+  case whole_case: 4.1s
+  case whole_case: 4.2s
+  case whole_case: 4.1s
+  decision_review whole_case: 3.1s
+  consistency_review whole_case: 2.4s
+RESULT property_alarm_equal_reports: PASS; status=insufficient_evidence; findings=0/0
+START cyber_backup_immutability_conflict
+  source security:signed_attestation: 3.6s
+  source infrastructure:signed_attestation: 2.5s
+  case whole_case: 3.2s
+  decision_review whole_case: 3.3s
+  consistency_review whole_case: 2.9s
+RESULT cyber_backup_immutability_conflict: PASS; status=insufficient_evidence; findings=0/0
+START auto_mileage_corrected_denominator
+  source lossrun:northline: 3.0s
+  source fleet:original_mileage: 2.9s
+  source fleet:signed_correction: 2.8s
+  case whole_case: 2.8s
+  decision_review whole_case: 3.3s
+  no_match_review whole_case: 1.9s
+  consistency_review whole_case: 3.2s
+RESULT auto_mileage_corrected_denominator: PASS; status=no_match; findings=0/0
+START property_later_repair_does_not_rewrite_history
+  source inspection:historical: 3.9s
+  source contractor:repair: 3.3s
+  case whole_case: 4.2s
+  decision_review whole_case: 3.6s
+  consistency_review whole_case: 3.0s
+RESULT property_later_repair_does_not_rewrite_history: PASS; status=matched; findings=1/1
+START property_electrical_exception
+  source schedule:building: 4.0s
+  source electrical:completion: 2.8s
+  case whole_case: 3.7s
+  decision_review whole_case: 3.3s
+  no_match_review whole_case: 1.7s
+  consistency_review whole_case: 1.8s
+RESULT property_electrical_exception: PASS; status=no_match; findings=0/0
+START cyber_service_account_exception
+  source identity:account: 3.9s
+  source security:rotation: 2.6s
+  case whole_case: 2.8s
+  decision_review whole_case: 3.2s
+  no_match_review whole_case: 1.7s
+  consistency_review whole_case: 2.2s
+RESULT cyber_service_account_exception: FAIL; status=insufficient_evidence; findings=0/0
+START gl_hot_work_scope_exclusion
+  source operations:attestation: 2.5s
+  case whole_case: 2.6s
+  decision_review whole_case: 3.0s
+  consistency_review whole_case: 2.4s
+RESULT gl_hot_work_scope_exclusion: PASS; status=not_applicable; findings=0/0
+START auto_passenger_scope_exclusion
+  source fleet:operations: 2.5s
+  case whole_case: 2.2s
+  decision_review whole_case: 2.4s
+  consistency_review whole_case: 4.1s
+RESULT auto_passenger_scope_exclusion: PASS; status=not_applicable; findings=0/0
+START property_multiple_warehouse_concerns
+  source survey:east: 3.7s
+  source survey:west: 3.1s
+  source schedule:office: 2.3s
+  case whole_case: 3.8s
+  case whole_case: 3.7s
+  case whole_case: 3.5s
+  decision_review whole_case: 3.6s
+  consistency_review whole_case: 2.4s
+RESULT property_multiple_warehouse_concerns: FAIL; status=matched; findings=2/2
+START auto_multiple_expired_licences
+  source hr:driver_a: 3.9s
+  source hr:driver_b: 3.7s
+  source hr:driver_c: 2.3s
+  case whole_case: 5.0s
+  case whole_case: 4.8s
+  case whole_case: 4.2s
+  decision_review whole_case: 6.0s
+  consistency_review whole_case: 2.3s
+RESULT auto_multiple_expired_licences: FAIL; status=matched; findings=2/2
+START cyber_multiple_restore_strengths
+  source test:billing: 3.4s
+  source test:inventory: 3.1s
+  case whole_case: 4.3s
+  decision_review whole_case: 4.5s
+  consistency_review whole_case: 2.5s
+RESULT cyber_multiple_restore_strengths: PASS; status=matched; findings=2/2
+START property_corroboration_not_two_events
+  source contractor:test: 3.7s
+  source engineer:verification: 3.3s
+  case whole_case: 4.1s
+  decision_review whole_case: 3.3s
+  consistency_review whole_case: 2.5s
+RESULT property_corroboration_not_two_events: PASS; status=matched; findings=1/1
+START gl_sister_company_evidence
+  source broker:corporate_chart: 3.3s
+  source news:recall_summary: 3.5s
+  case whole_case: 3.3s
+  decision_review whole_case: 2.7s
+  no_match_review whole_case: 1.8s
+  consistency_review whole_case: 2.0s
+RESULT gl_sister_company_evidence: PASS; status=insufficient_evidence; findings=0/0
+START cyber_prior_year_does_not_prove_current
+  source audit:2024: 2.7s
+  source broker:2025_update: 3.0s
+  case whole_case: 3.4s
+  decision_review whole_case: 3.1s
+  no_match_review whole_case: 2.0s
+  consistency_review whole_case: 2.3s
+RESULT cyber_prior_year_does_not_prove_current: PASS; status=insufficient_evidence; findings=0/0
+START property_building_specific_scope
+  source survey:a: 2.5s
+  source survey:b: 2.5s
+  case whole_case: 2.7s
+  case whole_case: 3.0s
+  case whole_case: 3.0s
+  decision_review whole_case: 2.7s
+  no_match_review whole_case: 1.5s
+  consistency_review whole_case: 1.9s
+RESULT property_building_specific_scope: FAIL; status=no_match; findings=0/0
+START wc_partial_payroll_period
+  source payroll:q1: 2.5s
+  source payroll:request: 2.8s
+  case whole_case: 3.6s
+  decision_review whole_case: 3.3s
+  consistency_review whole_case: 2.6s
+RESULT wc_partial_payroll_period: PASS; status=insufficient_evidence; findings=0/0
+START gl_document_submission_condition
+  source intake:complete_receipt: 3.0s
+  case whole_case: 2.9s
+  decision_review whole_case: 2.9s
+  no_match_review whole_case: 1.5s
+  consistency_review whole_case: 2.2s
+RESULT gl_document_submission_condition: FAIL; status=no_match; findings=0/0
+START wc_document_absence_is_concern
+  source intake:document_inventory: 3.1s
+  case whole_case: 3.1s
+  decision_review whole_case: 3.3s
+  consistency_review whole_case: 2.2s
+RESULT wc_document_absence_is_concern: PASS; status=matched; findings=1/1
+START wc_activity_explicitly_not_performed
+  source manager:signed_declaration: 3.3s
+  case whole_case: 2.6s
+  decision_review whole_case: 3.8s
+  decision_review whole_case: 3.7s
+  decision_review whole_case: 3.5s
+  no_match_review whole_case: 1.9s
+  consistency_review whole_case: 2.1s
+RESULT wc_activity_explicitly_not_performed: FAIL; status=no_match; findings=0/0
+START property_inspection_date_unknown
+  source maintenance:records: 3.5s
+  source survey:visual: 2.8s
+  case whole_case: 3.4s
+  decision_review whole_case: 2.9s
+  consistency_review whole_case: 2.7s
+RESULT property_inspection_date_unknown: PASS; status=insufficient_evidence; findings=0/0
+START property_cross_source_alarm_and_value
+  source stock:declaration: 2.7s
+  source security:certificate: 2.8s
+  case whole_case: 4.0s
+  decision_review whole_case: 3.4s
+  consistency_review whole_case: 2.2s
+RESULT property_cross_source_alarm_and_value: PASS; status=matched; findings=1/1
+START gl_loss_aggregation_without_duplicate
+  source lossrun:primary: 3.6s
+  source broker:claim_note: 3.7s
+  case whole_case: 4.8s
+  case whole_case: 4.8s
+  case whole_case: 5.0s
+  decision_review whole_case: 4.7s
+  consistency_review whole_case: 3.0s
+RESULT gl_loss_aggregation_without_duplicate: FAIL; status=matched; findings=1/1
+START cyber_restore_duration_cross_midnight
+  source restore:start_log: 3.0s
+  source restore:completion_log: 2.5s
+  case whole_case: 2.7s
+  case whole_case: 2.9s
+  case whole_case: 2.8s
+  decision_review whole_case: 3.0s
+  no_match_review whole_case: 1.7s
+  consistency_review whole_case: 2.3s
+RESULT cyber_restore_duration_cross_midnight: FAIL; status=no_match; findings=0/0
+START property_expired_exception_certificate
+  source survey:stack_height: 4.3s
+  source engineer:approval: 3.7s
+  case whole_case: 4.2s
+  decision_review whole_case: 4.9s
+  consistency_review whole_case: 3.0s
+RESULT property_expired_exception_certificate: PASS; status=matched; findings=1/1
+Saved C:\Users\Will\Projects\project-langchain-source\evals\results\guidance-readiness-validated-three-runs\run-03.json and C:\Users\Will\Projects\project-langchain-source\evals\results\guidance-readiness-validated-three-runs\run-03.md

@@ -1,0 +1,49 @@
+{
+  "report": "2026-10-19-heldout-long-documents.json",
+  "reviewer": "Codex assistant; post-run qualitative audit by the fixture author, not an independent underwriter or blinded expert",
+  "method": "Review all eight produced explanations using the frozen five-dimension rubric. Keep the automatic report unchanged. Ten absent explanations remain missing, not semantically graded. Exact excerpts are checked against saved candidate text.",
+  "dimension_order": ["rule_application", "factual_grounding", "scope_and_exceptions", "logical_support", "no_unsupported_claims"],
+  "pass_rule": "sum >= 8 and every dimension >= 1",
+  "reviews": [
+    {
+      "case_id": "property", "gold_id": "G1", "scores": [2, 2, 1, 2, 0],
+      "excerpt": "No exception prerequisites or validity dates are mentioned in the rule text.",
+      "assessment": "The two building findings and their age comparisons are correct. However, the explanation contradicts the quoted rule's explicit complete-replacement-within-two-years exception. Other sentences handle the replacement facts correctly, making this an internal inconsistency rather than an incorrect finding. The model judge repeated the erroneous no-exception claim and awarded 10/10."
+    },
+    {
+      "case_id": "property", "gold_id": "G2", "scores": [2, 2, 2, 2, 2],
+      "excerpt": "This directly proves that all three cold-storage buildings have current sprinkler inspection certificates with no outstanding deficiencies.",
+      "assessment": "Correctly connects all-building coverage and current certificates to the strength rule; the evidence and population are explicit."
+    },
+    {
+      "case_id": "property", "gold_id": "G3", "scores": [1, 2, 2, 2, 2],
+      "excerpt": "The exception prerequisite is 'a current independent fire-engineering certification approves those panels'. E32 explicitly states that current independent fire-engineering certification approves those panels in North, South, and East.",
+      "assessment": "Adequately explains why approval removes the concern, preserving the combustible-panel fact and all-building coverage. Minor precision issue: another sentence calls the condition false because the exception applies, conflating trigger satisfaction with the exception. The stated final explanation remains sufficient to understand the correct no_match outcome."
+    },
+    {
+      "case_id": "fleet", "gold_id": "G1", "scores": [2, 1, 1, 0, 0],
+      "excerpt": "This creates an unresolved conflict regarding whether there was a brake defect, but since one report explicitly states there is an unresolved brake defect, and the rule applies to such situations, this does not negate the finding.",
+      "assessment": "The final insufficient_evidence status is correct. The reason nevertheless treats one disputed report as enough to establish a finding and also says the condition is true after calling it unknown. This conflicts with both the gold and the final empty findings. The two inspection facts are quoted, but their interpretation is unsound."
+    },
+    {
+      "case_id": "fleet", "gold_id": "G2", "scores": [2, 1, 2, 0, 0],
+      "excerpt": "The lack of the register is a direct contradiction to the requirement for proof of completion. Therefore, the facts refute the trigger condition. Condition = false.",
+      "assessment": "The final assessment reason correctly explains missing evidence, following the focused negative review's downgrade. The retained decision-review condition explanation still treats missing records as proof of falsehood. The combined delivered explanation is internally inconsistent despite the correct final status."
+    },
+    {
+      "case_id": "hospitality", "gold_id": "G1", "scores": [2, 2, 2, 1, 0],
+      "excerpt": "This proves the trigger condition is met because the system was due on 31 August and remained unserviced until 30 September, which is exactly 30 days overdue.",
+      "assessment": "Later sentences correctly conclude that exactly 30 does not exceed 30, and the no_match outcome is correct. The quoted assertion says the opposite without retracting it. The contradiction is material to the threshold reasoning, so the entire explanation does not pass the rubric."
+    },
+    {
+      "case_id": "hospitality", "gold_id": "G2", "scores": [1, 2, 0, 0, 1],
+      "excerpt": "Since the property does not operate a guest swimming pool, the rule does not apply at all, making the exception status 'does_not_apply'.",
+      "assessment": "The text recognizes the rule's scope exclusion but applies it as a false condition/exception disposition and emits no_match. The correct status is not_applicable. Scope reasoning does not support the emitted conclusion, and this case was incorrectly marked decision_ready."
+    },
+    {
+      "case_id": "hospitality", "gold_id": "G3", "scores": [2, 2, 2, 2, 2],
+      "excerpt": "The calculation shows that 780000 / 120000 = 6.5 months of coverage, which meets the 'at least 6 months' requirement.",
+      "assessment": "Uses unrestricted cash and the correct monthly denominator, shows the calculation, and applies the inclusive threshold correctly. No restricted deposits are added."
+    }
+  ]
+}

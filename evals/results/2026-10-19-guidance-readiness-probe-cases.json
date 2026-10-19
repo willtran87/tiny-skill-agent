@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "description": "32 newly authored synthetic underwriting scenarios. Invented rules, thresholds, companies, and observations; not expert-validated. One criterion per case; assessed evidence is already extracted. Freeze before any model run.",
+  "cases": [
+    {
+      "id": "auto_incident_rate_calculation",
+      "category": "quantitative_boundaries",
+      "line_of_business": "commercial_auto",
+      "criteria": [
+        {
+          "id": "C1",
+          "source_id": "synthetic-guideline:commercial_auto:v1",
+          "source_label": "Invented evaluation guideline",
+          "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+          "classification": "concern"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "source_id": "lossrun:2025",
+          "source_label": "lossrun:2025",
+          "locator": "paragraph:1",
+          "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+          "context": "Preventable collision count is three; do not include the glass claims."
+        },
+        {
+          "id": "E2",
+          "source_id": "fleet:2025",
+          "source_label": "fleet:2025",
+          "locator": "paragraph:2",
+          "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+          "context": "Denominator requested by the guideline is 24."
+        }
+      ],
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [
+          {
+            "id": "finding_1",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ]
+          }
+        ],
+        "decision_ready": true,
+        "rationale": "Three divided by 24 times 100 is 12.5, above 10. This is one aggregate finding, not three separate collision findings."
+      }
+    },
+    {
+      "id": "property_cross_source_alarm_and_value",
+      "category": "cross_source_synthesis",
+      "line_of_business": "property",
+      "criteria": [
+        {
+          "id": "C1",
+          "source_id": "synthetic-guideline:property:v1",
+          "source_label": "Invented evaluation guideline",
+          "text": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+          "classification": "strength"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "source_id": "stock:declaration",
+          "source_label": "stock:declaration",
+          "locator": "paragraph:1",
+          "quote": "Haven Parts declares total insured stock of $425,000 as of 2025-09-01. All stock, including seasonal overflow, is held inside its sole insured warehouse. There is no outdoor or off-site stock.",
+          "context": "USD; the declaration is complete for all insured stock."
+        },
+        {
+          "id": "E2",
+          "source_id": "security:certificate",
+          "source_label": "security:certificate",
+          "locator": "paragraph:2",
+          "quote": "The alarm contractor certifies that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring. The system was active on 2025-09-01.",
+          "context": "Scope includes all warehouse storage areas."
+        }
+      ],
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [
+          {
+            "id": "finding_1",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ]
+          }
+        ],
+        "decision_ready": true,
+        "rationale": "The value and whole-stock alarm condition require combining both sources into one strength."
+      }
+    },
+    {
+      "id": "gl_loss_aggregation_without_duplicate",
+      "category": "cross_source_synthesis",
+      "line_of_business": "general_liability",
+      "criteria": [
+        {
+          "id": "C1",
+          "source_id": "synthetic-guideline:general_liability:v1",
+          "source_label": "Invented evaluation guideline",
+          "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+          "classification": "concern"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "source_id": "lossrun:primary",
+          "source_label": "lossrun:primary",
+          "locator": "paragraph:1",
+          "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+          "context": "All values USD, paid amounts rather than incurred reserves."
+        },
+        {
+          "id": "E2",
+          "source_id": "broker:claim_note",
+          "source_label": "broker:claim_note",
+          "locator": "paragraph:2",
+          "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+          "context": "Duplicate identification is explicit."
+        }
+      ],
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [
+          {
+            "id": "finding_1",
+            "evidence_ids": [
+              "E1"
+            ],
+            "acceptable_evidence_sets": [
+              [
+                "E1"
+              ],
+              [
+                "E1",
+                "E2"
+              ]
+            ]
+          }
+        ],
+        "decision_ready": true,
+        "rationale": "Distinct claims sum to $325,000, above $300,000. Do not add the repeated GL-101 again or create a finding per claim."
+      }
+    },
+    {
+      "id": "cyber_restore_duration_cross_midnight",
+      "category": "cross_source_synthesis",
+      "line_of_business": "cyber",
+      "criteria": [
+        {
+          "id": "C1",
+          "source_id": "synthetic-guideline:cyber:v1",
+          "source_label": "Invented evaluation guideline",
+          "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+          "classification": "strength"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "source_id": "restore:start_log",
+          "source_label": "restore:start_log",
+          "locator": "paragraph:1",
+          "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+          "context": "Use UTC; there were no clock corrections."
+        },
+        {
+          "id": "E2",
+          "source_id": "restore:completion_log",
+          "source_label": "restore:completion_log",
+          "locator": "paragraph:2",
+          "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+          "context": "Use the full application's completion time."
+        }
+      ],
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [],
+        "decision_ready": true,
+        "rationale": "Elapsed time is 25.5 hours, exceeding the 24-hour maximum despite a successful eventual restore."
+      }
+    }
+  ]
+}

@@ -17,12 +17,15 @@ from langgraph.types import Command
 
 from tiny_skill_agent import AssessmentInputs, Criterion, Evidence, assess
 from tiny_skill_agent.adapters import inputs_from_messages, make_assessment_node, make_langchain_assessor
-from tiny_skill_agent.assessment import PredicateDraft
+from tiny_skill_agent.assessment import PredicateDraft, ConsistencyDraft
 from tiny_skill_agent.evidence import EvidenceMetadataMiddleware, tag_tool
 from tiny_skill_agent.middleware import AssessmentMiddleware
 
 
 def matched(payload):
+    if payload["stage"] == "consistency_review":
+        return [{"criterion_id": key, "scope_quote": "", "scope_applies": True, "exception_quote": "", "issues": [],
+                 "reason": "This fixture has a consistent decision and explanation.", "verdict": "supported"} for key in payload["criteria"]]
     if payload["stage"] == "decision_review":
         return predicate(payload)
     return [{"criterion_id": key, "status": "matched", "evidence_ids": list(payload["evidence_spans"]),
@@ -52,13 +55,15 @@ class StructuredModel:
     def __init__(self, metadata=None, parsing_error=None):
         self.metadata = metadata or {}
         self.parsing_error = parsing_error
+        self.payloads = []
 
     def with_structured_output(self, schema, **kwargs):
         self.schema, self.options = schema, kwargs
         def invoke(messages):
             payload = json.loads(messages[-1][1])
+            self.payloads.append(payload)
             return {"raw": AIMessage(content="", response_metadata=self.metadata),
-                    "parsed": schema.model_validate(predicate(payload)), "parsing_error": self.parsing_error}
+                    "parsed": schema.model_validate(matched(payload) if schema is ConsistencyDraft else predicate(payload)), "parsing_error": self.parsing_error}
         return RunnableLambda(invoke)
 
 
@@ -100,10 +105,12 @@ class AdapterTests(unittest.TestCase):
         inputs = self.inputs()
         result = assess(criteria=inputs.criteria, evidence=inputs.evidence,
                         model=make_langchain_assessor(model, method="json_schema"))
-        self.assertIs(model.schema, PredicateDraft)
+        self.assertIs(model.schema, ConsistencyDraft)
         self.assertEqual(model.options, {"include_raw": True, "method": "json_schema"})
         self.assertEqual(len(result.findings), 1)
         self.assertTrue(result.coverage["decision_ready"])
+        self.assertTrue(all("scope" not in p and "source_assessments" not in p for p in model.payloads))
+        self.assertTrue(all("evidence_batch" in p for p in model.payloads))
         for broken in (StructuredModel(metadata={"done_reason": "length"}), StructuredModel(parsing_error="bad JSON")):
             failed = assess(criteria=inputs.criteria, evidence=inputs.evidence,
                             model=make_langchain_assessor(broken), config={"max_retries": 0})
@@ -204,7 +211,7 @@ class CompletionMiddlewareTests(unittest.TestCase):
                 )
                 state = {"messages": [{"role": "user", "content": "Check service."}]}
                 output = asyncio.run(agent.ainvoke(state)) if asynchronous else agent.invoke(state)
-                self.assertEqual(events, ["tool", "source", "case", "decision_review"])
+                self.assertEqual(events, ["tool", "source", "case", "decision_review", "consistency_review"])
                 self.assertEqual(output["messages"][-1].content, "Finished normally.")
                 self.assertEqual(len(output["messages"]), 4)
                 self.assertEqual(output["assessment"]["findings"][0]["facts"][0]["source"], "tool:observations#call1")
@@ -291,7 +298,7 @@ class CompletionMiddlewareTests(unittest.TestCase):
         self.assertEqual(calls, [])
         completed = agent.invoke(Command(resume=True), config)
         self.assertTrue(completed["assessment"]["coverage"]["decision_ready"])
-        self.assertEqual(calls, ["source", "case", "decision_review"])
+        self.assertEqual(calls, ["source", "case", "decision_review", "consistency_review"])
 
 
 if __name__ == "__main__":

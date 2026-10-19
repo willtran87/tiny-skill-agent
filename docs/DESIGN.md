@@ -4,7 +4,7 @@
 
 [`agent_starter.ipynb`](../notebooks/agent_starter.ipynb) is a small LangChain `create_agent` / LangGraph ReAct example with local skills, tagged tools, and a structured assessment stage. [`evidence.py`](../src/tiny_skill_agent/evidence.py) records provenance and validates citations. [`agent.py`](../src/tiny_skill_agent/agent.py) provides a simpler chat CLI without this assessment stage. The notebook uses Ollama by default and can be configured for OpenAI.
 
-The assessment compares each **observed data source** with every **observed labeled criterion**, then reconciles all observed sources for the case. It aims to recover single-source and cross-source strengths and concerns while exposing incomplete assessment coverage.
+The assessment compares each **observed data source** with every **observed classified criterion**, then reconciles all observed sources for the case. Criteria can be explicitly labelled or extracted with an optional source-backed classification mapping. It aims to recover single-source and cross-source strengths and concerns while exposing incomplete assessment coverage.
 
 The reusable `assess(criteria=..., evidence=..., model=..., config=...)` API lives in [`assessment.py`](../src/tiny_skill_agent/assessment.py). [`adapters.py`](../src/tiny_skill_agent/adapters.py) converts LangChain messages and models or exposes a LangGraph node. The notebook is a configuration and display client. The core accepts explicit criteria with arbitrary classifications; bracketed labels are a convention of the message adapter. See [INTEGRATION.md](INTEGRATION.md) for API examples and migration details.
 
@@ -13,10 +13,10 @@ The reusable `assess(criteria=..., evidence=..., model=..., config=...)` API liv
 | ID | Assigned by code | Contains |
 | --- | --- | --- |
 | `S1`, `S2`, ... | `build_source_catalog` | One observed system prompt, skill read, directive-tool result, or data-tool result. Full identities include `system_prompt`, `skill:<name>`, and `tool:<name>#<call_id>`. |
-| `C1`, `C2`, ... | `build_criterion_inventory` | One exact line beginning `[strength]` or `[concern]` in a permitted directive source, plus its `S` ID. |
+| `C1`, `C2`, ... | `build_criterion_inventory` and optional prose adapter | One exact rule quotation in a permitted directive source, its classification, and its source identity. Implicit outcomes retain a separate exact `classification_quote`. |
 | `E1`, `E2`, ... | `build_fact_spans` | One nonempty text line or JSON leaf from a data source, plus its `S` ID, line/JSON-pointer locator, quote, and context. |
 
-These IDs are local to one run. JSON context includes the parent object when available; text context includes neighboring lines. The model selects short `C` and `E` IDs, and code expands them after validation. General instructions without a classification prefix can still guide the agent but do not enter the criterion inventory.
+These IDs are local to one run. JSON context includes the parent object when available; text context includes neighboring lines. The model selects short `C` and `E` IDs, and code expands them after validation. General interpretive instructions remain source context. Optional prose extraction can add unlabelled outcome rules when their classification is explicit in the rule or defined by an exact mapping in the same source; the standard LangChain adapter reviews every nonempty source line, including known outcomes, before code deduplicates known rules. Operational guidance is retained as context, and unresolved outcome rules fail extraction. This verifies structural coverage, not semantic completeness.
 
 `tag_tool(tool, "directive")` and `tag_tool(tool, "data")` register evidence kinds. `read_skill` has source kind `skill`; the system prompt has source kind `system_prompt`; ordinary tools have source kind `tool`. `EvidenceMetadataMiddleware` attaches `_meta` to successful tool messages. `collect_evidence` verifies the observed call and metadata before routing the result. Failed or unobserved results do not become evidence.
 
@@ -40,13 +40,14 @@ flowchart TD
     K --> R[Independent predicate review of every criterion]
     R --> Q[Focused evidence-sufficiency challenge for final no_match]
     Q --> L[Compare status and atomic finding citation groups]
-    L --> M[Resolve citations and derive classification]
+    L --> V[Review final explanation and scope consistency]
+    V --> M[Resolve citations and derive classification]
     M --> N[Findings, assessments, and coverage reports]
 ```
 
-The default `AssessmentConfig.batch_size` is one criterion per model call because the sample local model was unreliable when asked for several assessments together. Each source call receives spans from that source; a cited `E` ID from another source is rejected. The case call receives all spans, source assessments, and detected conflict candidates. A criterion can contain multiple independent findings, each citing one or more sources. Bounded retries include validation feedback. The case pass can overturn provisional source judgments using supported corrections or exceptions. Disagreements remain visible, and a missing case assessment never promotes a source match automatically.
+The default `AssessmentConfig.batch_size` is one criterion per model call because the sample local model was unreliable when asked for several assessments together. Each source call receives spans from that source; a cited `E` ID from another source is rejected. The standard LangChain case inference receives all spans and evidence IDs flagged for review. Custom callable payloads retain source assessments for compatibility. Provisional source assessments are retained in the audit trail, rather than fed back as factual premises. A changed conclusion after combining complementary sources does not itself establish a conflict; mixed conclusive source judgments and explicitly unresolved source conflicts still require resolution. A criterion can contain multiple independent findings, each citing one or more sources. Bounded retries include validation feedback. The case pass can overturn provisional source judgments using supported corrections or exceptions. Disagreements remain visible, and a missing case assessment never promotes a source match automatically.
 
-Only observed data sources and observed labeled criteria are covered. A skill never read or data tool never called is outside this run's coverage.
+Only observed data sources and extracted criteria are covered. A skill never read or data tool never called is outside this run's coverage. The final consistency review uses original evidence and criterion/source context. Its quoted clauses and explanation section IDs are validated in code; missing, uncertain or adverse reviews block readiness. It cannot prove semantic correctness. Superseded decision reviews remain in history rather than the active explanation after a focused review downgrades a negative decision.
 
 ## Normalized assessment schema
 
@@ -165,3 +166,12 @@ The API returns `AssessmentResult.findings`, a list of `Finding` models. The not
 - **Audit:** A production system should persist model version, prompts, tool inputs and outputs, source catalog, evidence spans, accepted and rejected assessments, and reviewer decisions.
 
 Related papers and evaluation guidance are in [RESEARCH.md](RESEARCH.md).
+
+
+The standard negative-evidence review distinguishes an underlying fact, record
+existence, and explicit record receipt. It separately classifies the source
+observation. Code prevents nonreceipt alone from refuting an underlying fact or
+record existence, downgrading a supported negative to missing evidence when those
+fields conflict. The existing archive path keeps superseded reasoning out of the
+active explanation. Custom review callables can supply the same optional metadata;
+legacy responses remain accepted. This adds no assessment stage.

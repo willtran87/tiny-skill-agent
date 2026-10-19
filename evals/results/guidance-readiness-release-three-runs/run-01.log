@@ -1,0 +1,31 @@
+START cyber_remote_access_unknown
+  source questionnaire:it: 17.1s
+  source broker:email: 2.6s
+  case whole_case: 2.9s
+  decision_review whole_case: 3.0s
+  consistency_review whole_case: 2.5s
+RESULT cyber_remote_access_unknown: PASS; status=insufficient_evidence; findings=0/0
+START property_pump_service_unknown
+  source survey:equipment: 2.9s
+  source facilities:email: 2.6s
+  case whole_case: 3.1s
+  decision_review whole_case: 2.7s
+  consistency_review whole_case: 1.9s
+RESULT property_pump_service_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_driver_screening_unknown
+  source fleet:application: 2.4s
+  source broker:followup: 2.1s
+  case whole_case: 2.3s
+  decision_review whole_case: 2.7s
+  no_match_review whole_case: 1.5s
+  consistency_review whole_case: 1.9s
+RESULT auto_driver_screening_unknown: PASS; status=insufficient_evidence; findings=0/0
+START gl_subcontract_limit_unknown
+  source contractor:schedule: 2.4s
+  source broker:certificate_request: 2.2s
+  case whole_case: 3.1s
+  decision_review whole_case: 3.0s
+  no_match_review whole_case: 1.7s
+  consistency_review whole_case: 2.4s
+RESULT gl_subcontract_limit_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_incident_rate_calculation
