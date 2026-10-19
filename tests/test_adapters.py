@@ -1,6 +1,7 @@
 import asyncio
 import copy
 import json
+import threading
 import unittest
 from types import SimpleNamespace
 from typing import TypedDict
@@ -18,6 +19,7 @@ from tiny_skill_agent import AssessmentInputs, Criterion, Evidence, assess
 from tiny_skill_agent.adapters import inputs_from_messages, make_assessment_node, make_langchain_assessor
 from tiny_skill_agent.assessment import PredicateDraft
 from tiny_skill_agent.evidence import EvidenceMetadataMiddleware, tag_tool
+from tiny_skill_agent.middleware import AssessmentMiddleware
 
 
 def matched(payload):
@@ -167,6 +169,129 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(len(inputs.evidence), 1)
         with self.assertRaisesRegex(ValueError, "matching ToolMessage"):
             middleware.wrap_tool_call(SimpleNamespace(tool_call=call), lambda _: Command(update={"custom": 7}))
+
+
+class CompletionMiddlewareTests(unittest.TestCase):
+    def inputs(self):
+        return AssessmentInputs(
+            criteria=[Criterion(id="C1", text="Service must be available.", source_id="policy", classification="pass")],
+            evidence=[Evidence(id="E1", source_id="monitor", quote="Available", locator="line:1")],
+        )
+
+    def test_real_agent_tool_loop_sync_and_async(self):
+        for asynchronous in (False, True):
+            with self.subTest(asynchronous=asynchronous):
+                events = []
+                @tool
+                def observations() -> str:
+                    """Return service observations."""
+                    events.append("tool")
+                    return "Service is available."
+                tag_tool(observations, "data")
+                def assessment_model(payload):
+                    events.append(payload["stage"])
+                    return matched(payload)
+                middleware = AssessmentMiddleware(
+                    assessment_model, tools=[observations],
+                    system_prompt="[strength] Service must be available.",
+                )
+                agent = create_agent(
+                    ToolModel(responses=[
+                        AIMessage(content="", tool_calls=[{"name": "observations", "args": {}, "id": "call1"}]),
+                        AIMessage(content="Finished normally."),
+                    ]), tools=[observations],
+                    middleware=[EvidenceMetadataMiddleware([observations]), middleware],
+                )
+                state = {"messages": [{"role": "user", "content": "Check service."}]}
+                output = asyncio.run(agent.ainvoke(state)) if asynchronous else agent.invoke(state)
+                self.assertEqual(events, ["tool", "source", "case", "decision_review"])
+                self.assertEqual(output["messages"][-1].content, "Finished normally.")
+                self.assertEqual(len(output["messages"]), 4)
+                self.assertEqual(output["assessment"]["findings"][0]["facts"][0]["source"], "tool:observations#call1")
+                self.assertTrue(output["assessment"]["coverage"]["decision_ready"])
+                self.assertIsNone(output["assessment_error"])
+                json.dumps(output["assessment"])
+
+    def test_custom_mapper_preserves_state_and_structured_response(self):
+        state = {"messages": [AIMessage(content="Done")], "structured_response": {"answer": 42},
+                 "custom": self.inputs(), "assessment": {"old": True}}
+        original = copy.deepcopy(state)
+        wrapper = AssessmentMiddleware(matched, input_mapper=lambda s: s["custom"])
+        update = wrapper.after_agent(state, None)
+        self.assertEqual(state, original)
+        self.assertEqual(set(update), {"assessment", "assessment_error"})
+        self.assertTrue(update["assessment"]["coverage"]["decision_ready"])
+
+    def test_checkpointed_next_turn_replaces_success_with_error_and_recovers(self):
+        fail = False
+        def mapper(state):
+            if fail:
+                raise ValueError("Extraction failed")
+            return self.inputs()
+        wrapper = AssessmentMiddleware(matched, input_mapper=mapper)
+        agent = create_agent(ToolModel(responses=[AIMessage(content="Done") for _ in range(3)]),
+                             middleware=[wrapper], checkpointer=InMemorySaver())
+        config = {"configurable": {"thread_id": "completion"}}
+        invoke = lambda: agent.invoke({"messages": [{"role": "user", "content": "Check"}]}, config)
+        self.assertTrue(invoke()["assessment"]["coverage"]["decision_ready"])
+        fail = True
+        failed = invoke()
+        self.assertIsNone(failed["assessment"])
+        self.assertEqual(failed["assessment_error"]["type"], "ValueError")
+        self.assertEqual(failed["messages"][-1].content, "Done")
+        self.assertIsNone(agent.get_state(config).values["assessment"])
+        fail = False
+        recovered = invoke()
+        self.assertIsNone(recovered["assessment_error"])
+        self.assertTrue(recovered["assessment"]["coverage"]["decision_ready"])
+
+    def test_provider_errors_remain_in_non_ready_assessment(self):
+        def broken(payload):
+            raise RuntimeError("Provider unavailable")
+        wrapper = AssessmentMiddleware(broken, input_mapper=lambda _: self.inputs(), config={"max_retries": 0})
+        output = wrapper.after_agent({"messages": []}, None)
+        self.assertIsNone(output["assessment_error"])
+        self.assertFalse(output["assessment"]["coverage"]["decision_ready"])
+        self.assertEqual(len(output["assessment"]["coverage"]["errors"]), 3)
+
+    def test_raise_mode_and_empty_inputs(self):
+        wrapper = AssessmentMiddleware(matched, input_mapper=lambda _: {}, on_error="raise")
+        with self.assertRaises(ValueError):
+            wrapper.after_agent({"messages": []}, None)
+        with self.assertRaises(ValueError):
+            AssessmentMiddleware(matched, on_error="ignore")
+        def unexpected(payload):
+            self.fail("Empty inputs must not invoke the model")
+        empty = AssessmentMiddleware(unexpected).after_agent({"messages": []}, None)
+        self.assertFalse(empty["assessment"]["coverage"]["decision_ready"])
+
+    def test_async_assessment_uses_worker_thread(self):
+        main_thread = threading.get_ident()
+        calls = []
+        def model(payload):
+            calls.append(threading.get_ident())
+            return matched(payload)
+        wrapper = AssessmentMiddleware(model, input_mapper=lambda _: self.inputs())
+        asyncio.run(wrapper.aafter_agent({"messages": []}, None))
+        self.assertTrue(calls)
+        self.assertTrue(all(thread != main_thread for thread in calls))
+
+    def test_interruption_clears_stale_result_and_defers_assessment_until_resume(self):
+        calls = []
+        def model(payload):
+            calls.append(payload["stage"])
+            return matched(payload)
+        wrapper = AssessmentMiddleware(model, input_mapper=lambda _: self.inputs())
+        agent = create_agent(ToolModel(responses=[AIMessage(content="Done")]),
+                             middleware=[wrapper], checkpointer=InMemorySaver(), interrupt_before=["model"])
+        config = {"configurable": {"thread_id": "interrupt"}}
+        paused = agent.invoke({"messages": [{"role": "user", "content": "Check"}],
+                               "assessment": {"old": True}}, config)
+        self.assertIsNone(paused["assessment"])
+        self.assertEqual(calls, [])
+        completed = agent.invoke(Command(resume=True), config)
+        self.assertTrue(completed["assessment"]["coverage"]["decision_ready"])
+        self.assertEqual(calls, ["source", "case", "decision_review"])
 
 
 if __name__ == "__main__":

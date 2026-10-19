@@ -69,6 +69,89 @@ For Ollama, pass `method="json_schema"` when constructing the assessment callabl
 
 The middleware handles ordinary `ToolMessage` results and `Command` results whose mapping `update["messages"]` contains a matching `ToolMessage`. It preserves other state updates and routing. Unsupported tagged evidence commands fail explicitly. A custom `ToolNode` does not automatically run `create_agent` middleware: record typed observations directly or wrap the execution boundary with the middleware. Text/JSON tool output is supported; multimodal or block content must be extracted first.
 
+## Optional agent-completion middleware
+
+`AssessmentMiddleware` invokes the same `assess` API from LangChain's
+[`after_agent` hook](https://reference.langchain.com/python/langchain/agents/middleware/types/after_agent).
+It adds two state fields without updating messages, `structured_response`, tools,
+or routing. Import it explicitly; existing agents do not enable it automatically.
+
+```python
+from tiny_skill_agent.middleware import AssessmentMiddleware
+
+# tools, prompt, chat_model, and assessment_model are from the example above.
+# assessment_model is the callable returned by make_langchain_assessor, not
+# the raw chat model. With Ollama use method="json_schema" for that adapter.
+agent = create_agent(
+    model=chat_model,
+    tools=tools,
+    system_prompt=prompt,
+    middleware=[
+        EvidenceMetadataMiddleware(tools),
+        AssessmentMiddleware(
+            assessment_model,
+            tools=tools,
+            system_prompt=prompt,
+            request="Assess the observed facts against the supplied guidelines.",
+        ),
+    ],
+)
+run = agent.invoke({"messages": [{"role": "user", "content": "Review this case."}]})
+result = run.get("assessment")
+ready = bool(result and result["coverage"]["decision_ready"])
+error = run.get("assessment_error")
+# The agent's original response remains in run["messages"].
+```
+
+Reserve `assessment` and `assessment_error` for this middleware. The former is
+the JSON-serializable `AssessmentResult`, or `None` when unavailable. The latter
+is `None` or an error with `type` and `message`. Both are cleared in `before_agent`
+on a fresh invocation so a previous turn's result cannot appear current after a
+failure or interruption. Normal completion runs assessment once; interrupted,
+cancelled, or failed agent execution does not guarantee completion assessment.
+Inspect the final state/update when streaming; model tokens can arrive earlier.
+
+By default, extraction and other wrapper errors are recorded and the agent
+response remains available. Set `on_error="raise"` to propagate those errors.
+Provider/parsing failures already handled by `assess` remain in the result's
+`coverage.errors`, with the existing readiness gates; `on_error="raise"` does not
+turn those recorded failures into exceptions. An absent assessment is never ready.
+
+The default extractor uses **all retained messages**, the registered tools, and
+the supplied static system prompt. This includes earlier turns in checkpointed
+conversations. Use a separate thread per case, or provide `input_mapper(state)`
+to select the intended evidence and criteria. A custom mapper returns
+`AssessmentInputs` or an equivalent dictionary and can support different labels,
+criterion-source allowlists, dynamic prompts, or other data formats using the
+existing extraction API. Its state is read-only by convention: do not mutate it.
+Custom state inputs must be declared in the agent's state schema.
+
+```python
+completion = AssessmentMiddleware(
+    assessment_model,
+    input_mapper=lambda state: state["assessment_input"],
+    config=AssessmentConfig(batch_size=1),
+)
+```
+
+The wrapper does not register or collect tools itself. Pair it with
+`EvidenceMetadataMiddleware` for the default message extractor; explicit-record
+mappers do not require that collector. Supply the actual prompt used by your
+agent, since runtime prompt changes are not captured automatically. Keep the
+wrapper first in the middleware list if other completion hooks transform state
+that it must see: LangChain executes completion hooks in reverse list order.
+
+`ainvoke`/`astream` run the synchronous assessment in a worker thread, so it does
+not block the event loop. The callable and custom mapper must support that use.
+Assessment still completes before the invocation returns; this is not a background
+job. Cancelling the await cannot stop an already-running synchronous provider
+call. Checkpoint replay of the completion hook can repeat model calls. There is
+no per-call checkpointing or exactly-once guarantee, and no additional model
+calls beyond the existing assessment pipeline.
+
+For a custom LangGraph graph, retain `make_assessment_node` below. This middleware
+uses the lifecycle of `create_agent`; arbitrary graphs do not invoke its hooks.
+
 ## LangGraph state
 
 Use one assessment node in an existing graph. The default contract reads `state["assessment_input"]` and writes a JSON-serializable result under `state["assessment"]`:
