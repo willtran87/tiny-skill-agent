@@ -9,6 +9,7 @@ src/tiny_skill_agent/
   agent.py               ReAct agent, skill tools, and CLI
   assessment.py          Portable criteria/evidence API, schemas, reconciliation
   adapters.py            LangChain messages/models and LangGraph state node
+  middleware.py          Optional assessment on agent completion
   evidence.py            Tool metadata, provenance, evidence spans, validation
   sample_skills/         Bundled example SKILL.md files
 notebooks/
@@ -70,6 +71,13 @@ result = assess(
 `criteria` and `evidence` are typed records or matching dictionaries; `model` is a callable accepting a payload and returning structured assessments. Classification labels are supplied by the caller. `inputs_from_messages` converts observed LangChain tool messages, `make_langchain_assessor` wraps structured chat models, and `make_assessment_node` adapts the API to dictionary state in a LangGraph. See [docs/INTEGRATION.md](docs/INTEGRATION.md) for complete examples and compatibility boundaries. No additional orchestration framework is introduced.
 
 ## Add a skill or tool
+
+For automatic assessment after the agent finishes, add the optional
+`AssessmentMiddleware` alongside evidence collection. It writes separate
+`assessment` and `assessment_error` state fields and supports `invoke` and
+`ainvoke`. See the [completion middleware example](docs/INTEGRATION.md#optional-agent-completion-middleware).
+The default path records assessment failures while preserving the agent response;
+callers must check for an assessment and its `coverage.decision_ready` flag.
 
 The included examples live in [src/tiny_skill_agent/sample_skills](src/tiny_skill_agent/sample_skills). Each skill is a directory containing a `SKILL.md` with `name` and `description` frontmatter. Use `--skills-dir` for your own skills. In the notebook, set `SKILLS_DIR` before creating the tools.
 
