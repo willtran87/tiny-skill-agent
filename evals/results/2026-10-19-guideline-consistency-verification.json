@@ -1,0 +1,17 @@
+{
+  "state": "completed",
+  "unit_tests_passed": 120,
+  "checks": [
+    "core: scores rederived, schemas valid, LF-normalized dataset hash and ordered gold/model digest/settings match baseline",
+    "contrasts: scores rederived, schemas valid, LF-normalized dataset hash and ordered gold/model digest/settings match baseline",
+    "documents: scores rederived, schemas valid, exact rule and classification-mapping source quotations verified",
+    "e2e: all 14 scores rederived, eight produced schemas valid",
+    "All 96 repeated-case outputs validate and stored scores recompute exactly; aggregate summary recomputes exactly.",
+    "Current frozen source/evaluation/corpus hashes match all final manifests; baseline fixture/scorer content and model digest/settings are preserved. Older raw hash differences reflect verified line-ending conversion.",
+    "No scoring-only keys found in 806 recorded assessment/extraction model payloads; separate evaluation-judge payloads excluded.",
+    "All 18 manual-audit excerpts occur in saved final explanations; 15 pass the declared rubric."
+  ],
+  "produced_assessment_results_validated": 122,
+  "case_or_turn_scores_recomputed": 128,
+  "production_payloads_checked": 806
+}

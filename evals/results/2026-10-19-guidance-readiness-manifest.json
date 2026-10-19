@@ -1,0 +1,19 @@
+{
+  "src\\tiny_skill_agent\\adapters.py": "37fb2cd1913b679d76662d32a52ffa06c5042b4f1922b4749a008c1734e49a29",
+  "src\\tiny_skill_agent\\agent.py": "c2e931d97e93fedb36270eed0089dd696f9b62f2e6f207258ad2c4c519735173",
+  "src\\tiny_skill_agent\\assessment.py": "ae89f62e1987f64ea69fae39e8c3906614eb389d70cdb528a7de7093d845c64a",
+  "src\\tiny_skill_agent\\criteria.py": "b9bf2e7ecee6c20c796931184146fe506b875ac011ab549da991ba8fa97623aa",
+  "src\\tiny_skill_agent\\evidence.py": "571a9697e4a83b4c61104f45f57e41bc9fa50861867afe92aa72abab798156c6",
+  "src\\tiny_skill_agent\\middleware.py": "7fb4b14f5de4cd59463eb026802cfcbb03fd615d5444cedc1de36e9e0d00359c",
+  "src\\tiny_skill_agent\\__init__.py": "7c8a676a7dc55fba21022c8ff98c9245ca0dfa1ce1f330df43ed833b6c7b29a5",
+  "src\\tiny_skill_agent\\__main__.py": "bc0d937d65eb31008d7110b235b26de3837ed9d3d9cb1e08c67c0e9bb2b65049",
+  "evals\\run.py": "ddc281e3789d034fc08fb99e2d7970077c9787f135fb8f1f8b6e11d1675ec189",
+  "evals\\e2e.py": "41d4fd4cb1f367e220c84fe668e1b1e9f8ab03b8d59c6cb4aa333dbde2723fa0",
+  "evals\\holdout.py": "7ddf543708ae2affbc55d2f98d5ed0695a06ab76be2636ffb98bba6efa71a435",
+  "evals\\repeat.py": "202e99b498ca9e8153bf784a42534720b4aa324b5f93f445497a30a89bb156c3",
+  "evals\\cases.json": "3f90231932a20f13f6a46c5ed95b71f50e46b18c8de64e051d169d0cb16cd837",
+  "evals\\sufficiency_cases.json": "61a26ccb1d75166fa3053171e21999d3960c76442bdd6f97b64cab79a2d9d9a4",
+  "evals\\unseen_cases_v1.json": "75be2099868b4b5cab8159fb7fb10ef0b8ea7e76b27efc3656ab3ef3e1b8ddd1",
+  "evals\\holdout\\cases.json": "d4807bf10d613466907a4fc743bfab393d9630267bd5bec0c029b69e43786746",
+  "evals\\e2e_cases.json": "fefb8b40f68eebdf3045d15f2592f1c896804c7b81f68c730efb39f26020e410"
+}

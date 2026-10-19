@@ -159,7 +159,7 @@ class AssessmentTests(unittest.TestCase):
 
     def test_case_match_cannot_ignore_opposing_source(self):
         second = Evidence(id="second", source_id="monitor:2", quote="Unavailable", locator="line:1")
-        for case in (row(), row(conflict="resolved")):
+        for case in (row(), row(conflict="resolved"), row(ids=["fact", "second"])):
             def model(payload):
                 if payload["stage"] == "case":
                     self.assertEqual(payload["conflict_candidates"]["rule"], ["fact", "second"])
@@ -170,6 +170,19 @@ class AssessmentTests(unittest.TestCase):
             self.assertEqual(result.findings, [])
             self.assertEqual(result.coverage["missing"], ["rule"])
             self.assertIn("opposing source judgments", result.coverage["errors"][0]["error"])
+
+    def test_complementary_evidence_does_not_require_a_fabricated_conflict(self):
+        second = Evidence(id="second", source_id="monitor:2", quote="Complementary observation", locator="line:1")
+        def model(payload):
+            if payload["stage"] == "case":
+                self.assertIn("source_assessments", payload)
+                return [row(ids=["fact", "second"])]
+            return [row("no_match" if payload["scope"] == "monitor:1" else "insufficient_evidence",
+                        ids=list(payload["evidence_spans"]))]
+        result = assess(criteria=[self.rule], evidence=[self.fact, second], model=model)
+        self.assertTrue(result.coverage["complete"])
+        self.assertEqual(result.criterion_assessments["rule"].conflict, "none")
+        self.assertFalse(result.coverage["decision_ready"])  # Review gates still apply.
 
     def test_unresolved_conflict_abstains_and_tracks_both_directions(self):
         second = Evidence(id="second", source_id="monitor:2", quote="Unavailable", locator="line:1")
@@ -201,7 +214,7 @@ class AssessmentTests(unittest.TestCase):
         def model(payload):
             calls.append(payload)
             if payload["stage"] == "source":
-                return [row("no_match")]
+                return [row("insufficient_evidence", conflict="unresolved", basis="unresolved_conflict")]
             if "validation_feedback" not in payload:
                 return [row()]
             self.assertIn("opposing source", payload["validation_feedback"]["rule"])

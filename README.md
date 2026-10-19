@@ -56,6 +56,21 @@ Every criterion receives an independent review of the original evidence, includi
 
 Final `no_match` judgments retain a focused evidence-sufficiency challenge: missing information must not become a confirmed negative just because two general passes agree. Its verdict appears in `no_match_reviews`; failed, inconclusive, or disabled negative checks block readiness for those decisions.
 
+A final `consistency_review` challenges scope and the written explanation against
+the original evidence and rule. Missing reviews, uncertainty, or identified issues
+block readiness. Downgraded predicate reviews move to `superseded_decision_reviews`
+so their earlier reasoning remains in history. This adds one bounded review call
+per assessed criterion; it remains a model check, not a correctness guarantee.
+
+Optional guideline extraction supports implicit outcomes through a separate exact
+`classification_quote` from the same source. Every remaining source line must be
+accounted for with linked rule quotations or an empty list for context/mappings.
+One structural repair attempt is allowed by default. This checks structural coverage;
+semantic omissions remain possible. See [the integration contract](docs/INTEGRATION.md).
+
+See the [latest regression comparison](evals/results/2026-10-19-guidance-readiness-comparison.md)
+for operational-guidance extraction, readiness, retained safety checks, and remaining failures.
+
 ## Use in an existing application
 
 The notebook delegates to a reusable API with no notebook globals:
@@ -118,3 +133,12 @@ See the subsequent [all-outcome review comparison](evals/results/2026-10-18-revi
 ```powershell
 .venv\Scripts\python -m unittest discover -s tests
 ```
+
+
+The standard extraction adapter reviews known rules alongside operational context,
+using required source-line keys and caller-supplied classification labels. Code
+deduplicates known rules and retains guidance as context. The standard assessment
+adapter keeps provisional source opinions out of case inference while retaining
+them in the audit trail. Negative review distinguishes record existence from
+record receipt: unsupplied records alone cannot disprove an underlying activity
+or an existing record. These changes add no model stage or dependency.

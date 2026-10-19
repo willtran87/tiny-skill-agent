@@ -1,5 +1,37 @@
 # Assessment evaluation
 
+## Guideline extraction and final consistency review
+
+The [latest comparison](results/2026-10-19-guideline-consistency-comparison.md)
+reports the changes, repeated core evaluation, longer-document explanation audit,
+and end-to-end regressions. These are development/regression results, with unchanged
+fixtures and scoring. Improved criterion recall does not establish reliable readiness;
+read the ready-case counts, false holds, and extraction failures alongside accuracy.
+
+Final artifacts use `guideline-consistency-release` in their names. Earlier
+iterations remain available as labelled diagnostics.
+
+## First-use longer-document holdout
+
+See [the frozen evaluation protocol](HOLDOUT_EVALUATION.md) for six new accounts,
+18 expected criteria (including seven implicit rules), longer document packets,
+full criterion-inventory scoring, and a separate explanation-quality rubric.
+Production code is unchanged for this evaluation. It is a synthetic first-use
+holdout, not independently expert-labeled production data.
+
+```powershell
+.venv\Scripts\python -m evals.holdout --output evals/results/new-holdout.json
+```
+
+See [the results and explanation audit](results/2026-10-19-heldout-interpretation.md):
+8/18 usable criteria, 7/18 correct statuses, and one incorrect decision-ready
+case. The same-model explanation judge also missed a material contradiction.
+
+The [first run](results/2026-10-19-heldout-long-documents.md) and
+[full traces](results/2026-10-19-heldout-long-documents.json) preserve every case,
+including failures. The model judge uses the same local model in a separate call;
+missing explanations, graded explanations, and judge failures remain distinct.
+
 ## End-to-end documents and case isolation
 
 The [scope/prose before-and-after comparison](results/2026-10-19-e2e-scope-prose-comparison.md)
@@ -134,3 +166,11 @@ The additional contrast set is run separately so the original eight-case compari
 ```powershell
 .venv\Scripts\python -m evals.run --cases evals/sufficiency_cases.json
 ```
+
+
+## Operational-guidance and readiness regression
+
+See [the comparison](results/2026-10-19-guidance-readiness-comparison.md) for the
+whole-source extraction revision, false holds, nonreceipt guard, all-suite reruns,
+and repeated 32-case results. Final artifacts use `guidance-readiness-validated`;
+other guidance-readiness artifacts are retained diagnostics.

@@ -1,0 +1,255 @@
+{
+  "report": "2026-10-19-guideline-consistency-release-documents.json",
+  "state": "completed",
+  "reviewer": "Codex assistant; post-run qualitative audit by the fixture author, not an independent underwriter or blinded expert",
+  "method": "Review all produced explanations using the same frozen five-dimension rubric as the baseline audit. Keep automatic scores unchanged. Judge-format errors are not semantic failures; missing explanations remain missing. Check exact excerpts against saved candidate text.",
+  "dimension_order": [
+    "rule_application",
+    "factual_grounding",
+    "scope_and_exceptions",
+    "logical_support",
+    "no_unsupported_claims"
+  ],
+  "pass_rule": "sum >= 8 and every dimension >= 1",
+  "reviews": [
+    {
+      "case_id": "property",
+      "gold_id": "G1",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "For North and South buildings, no such documentation exists",
+      "assessment": "Correctly identifies the two qualifying old roofs and explains why the documented replacement excludes East. The former denial of the explicit exception is gone."
+    },
+    {
+      "case_id": "property",
+      "gold_id": "G2",
+      "scores": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "This directly supports the trigger condition for all three buildings.",
+      "assessment": "The combined explanation establishes the all-buildings requirement. Individual finding reasons fragment a collective rule; the unchanged atomic-finding scorer separately fails this criterion. The overall explanation is adequate with a granularity limitation."
+    },
+    {
+      "case_id": "property",
+      "gold_id": "G3",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "Therefore, the exception applies to all three buildings.",
+      "assessment": "Preserves both the combustible-panel trigger and the certification exception, explaining the correct no_match conclusion."
+    },
+    {
+      "case_id": "cyber",
+      "gold_id": "G1",
+      "scores": [
+        2,
+        2,
+        1,
+        0,
+        0
+      ],
+      "excerpt": "This constitutes an actual incompatible observation.",
+      "assessment": "Correctly observes 23/24 and says the every-account condition is false, but then calls disagreement with the criterion a factual conflict. The emitted insufficient_evidence status is wrong; there are no incompatible evidence observations. The consistency critic flags the explanation and readiness is false."
+    },
+    {
+      "case_id": "cyber",
+      "gold_id": "G2",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "15 August to 30 September = 46 days",
+      "assessment": "Correctly ties the successful isolated recovery test to the 90-day window and shows the correct day count."
+    },
+    {
+      "case_id": "cyber",
+      "gold_id": "G3",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "The evidence identifies specific storage devices (USB drives) containing unencrypted payroll data",
+      "assessment": "Correctly applies the referral criterion to the account storing unencrypted payroll exports, preserving a single account-level finding."
+    },
+    {
+      "case_id": "fleet",
+      "gold_id": "G1",
+      "scores": [
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "excerpt": "Therefore, the condition 'A heavy goods vehicle with an unresolved brake defect is a concern' is true.",
+      "assessment": "The final insufficient_evidence status is correct, but the explanation still promotes disputed defect existence into a true concern condition. The production consistency review detects the problem and the case remains non-ready."
+    },
+    {
+      "case_id": "fleet",
+      "gold_id": "G2",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "The absence of the register does not prove that reviews were not done",
+      "assessment": "Correctly distinguishes unprovided evidence from reviews not completed, and explains why completion for all 18 drivers is unknown. The superseded predicate review is archived; the active explanation no longer contradicts itself."
+    },
+    {
+      "case_id": "fleet",
+      "gold_id": "G3",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "54 events / 36000 miles = 0.0015 events per mile = 1.5 events per 1000 miles.",
+      "assessment": "Shows the correct fleet-wide rate, denominator, conversion and strict below-two comparison, with one collective finding."
+    },
+    {
+      "case_id": "manufacturing",
+      "gold_id": "G1",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "Production press P4 remains in daily use without an interlocked guard; the proposed retrofit has not been ordered.",
+      "assessment": "Correctly applies the decline criterion to the currently used unguarded press; a proposed future retrofit does not establish an existing control."
+    },
+    {
+      "case_id": "manufacturing",
+      "gold_id": "G2",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "all 9 hot-work jobs in the last 12 months have corresponding completed permits and fire-watch records.",
+      "assessment": "Correctly explains complete population and period coverage with both required records and one collective finding."
+    },
+    {
+      "case_id": "manufacturing",
+      "gold_id": "G3",
+      "scores": [
+        0,
+        2,
+        2,
+        1,
+        0
+      ],
+      "excerpt": "This directly supports the trigger condition that flammable liquids are not in open containers outside an approved enclosed dispensing system.",
+      "assessment": "The no_match result and exception facts are correct, but the explanation reverses the rule trigger: it describes NOT being in open containers as the referral trigger and calls that true. The production critic accepts it. Source coverage failure, rather than this critique, keeps the case non-ready."
+    },
+    {
+      "case_id": "hospitality",
+      "gold_id": "G1",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "Since the delay is exactly 30 days and not more than 30 days, the condition is false.",
+      "assessment": "Correctly explains the strict threshold and no_match result without the earlier contradictory equality claim. The production critic wrongly claims that equality satisfies more-than, causing a false hold."
+    },
+    {
+      "case_id": "hospitality",
+      "gold_id": "G2",
+      "scores": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "The only restriction is that it applies only to properties operating a guest swimming pool, which this property does not do.",
+      "assessment": "Correctly explains the scope exclusion and not_applicable result. It loosely calls pool ownership the trigger rather than distinguishing it from the unfenced-pool concern, but preserves the decisive population restriction and no longer denies that a restriction exists."
+    },
+    {
+      "case_id": "hospitality",
+      "gold_id": "G3",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "$780,000 / $120,000 = 6.5 months.",
+      "assessment": "Correctly calculates unrestricted-cash coverage using monthly fixed costs and applies the inclusive six-month threshold."
+    },
+    {
+      "case_id": "contractor",
+      "gold_id": "G1",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "all 4 have current insurance certificates covering the proposed policy period.",
+      "assessment": "Correctly establishes every-active-subcontractor coverage for the proposed period and preserves one collective finding."
+    },
+    {
+      "case_id": "contractor",
+      "gold_id": "G2",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "The exception prerequisites are not met, so the exception does not apply.",
+      "assessment": "Connects the actual transfer of structural design responsibility to referral and correctly uses the explicit absence of executed delegation to reject the exception."
+    },
+    {
+      "case_id": "contractor",
+      "gold_id": "G3",
+      "scores": [
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "excerpt": "The absence of the required documentation means the condition cannot be verified as met.",
+      "assessment": "Correctly leaves the documented rescue-drill requirement unverified when records are requested but not supplied. The focused review changes the final decision to insufficient_evidence; superseded incorrect reasoning is archived and the case is not ready."
+    }
+  ],
+  "summary": {
+    "produced": 18,
+    "adequate": 15,
+    "missing": 0
+  }
+}

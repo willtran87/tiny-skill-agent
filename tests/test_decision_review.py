@@ -25,6 +25,9 @@ class DecisionReviewTests(unittest.TestCase):
         calls = []
         def model(payload):
             calls.append(payload)
+            if payload["stage"] == "consistency_review":
+                return [dict(criterion_id="C1", scope_quote="", scope_applies=payload["candidates"]["C1"]["assessment"]["status"] != "not_applicable", exception_quote="", issues=[], verdict="supported",
+                             reason="The synthetic fixture has a coherent final explanation.")]
             if payload["stage"] == "decision_review":
                 return [reviewed] if reviewed else []
             if payload["stage"] == "no_match_review":
@@ -46,7 +49,7 @@ class DecisionReviewTests(unittest.TestCase):
                 result, calls = self.run_case(record)
                 self.assertTrue(result.coverage["decision_ready"])
                 self.assertEqual(result.criterion_assessments["C1"].status, status)
-                stages = ["source", "case", "decision_review"] + (["no_match_review"] if status == "no_match" else [])
+                stages = ["source", "case", "decision_review"] + (["no_match_review"] if status == "no_match" else []) + ["consistency_review"]
                 self.assertEqual([c["stage"] for c in calls], stages)
                 for call in calls[2:]:
                     self.assertNotIn("source_assessments", call)
@@ -120,7 +123,8 @@ class DecisionReviewTests(unittest.TestCase):
     def test_agreed_negative_still_requires_affirmative_evidence(self):
         result, calls = self.run_case(predicate(condition="false", findings=[]), negative_verdict="missing_evidence")
         self.assertEqual(result.criterion_assessments["C1"].status, "insufficient_evidence")
-        self.assertEqual(result.decision_reviews["C1"].condition, "false")
+        self.assertNotIn("C1", result.decision_reviews)
+        self.assertEqual(result.superseded_decision_reviews["C1"].condition, "false")
         self.assertEqual(result.no_match_reviews["C1"].verdict, "missing_evidence")
         self.assertFalse(result.coverage["decision_ready"])
 

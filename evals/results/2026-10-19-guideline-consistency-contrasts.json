@@ -1,0 +1,1879 @@
+{
+  "state": "completed",
+  "metadata": {
+    "started_at": "2026-10-19T05:30:03.179909+00:00",
+    "model": "qwen3-coder:30b",
+    "model_settings": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096
+    },
+    "ollama_version": {
+      "version": "0.35.0"
+    },
+    "model_metadata": {
+      "name": "qwen3-coder:30b",
+      "model": "qwen3-coder:30b",
+      "modified_at": "2026-01-30T20:50:10.3385655-06:00",
+      "size": 18556700761,
+      "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3moe",
+        "families": [
+          "qwen3moe"
+        ],
+        "parameter_size": "30.5B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2048
+      },
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "git_commit": "9d746491033df9db6c2aaebc35aeb10d2498439c",
+    "git_status": "M README.md\n M docs/INTEGRATION.md\n M evals/README.md\n M src/tiny_skill_agent/adapters.py\n M src/tiny_skill_agent/assessment.py\n M src/tiny_skill_agent/criteria.py\n M tests/test_adapters.py\n M tests/test_decision_review.py\n M tests/test_scope_and_extraction.py\n?? evals/HOLDOUT_EVALUATION.md\n?? evals/build_holdout.py\n?? evals/holdout.py\n?? evals/holdout/\n?? evals/results/2026-10-19-consistency-calibration.json\n?? evals/results/2026-10-19-guideline-consistency-complete-documents.json\n?? evals/results/2026-10-19-guideline-consistency-complete-documents.md\n?? evals/results/2026-10-19-guideline-consistency-core.json\n?? evals/results/2026-10-19-guideline-consistency-core.md\n?? evals/results/2026-10-19-guideline-consistency-documents-final.json\n?? evals/results/2026-10-19-guideline-consistency-documents-final.md\n?? evals/results/2026-10-19-guideline-consistency-documents-v3.json\n?? evals/results/2026-10-19-guideline-consistency-documents-v3.md\n?? evals/results/2026-10-19-guideline-consistency-documents-v4.json\n?? evals/results/2026-10-19-guideline-consistency-documents-v4.md\n?? evals/results/2026-10-19-guideline-consistency-documents-validated.json\n?? evals/results/2026-10-19-guideline-consistency-documents-validated.md\n?? evals/results/2026-10-19-guideline-consistency-documents.json\n?? evals/results/2026-10-19-guideline-consistency-documents.md\n?? evals/results/2026-10-19-guideline-consistency-explanation-audit.json\n?? evals/results/2026-10-19-guideline-consistency-final-documents.json\n?? evals/results/2026-10-19-guideline-consistency-final-documents.md\n?? evals/results/2026-10-19-heldout-explanation-audit.json\n?? evals/results/2026-10-19-heldout-interpretation.md\n?? evals/results/2026-10-19-heldout-long-documents.json\n?? evals/results/2026-10-19-heldout-long-documents.md\n?? tests/test_consistency_and_implicit.py\n?? tests/test_holdout_evaluation.py",
+    "dataset_sha256": "61a26ccb1d75166fa3053171e21999d3960c76442bdd6f97b64cab79a2d9d9a4",
+    "assessment_prompt_sha256": "f75fa3f2404d4ed396fe981cb3a3dec21929e742607ec7c573b10a214daec7eb",
+    "no_match_review_prompt_sha256": "3e67f2414639ec14aabbf702f43721c009e4edc1b017d3762ba9626fb0a6e632",
+    "predicate_prompt_sha256": "0a814cbd4b8f0934f26dda1e651f808be8e8d99c32839b7fbf377a801b9ba180",
+    "decision_review_prompt_sha256": "63b9175a9a9db621e7de60bad3a2a9961229b72183639cf5361fa3ee1af9aa86",
+    "implementation_sha256": {
+      "src\\tiny_skill_agent\\assessment.py": "2529c082be9f05cfa0083c7eb56a00091cc95b5fadeb762ef9815266a66a8f54",
+      "src\\tiny_skill_agent\\adapters.py": "ff969332749a57b652913f3a89b7d67a45334cfb03fc6da187f07a898e948291",
+      "evals\\run.py": "ddc281e3789d034fc08fb99e2d7970077c9787f135fb8f1f8b6e11d1675ec189"
+    },
+    "packages": {
+      "langchain": "1.4.2",
+      "langchain-ollama": "1.1.0",
+      "langgraph": "1.2.12",
+      "pydantic": "2.13.5"
+    },
+    "assessment_config": {
+      "batch_size": 1,
+      "retry_batch_size": 1,
+      "max_retries": 2,
+      "confirm_no_match": true,
+      "review_consistency": true,
+      "review_decisions": true
+    },
+    "planned_cases": 4,
+    "finished_at": "2026-10-19T05:30:52.508848+00:00"
+  },
+  "cases": [
+    {
+      "id": "missing_inspection_records",
+      "category": "missing_evidence",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "rationale": "Missing records do not establish that inspections did not occur. This criterion evaluates inspection activity, not submission of records."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "application": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule's scope is defined by the application stage and the policy:elevators source, which applies to elevator safety inspections. The evidence E1 indicates that no elevator inspection records were supplied with the application, making the subject matter relevant to the rule. The condition requires that every elevator received its annual safety inspection during 2025. However, the evidence E1 states that no elevator inspection records were supplied with the application, and whether inspections occurred is not known. Since there is no confirmation of inspections being performed, the condition cannot be established as true. There are no explicit exceptions stated in the rule C1 that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this situation. There is no conflicting evidence presented in the supplied data that contradicts the lack of inspection records. The only evidence provided indicates absence of records, not presence of inspections.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [
+            "C1"
+          ],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [],
+          "review_disagreements": [
+            "C1"
+          ],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": [
+            {
+              "stage": "consistency_review",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Scope/exception quotations must occur in the original criterion"
+            }
+          ]
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule's scope is defined by the application stage and the policy:elevators source, which applies to elevator safety inspections. The evidence E1 indicates that no elevator inspection records were supplied with the application, making the subject matter relevant to the rule. The condition requires that every elevator received its annual safety inspection during 2025. However, the evidence E1 states that no elevator inspection records were supplied with the application, and whether inspections occurred is not known. Since there is no confirmation of inspections being performed, the condition cannot be established as true. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this situation. There are no explicit exceptions stated in the rule C1 that would apply to this case. There is no conflicting evidence presented in the supplied data that contradicts the lack of inspection records. The only evidence provided indicates absence of records, not presence of inspections.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "verdict": "missing_evidence"
+          }
+        },
+        "decision_reviews": {},
+        "superseded_decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "every elevator received its annual safety inspection during 2025",
+            "scope_reason": "The rule applies to elevators and requires annual safety inspections during 2025. The subject is the elevator(s) in question, and the period in scope is 2025.",
+            "scope": "in_scope",
+            "condition_reason": "The evidence (E1) states that 'No elevator inspection records were supplied with the application. Whether inspections occurred is not known.' This means there is no supporting evidence that any elevator received its annual safety inspection during 2025. Therefore, it cannot be confirmed that every elevator received its inspection. The condition is false due to lack of evidence supporting the trigger.",
+            "condition": "false",
+            "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict_reason": "There are no conflicting observations in the provided evidence that would create an unresolved contradiction regarding whether elevators received their annual safety inspection during 2025. The only evidence indicates a lack of information, not a contradiction.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "",
+            "scope_applies": null,
+            "exception_quote": "",
+            "verdict": "supported",
+            "issues": [],
+            "reason": "The assessment correctly identifies that the criterion requires every elevator to have received its annual safety inspection during 2025. The evidence E1 states that no elevator inspection records were supplied with the application and whether inspections occurred is not known. This constitutes insufficient evidence to determine if the condition is met, which aligns with the rule's requirement for all elevators to be inspected. The final status 'insufficient_evidence' matches the lack of available inspection records, and the explanation properly reflects this absence of evidence without introducing contradictions or unsupported claims."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+              "source_id": "policy:elevators",
+              "source_label": "",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "application",
+              "source_label": "",
+              "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "application",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule's scope is defined by the application stage and the policy:elevators source, which applies to elevator safety inspections. The evidence E1 indicates that no elevator inspection records were supplied with the application, making the subject matter relevant to the rule. The condition requires that every elevator received its annual safety inspection during 2025. However, the evidence E1 states that no elevator inspection records were supplied with the application, and whether inspections occurred is not known. Since there is no confirmation of inspections being performed, the condition cannot be established as true. There are no explicit exceptions stated in the rule C1 that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this situation. There is no conflicting evidence presented in the supplied data that contradicts the lack of inspection records. The only evidence provided indicates absence of records, not presence of inspections.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.883
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "application": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule's scope is defined by the application stage and the policy:elevators source, which applies to elevator safety inspections. The evidence E1 indicates that no elevator inspection records were supplied with the application, making the subject matter relevant to the rule. The condition requires that every elevator received its annual safety inspection during 2025. However, the evidence E1 states that no elevator inspection records were supplied with the application, and whether inspections occurred is not known. Since there is no confirmation of inspections being performed, the condition cannot be established as true. There are no explicit exceptions stated in the rule C1 that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this situation. There is no conflicting evidence presented in the supplied data that contradicts the lack of inspection records. The only evidence provided indicates absence of records, not presence of inspections.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule's scope is defined by the application stage and the policy:elevators source, which applies to elevator safety inspections. The evidence E1 indicates that no elevator inspection records were supplied with the application, making the subject matter relevant to the rule. The condition requires that every elevator received its annual safety inspection during 2025. However, the evidence E1 states that no elevator inspection records were supplied with the application, and whether inspections occurred is not known. Since there is no confirmation of inspections being performed, the condition cannot be established as true. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this situation. There are no explicit exceptions stated in the rule C1 that would apply to this case. There is no conflicting evidence presented in the supplied data that contradicts the lack of inspection records. The only evidence provided indicates absence of records, not presence of inspections.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.725
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "every elevator received its annual safety inspection during 2025",
+              "scope_reason": "The rule applies to elevators and requires annual safety inspections during 2025. The subject is the elevator(s) in question, and the period in scope is 2025.",
+              "scope": "in_scope",
+              "condition_reason": "The evidence (E1) states that 'No elevator inspection records were supplied with the application. Whether inspections occurred is not known.' This means there is no supporting evidence that any elevator received its annual safety inspection during 2025. Therefore, it cannot be confirmed that every elevator received its inspection. The condition is false due to lack of evidence supporting the trigger.",
+              "condition": "false",
+              "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict_reason": "There are no conflicting observations in the provided evidence that would create an unresolved contradiction regarding whether elevators received their annual safety inspection during 2025. The only evidence indicates a lack of information, not a contradiction.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.694
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "verdict": "missing_evidence"
+            }
+          ],
+          "elapsed_seconds": 1.146
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "whole_case",
+              "scope_applies": null,
+              "exception_quote": "",
+              "verdict": "uncertain",
+              "issues": [
+                {
+                  "explanation_id": "assessment.reason",
+                  "reason": "The explanation states that the condition cannot be determined to be true or false due to missing evidence, which aligns with the 'insufficient_evidence' status. However, the rule's scope is 'whole_case', and there is no indication that this case falls outside the rule's population. The explanation does not clearly establish whether the case meets the rule's population requirements, making it uncertain if the final status is consistent with the source material."
+                }
+              ],
+              "reason": "The explanation correctly identifies that insufficient evidence prevents determination of whether inspections occurred. However, it fails to clarify whether the case falls within the rule's scope ('whole_case') or if any exception applies. Without this clarification, it is uncertain whether the 'insufficient_evidence' status is consistent with the rule's requirements."
+            }
+          ],
+          "elapsed_seconds": 2.441
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application",
+                "source_label": "",
+                "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information."
+                }
+              }
+            },
+            "validation_feedback": {
+              "C1": "Scope/exception quotations must occur in the original criterion"
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "",
+              "scope_applies": null,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The assessment correctly identifies that the criterion requires every elevator to have received its annual safety inspection during 2025. The evidence E1 states that no elevator inspection records were supplied with the application and whether inspections occurred is not known. This constitutes insufficient evidence to determine if the condition is met, which aligns with the rule's requirement for all elevators to be inspected. The final status 'insufficient_evidence' matches the lack of available inspection records, and the explanation properly reflects this absence of evidence without introducing contradictions or unsupported claims."
+            }
+          ],
+          "elapsed_seconds": 1.558
+        }
+      ],
+      "elapsed_seconds": 13.449,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. However, no elevator inspection records were supplied with the application, and it is not known whether inspections occurred. Since there is missing evidence regarding the occurrence of inspections, the condition cannot be determined to be true or false based on the available information."
+      }
+    },
+    {
+      "id": "explicit_activity_did_not_occur",
+      "category": "affirmative_negative",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [],
+        "rationale": "An explicit statement that the activity did not occur disproves the all-elevators condition, unlike absent records."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule applies to all elevators in the building for the year 2025. The evidence mentions Elevator A specifically, but does not indicate whether other elevators were inspected. The trigger requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' This directly contradicts the requirement for all elevators to be inspected. Since there is at least one elevator (Elevator A) that was not inspected, the condition is false. There are no explicit exceptions mentioned in the rule text that would apply to this situation. There is a direct contradiction between the requirement that all elevators be inspected and the fact that Elevator A was not inspected. No other evidence contradicts this observation.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "manager:declaration": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is 'manager:declaration' which identifies the evidence batch but does not explicitly exclude the subject. The rule's applicability is not restricted to a specific subset of elevators, so the scope is in_scope. The trigger clause requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that Elevator A did not receive a safety inspection at any time during 2025. Since the condition requires ALL elevators to be inspected, and one elevator (Elevator A) was not inspected, the condition is false. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any 'unless' or 'except' clauses that would excuse non-compliance for specific circumstances. There is no conflicting evidence presented in the provided data. The only evidence E1 directly contradicts the condition by stating that at least one elevator (Elevator A) did not receive an inspection during 2025.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [],
+          "review_disagreements": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The scope is 'whole_case', which indicates the rule applies to the entire case. The evidence batch identifier 'manager:declaration' does not explicitly exclude any specific elevators, so the scope is in_scope for the rule's application. The trigger clause requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that Elevator A did not receive a safety inspection at any time during 2025. Since the condition requires ALL elevators to be inspected and one elevator (Elevator A) was not inspected, the condition is false. The rule does not contain any 'unless' or 'except' clauses that would excuse non-compliance for specific circumstances. There are no explicit exceptions in the rule text that would apply to this case. There is no conflicting evidence presented in the provided data. The only evidence E1 directly contradicts the condition by stating that at least one elevator (Elevator A) did not receive an inspection during 2025.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. Evidence E1 explicitly states that Elevator A did not receive a safety inspection at any time during 2025, which directly contradicts the condition of the criterion. This decisive observation establishes that the criterion's condition is false.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "verdict": "supported"
+          }
+        },
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "every elevator received its annual safety inspection during 2025",
+            "scope_reason": "The rule applies to all elevators in the building for the year 2025. The evidence mentions Elevator A specifically, but does not indicate whether other elevators were inspected.",
+            "scope": "in_scope",
+            "condition_reason": "The trigger requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' This directly contradicts the requirement for all elevators to be inspected. Since there is at least one elevator (Elevator A) that was not inspected, the condition is false.",
+            "condition": "false",
+            "exception_reason": "There are no explicit exceptions mentioned in the rule text that would apply to this situation.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict_reason": "There is a direct contradiction between the requirement that all elevators be inspected and the fact that Elevator A was not inspected. No other evidence contradicts this observation.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "Record a strength if every elevator received its annual safety inspection during 2025.",
+            "scope_applies": true,
+            "exception_quote": "",
+            "verdict": "supported",
+            "issues": [],
+            "reason": "The rule requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' Since the rule applies to all elevators in the building for the year 2025 and there is at least one elevator (Elevator A) that was not inspected, the condition is not met. The final assessment correctly identifies this as 'no_match' because the requirement for all elevators to be inspected has not been satisfied. There are no explicit exceptions in the rule text that would apply to this situation, and no other evidence contradicts the observation that Elevator A was not inspected."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+              "source_id": "policy:elevators",
+              "source_label": "",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "manager:declaration",
+              "source_label": "",
+              "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "manager:declaration",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is 'manager:declaration' which identifies the evidence batch but does not explicitly exclude the subject. The rule's applicability is not restricted to a specific subset of elevators, so the scope is in_scope. The trigger clause requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that Elevator A did not receive a safety inspection at any time during 2025. Since the condition requires ALL elevators to be inspected, and one elevator (Elevator A) was not inspected, the condition is false. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any 'unless' or 'except' clauses that would excuse non-compliance for specific circumstances. There is no conflicting evidence presented in the provided data. The only evidence E1 directly contradicts the condition by stating that at least one elevator (Elevator A) did not receive an inspection during 2025.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.976
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "manager:declaration": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The scope is 'manager:declaration' which identifies the evidence batch but does not explicitly exclude the subject. The rule's applicability is not restricted to a specific subset of elevators, so the scope is in_scope. The trigger clause requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that Elevator A did not receive a safety inspection at any time during 2025. Since the condition requires ALL elevators to be inspected, and one elevator (Elevator A) was not inspected, the condition is false. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any 'unless' or 'except' clauses that would excuse non-compliance for specific circumstances. There is no conflicting evidence presented in the provided data. The only evidence E1 directly contradicts the condition by stating that at least one elevator (Elevator A) did not receive an inspection during 2025.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is 'whole_case', which indicates the rule applies to the entire case. The evidence batch identifier 'manager:declaration' does not explicitly exclude any specific elevators, so the scope is in_scope for the rule's application. The trigger clause requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that Elevator A did not receive a safety inspection at any time during 2025. Since the condition requires ALL elevators to be inspected and one elevator (Elevator A) was not inspected, the condition is false. The rule does not contain any 'unless' or 'except' clauses that would excuse non-compliance for specific circumstances. There are no explicit exceptions in the rule text that would apply to this case. There is no conflicting evidence presented in the provided data. The only evidence E1 directly contradicts the condition by stating that at least one elevator (Elevator A) did not receive an inspection during 2025.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.985
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "every elevator received its annual safety inspection during 2025",
+              "scope_reason": "The rule applies to all elevators in the building for the year 2025. The evidence mentions Elevator A specifically, but does not indicate whether other elevators were inspected.",
+              "scope": "in_scope",
+              "condition_reason": "The trigger requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' This directly contradicts the requirement for all elevators to be inspected. Since there is at least one elevator (Elevator A) that was not inspected, the condition is false.",
+              "condition": "false",
+              "exception_reason": "There are no explicit exceptions mentioned in the rule text that would apply to this situation.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict_reason": "There is a direct contradiction between the requirement that all elevators be inspected and the fact that Elevator A was not inspected. No other evidence contradicts this observation.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.73
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that every elevator received its annual safety inspection during 2025. Evidence E1 explicitly states that Elevator A did not receive a safety inspection at any time during 2025, which directly contradicts the condition of the criterion. This decisive observation establishes that the criterion's condition is false.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 1.162
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every elevator received its annual safety inspection during 2025.",
+                "source_id": "policy:elevators",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "manager:declaration",
+                "source_label": "",
+                "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to all elevators in the building for the year 2025. The evidence mentions Elevator A specifically, but does not indicate whether other elevators were inspected. The trigger requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' This directly contradicts the requirement for all elevators to be inspected. Since there is at least one elevator (Elevator A) that was not inspected, the condition is false. There are no explicit exceptions mentioned in the rule text that would apply to this situation. There is a direct contradiction between the requirement that all elevators be inspected and the fact that Elevator A was not inspected. No other evidence contradicts this observation.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The rule applies to all elevators in the building for the year 2025. The evidence mentions Elevator A specifically, but does not indicate whether other elevators were inspected. The trigger requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' This directly contradicts the requirement for all elevators to be inspected. Since there is at least one elevator (Elevator A) that was not inspected, the condition is false. There are no explicit exceptions mentioned in the rule text that would apply to this situation. There is a direct contradiction between the requirement that all elevators be inspected and the fact that Elevator A was not inspected. No other evidence contradicts this observation.",
+                  "decision_review.scope_reason": "The rule applies to all elevators in the building for the year 2025. The evidence mentions Elevator A specifically, but does not indicate whether other elevators were inspected.",
+                  "decision_review.condition_reason": "The trigger requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' This directly contradicts the requirement for all elevators to be inspected. Since there is at least one elevator (Elevator A) that was not inspected, the condition is false.",
+                  "decision_review.exception_reason": "There are no explicit exceptions mentioned in the rule text that would apply to this situation.",
+                  "decision_review.conflict_reason": "There is a direct contradiction between the requirement that all elevators be inspected and the fact that Elevator A was not inspected. No other evidence contradicts this observation."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "Record a strength if every elevator received its annual safety inspection during 2025.",
+              "scope_applies": true,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The rule requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' Since the rule applies to all elevators in the building for the year 2025 and there is at least one elevator (Elevator A) that was not inspected, the condition is not met. The final assessment correctly identifies this as 'no_match' because the requirement for all elevators to be inspected has not been satisfied. There are no explicit exceptions in the rule text that would apply to this situation, and no other evidence contradicts the observation that Elevator A was not inspected."
+            }
+          ],
+          "elapsed_seconds": 2.422
+        }
+      ],
+      "elapsed_seconds": 12.276,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The rule applies to all elevators in the building for the year 2025. The evidence mentions Elevator A specifically, but does not indicate whether other elevators were inspected. The trigger requires that every elevator received its annual safety inspection during 2025. Evidence E1 states that 'Elevator A did not receive a safety inspection at any time during 2025.' This directly contradicts the requirement for all elevators to be inspected. Since there is at least one elevator (Elevator A) that was not inspected, the condition is false. There are no explicit exceptions mentioned in the rule text that would apply to this situation. There is a direct contradiction between the requirement that all elevators be inspected and the fact that Elevator A was not inspected. No other evidence contradicts this observation."
+      }
+    },
+    {
+      "id": "explicit_documentation_requirement",
+      "category": "affirmative_negative",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [],
+        "rationale": "The criterion explicitly evaluates document submission. Confirmed absence of submitted certificates disproves that condition without implying that inspections did not occur."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission. The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "application:receipt": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the criterion applies to the application's receipt stage and the evidence relates to the submission of elevator inspection certificates with that application. The condition is FALSE because the evidence explicitly states that no elevator inspection certificates were supplied with the application. The application administrator confirms this absence, which directly contradicts the requirement for all certificates to be provided. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition required by the criterion.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [
+            "C1"
+          ],
+          "review_disagreements": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": [
+            {
+              "stage": "consistency_review",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Scope/exception quotations must occur in the original criterion"
+            }
+          ]
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The scope is in_scope because the criterion applies to the application's receipt stage and the evidence relates to the submission of elevator inspection certificates with that application. The condition is FALSE because the evidence explicitly states that no elevator inspection certificates were supplied with the application. The application administrator confirms this absence, which directly contradicts the requirement for all certificates to be provided. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition required by the criterion.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application. Evidence E1 explicitly states that 'no elevator inspection certificates were supplied with the application.' This directly supports a negative decision as it establishes that the documentation requirement was not met.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "verdict": "supported"
+          }
+        },
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "Record a strength if inspection certificates for all elevators were supplied with the application.",
+            "scope_reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission.",
+            "scope": "in_scope",
+            "condition_reason": "The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false.",
+            "condition": "false",
+            "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict_reason": "There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+            "scope_applies": null,
+            "exception_quote": "",
+            "verdict": "needs_review",
+            "issues": [
+              {
+                "explanation_id": "assessment.reason",
+                "reason": "The final status conflicts with the consistency review's explicit applicability judgment."
+              }
+            ],
+            "reason": "The rule requires recording a strength if inspection certificates for all elevators were supplied with the application. Evidence E1 confirms that no elevator inspection certificates were supplied with the application, which directly satisfies the condition that the certificates were not provided. Since the condition is not met, the strength is not recorded, and the final status 'no_match' is consistent with the evidence. There are no exceptions mentioned in the rule that would apply, and there are no conflicting observations."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+              "source_id": "policy:documentation",
+              "source_label": "",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "application:receipt",
+              "source_label": "",
+              "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "application:receipt",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the criterion applies to the application's receipt stage and the evidence relates to the submission of elevator inspection certificates with that application. The condition is FALSE because the evidence explicitly states that no elevator inspection certificates were supplied with the application. The application administrator confirms this absence, which directly contradicts the requirement for all certificates to be provided. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition required by the criterion.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.324
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "application:receipt": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The scope is in_scope because the criterion applies to the application's receipt stage and the evidence relates to the submission of elevator inspection certificates with that application. The condition is FALSE because the evidence explicitly states that no elevator inspection certificates were supplied with the application. The application administrator confirms this absence, which directly contradicts the requirement for all certificates to be provided. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition required by the criterion.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the criterion applies to the application's receipt stage and the evidence relates to the submission of elevator inspection certificates with that application. The condition is FALSE because the evidence explicitly states that no elevator inspection certificates were supplied with the application. The application administrator confirms this absence, which directly contradicts the requirement for all certificates to be provided. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition required by the criterion.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.307
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "Record a strength if inspection certificates for all elevators were supplied with the application.",
+              "scope_reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission.",
+              "scope": "in_scope",
+              "condition_reason": "The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false.",
+              "condition": "false",
+              "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict_reason": "There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.491
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that inspection certificates for all elevators be supplied with the application. Evidence E1 explicitly states that 'no elevator inspection certificates were supplied with the application.' This directly supports a negative decision as it establishes that the documentation requirement was not met.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 1.075
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission. The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission. The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates.",
+                  "decision_review.scope_reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission.",
+                  "decision_review.condition_reason": "The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false.",
+                  "decision_review.exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+                  "decision_review.conflict_reason": "There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "whole_case",
+              "scope_applies": null,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The evidence E1 explicitly states that 'no elevator inspection certificates were supplied with the application,' which directly supports the trigger condition that certificates were not provided. Since the rule requires that certificates be supplied for a strength to be recorded, and they were not supplied, the condition is not met. The final assessment correctly concludes that the strength is not recorded because the trigger condition is false, and there are no exceptions or conflicting observations to suggest otherwise."
+            }
+          ],
+          "elapsed_seconds": 1.758
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+                "source_id": "policy:documentation",
+                "source_label": "",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:receipt",
+                "source_label": "",
+                "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission. The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission. The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates.",
+                  "decision_review.scope_reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission.",
+                  "decision_review.condition_reason": "The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false.",
+                  "decision_review.exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+                  "decision_review.conflict_reason": "There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates."
+                }
+              }
+            },
+            "validation_feedback": {
+              "C1": "Scope/exception quotations must occur in the original criterion"
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.",
+              "scope_applies": null,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The rule requires recording a strength if inspection certificates for all elevators were supplied with the application. Evidence E1 confirms that no elevator inspection certificates were supplied with the application, which directly satisfies the condition that the certificates were not provided. Since the condition is not met, the strength is not recorded, and the final status 'no_match' is consistent with the evidence. There are no exceptions mentioned in the rule that would apply, and there are no conflicting observations."
+            }
+          ],
+          "elapsed_seconds": 1.812
+        }
+      ],
+      "elapsed_seconds": 11.768,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The subject is the submission of elevator inspection certificates with the application. The period in scope is the time of application submission. The evidence E1 states that 'The application administrator confirms that no elevator inspection certificates were supplied with the application.' This directly supports the trigger condition by confirming that inspection certificates were not provided, which means the strength is not recorded. Therefore, the condition is false. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved conflict regarding the submission of elevator inspection certificates."
+      }
+    },
+    {
+      "id": "measured_below_threshold",
+      "category": "affirmative_negative",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [],
+        "rationale": "The supplied age for the correct building and date is below the threshold, directly disproving the concern condition."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The subject is Building A, and the period in scope is as of 2025-07-01. The evidence states that 'Building A's roof is 5 years old as of 2025-07-01.' Since 5 years is not more than 20 years, the condition is false. The supporting fact directly contradicts the trigger. The rule does not specify any exceptions. There are no conflicting observations regarding Building A's roof age as of 2025-07-01. The single piece of evidence clearly states the roof is 5 years old, which does not meet the condition of being more than 20 years old.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "inspection:roof": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is inspection:roof, which applies to the roof inspection. The subject Building A's roof is explicitly mentioned in the evidence and falls within this scope. The evidence states that Building A's roof is 5 years old as of 2025-07-01. Since 5 years is not more than 20 years, the condition 'Building A's roof is more than 20 years old as of 2025-07-01' is false. There are no explicit exceptions mentioned in the criterion text that would apply to this case. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition by stating the roof is only 5 years old.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "resolved",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [],
+          "review_disagreements": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The scope is whole_case, but the evidence source inspection:roof specifically applies to roof inspection. The subject Building A's roof is explicitly mentioned in the evidence and falls within this scope. The evidence states that Building A's roof is 5 years old as of 2025-07-01. Since 5 years is not more than 20 years, the condition 'Building A's roof is more than 20 years old as of 2025-07-01' is false. There are no explicit exceptions mentioned in the criterion text that would apply to this case. The single piece of evidence directly contradicts the condition by stating the roof is only 5 years old.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "resolved",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires determining if Building A's roof is more than 20 years old as of 2025-07-01. Evidence E1 explicitly states that the roof is 5 years old as of that date. Since 5 years is not more than 20 years, the condition is false.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "verdict": "supported"
+          }
+        },
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "Building A's roof is more than 20 years old as of 2025-07-01",
+            "scope_reason": "The subject is Building A, and the period in scope is as of 2025-07-01.",
+            "scope": "in_scope",
+            "condition_reason": "The evidence states that 'Building A's roof is 5 years old as of 2025-07-01.' Since 5 years is not more than 20 years, the condition is false. The supporting fact directly contradicts the trigger.",
+            "condition": "false",
+            "exception_reason": "The rule does not specify any exceptions.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict_reason": "There are no conflicting observations regarding Building A's roof age as of 2025-07-01. The single piece of evidence clearly states the roof is 5 years old, which does not meet the condition of being more than 20 years old.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+            "scope_applies": true,
+            "exception_quote": "",
+            "verdict": "supported",
+            "issues": [],
+            "reason": "The rule requires flagging a concern if Building A's roof is more than 20 years old as of 2025-07-01. Evidence E1 states that Building A's roof is 5 years old as of 2025-07-01. Since 5 years is not more than 20 years, the condition is not met. The rule does not specify any exceptions, and there are no conflicting observations. The final assessment correctly determines that the condition is false and no concern should be flagged, which is consistent with the evidence and rule."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+              "source_id": "policy:roof",
+              "source_label": "",
+              "classification": "concern",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "inspection:roof",
+              "source_label": "",
+              "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:roof",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is inspection:roof, which applies to the roof inspection. The subject Building A's roof is explicitly mentioned in the evidence and falls within this scope. The evidence states that Building A's roof is 5 years old as of 2025-07-01. Since 5 years is not more than 20 years, the condition 'Building A's roof is more than 20 years old as of 2025-07-01' is false. There are no explicit exceptions mentioned in the criterion text that would apply to this case. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition by stating the roof is only 5 years old.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "resolved",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.717
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:roof": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The scope is inspection:roof, which applies to the roof inspection. The subject Building A's roof is explicitly mentioned in the evidence and falls within this scope. The evidence states that Building A's roof is 5 years old as of 2025-07-01. Since 5 years is not more than 20 years, the condition 'Building A's roof is more than 20 years old as of 2025-07-01' is false. There are no explicit exceptions mentioned in the criterion text that would apply to this case. There is no conflicting evidence presented. The single piece of evidence directly contradicts the condition by stating the roof is only 5 years old.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "resolved",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is whole_case, but the evidence source inspection:roof specifically applies to roof inspection. The subject Building A's roof is explicitly mentioned in the evidence and falls within this scope. The evidence states that Building A's roof is 5 years old as of 2025-07-01. Since 5 years is not more than 20 years, the condition 'Building A's roof is more than 20 years old as of 2025-07-01' is false. There are no explicit exceptions mentioned in the criterion text that would apply to this case. The single piece of evidence directly contradicts the condition by stating the roof is only 5 years old.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "resolved",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.638
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "Building A's roof is more than 20 years old as of 2025-07-01",
+              "scope_reason": "The subject is Building A, and the period in scope is as of 2025-07-01.",
+              "scope": "in_scope",
+              "condition_reason": "The evidence states that 'Building A's roof is 5 years old as of 2025-07-01.' Since 5 years is not more than 20 years, the condition is false. The supporting fact directly contradicts the trigger.",
+              "condition": "false",
+              "exception_reason": "The rule does not specify any exceptions.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict_reason": "There are no conflicting observations regarding Building A's roof age as of 2025-07-01. The single piece of evidence clearly states the roof is 5 years old, which does not meet the condition of being more than 20 years old.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.753
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires determining if Building A's roof is more than 20 years old as of 2025-07-01. Evidence E1 explicitly states that the roof is 5 years old as of that date. Since 5 years is not more than 20 years, the condition is false.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 1.179
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+                "source_id": "policy:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:roof",
+                "source_label": "",
+                "quote": "Building A's roof is 5 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The subject is Building A, and the period in scope is as of 2025-07-01. The evidence states that 'Building A's roof is 5 years old as of 2025-07-01.' Since 5 years is not more than 20 years, the condition is false. The supporting fact directly contradicts the trigger. The rule does not specify any exceptions. There are no conflicting observations regarding Building A's roof age as of 2025-07-01. The single piece of evidence clearly states the roof is 5 years old, which does not meet the condition of being more than 20 years old.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The subject is Building A, and the period in scope is as of 2025-07-01. The evidence states that 'Building A's roof is 5 years old as of 2025-07-01.' Since 5 years is not more than 20 years, the condition is false. The supporting fact directly contradicts the trigger. The rule does not specify any exceptions. There are no conflicting observations regarding Building A's roof age as of 2025-07-01. The single piece of evidence clearly states the roof is 5 years old, which does not meet the condition of being more than 20 years old.",
+                  "decision_review.scope_reason": "The subject is Building A, and the period in scope is as of 2025-07-01.",
+                  "decision_review.condition_reason": "The evidence states that 'Building A's roof is 5 years old as of 2025-07-01.' Since 5 years is not more than 20 years, the condition is false. The supporting fact directly contradicts the trigger.",
+                  "decision_review.exception_reason": "The rule does not specify any exceptions.",
+                  "decision_review.conflict_reason": "There are no conflicting observations regarding Building A's roof age as of 2025-07-01. The single piece of evidence clearly states the roof is 5 years old, which does not meet the condition of being more than 20 years old."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.",
+              "scope_applies": true,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The rule requires flagging a concern if Building A's roof is more than 20 years old as of 2025-07-01. Evidence E1 states that Building A's roof is 5 years old as of 2025-07-01. Since 5 years is not more than 20 years, the condition is not met. The rule does not specify any exceptions, and there are no conflicting observations. The final assessment correctly determines that the condition is false and no concern should be flagged, which is consistent with the evidence and rule."
+            }
+          ],
+          "elapsed_seconds": 2.384
+        }
+      ],
+      "elapsed_seconds": 11.671,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "The subject is Building A, and the period in scope is as of 2025-07-01. The evidence states that 'Building A's roof is 5 years old as of 2025-07-01.' Since 5 years is not more than 20 years, the condition is false. The supporting fact directly contradicts the trigger. The rule does not specify any exceptions. There are no conflicting observations regarding Building A's roof age as of 2025-07-01. The single piece of evidence clearly states the roof is 5 years old, which does not meet the condition of being more than 20 years old."
+      }
+    }
+  ]
+}

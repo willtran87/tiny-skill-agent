@@ -1,0 +1,2683 @@
+{
+  "state": "completed",
+  "metadata": {
+    "started_at": "2026-10-19T06:44:10.655142+00:00",
+    "model": "qwen3-coder:30b",
+    "model_settings": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096
+    },
+    "ollama_version": {
+      "version": "0.35.0"
+    },
+    "model_metadata": {
+      "name": "qwen3-coder:30b",
+      "model": "qwen3-coder:30b",
+      "modified_at": "2026-01-30T20:50:10.3385655-06:00",
+      "size": 18556700761,
+      "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3moe",
+        "families": [
+          "qwen3moe"
+        ],
+        "parameter_size": "30.5B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2048
+      },
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "git_commit": "9d746491033df9db6c2aaebc35aeb10d2498439c",
+    "git_status": "M README.md\n M docs/DESIGN.md\n M docs/INTEGRATION.md\n M evals/README.md\n M src/tiny_skill_agent/adapters.py\n M src/tiny_skill_agent/assessment.py\n M src/tiny_skill_agent/criteria.py\n M tests/test_adapters.py\n M tests/test_decision_review.py\n M tests/test_scope_and_extraction.py\n?? evals/HOLDOUT_EVALUATION.md\n?? evals/build_holdout.py\n?? evals/holdout.py\n?? evals/holdout/\n?? evals/results/2026-10-19-consistency-calibration.json\n?? evals/results/2026-10-19-guidance-readiness-extraction-probe.json\n?? evals/results/2026-10-19-guidance-readiness-probe-cases.json\n?? evals/results/2026-10-19-guideline-consistency-comparison.md\n?? evals/results/2026-10-19-guideline-consistency-complete-documents.json\n?? evals/results/2026-10-19-guideline-consistency-complete-documents.md\n?? evals/results/2026-10-19-guideline-consistency-contrasts.json\n?? evals/results/2026-10-19-guideline-consistency-contrasts.md\n?? evals/results/2026-10-19-guideline-consistency-core.json\n?? evals/results/2026-10-19-guideline-consistency-core.md\n?? evals/results/2026-10-19-guideline-consistency-documents-final.json\n?? evals/results/2026-10-19-guideline-consistency-documents-final.md\n?? evals/results/2026-10-19-guideline-consistency-documents-v3.json\n?? evals/results/2026-10-19-guideline-consistency-documents-v3.md\n?? evals/results/2026-10-19-guideline-consistency-documents-v4.json\n?? evals/results/2026-10-19-guideline-consistency-documents-v4.md\n?? evals/results/2026-10-19-guideline-consistency-documents-validated.json\n?? evals/results/2026-10-19-guideline-consistency-documents-validated.md\n?? evals/results/2026-10-19-guideline-consistency-documents.json\n?? evals/results/2026-10-19-guideline-consistency-documents.md\n?? evals/results/2026-10-19-guideline-consistency-e2e.json\n?? evals/results/2026-10-19-guideline-consistency-e2e.md\n?? evals/results/2026-10-19-guideline-consistency-explanation-audit.json\n?? evals/results/2026-10-19-guideline-consistency-final-documents.json\n?? evals/results/2026-10-19-guideline-consistency-final-documents.md\n?? evals/results/2026-10-19-guideline-consistency-release-contrasts.json\n?? evals/results/2026-10-19-guideline-consistency-release-contrasts.md\n?? evals/results/2026-10-19-guideline-consistency-release-core.json\n?? evals/results/2026-10-19-guideline-consistency-release-core.md\n?? evals/results/2026-10-19-guideline-consistency-release-documents.json\n?? evals/results/2026-10-19-guideline-consistency-release-documents.md\n?? evals/results/2026-10-19-guideline-consistency-release-e2e.json\n?? evals/results/2026-10-19-guideline-consistency-release-e2e.md\n?? evals/results/2026-10-19-guideline-consistency-release-explanation-audit.json\n?? evals/results/2026-10-19-guideline-consistency-verification.json\n?? evals/results/2026-10-19-guideline-consistency-verified-e2e.json\n?? evals/results/2026-10-19-guideline-consistency-verified-e2e.md\n?? evals/results/2026-10-19-heldout-explanation-audit.json\n?? evals/results/2026-10-19-heldout-interpretation.md\n?? evals/results/2026-10-19-heldout-long-documents.json\n?? evals/results/2026-10-19-heldout-long-documents.md\n?? evals/results/guideline-consistency-release-three-runs/\n?? tests/test_consistency_and_implicit.py\n?? tests/test_holdout_evaluation.py",
+    "dataset_sha256": "cf7742a8780742d31cec3adf4cf4479aaf17c58ba168786cc934369f55632831",
+    "assessment_prompt_sha256": "f75fa3f2404d4ed396fe981cb3a3dec21929e742607ec7c573b10a214daec7eb",
+    "no_match_review_prompt_sha256": "79eb9a4c6c1f25c25bd83c8211f6e6068abb9aa16e556d58ec38e2263a5c629a",
+    "predicate_prompt_sha256": "2ab3a27c78d031313dc984522103da4f4bd988a086727735858798031693cfeb",
+    "decision_review_prompt_sha256": "866bf068a6d08a11bdd9ad97e0bc7e1f528d874022f345b1201fc852e355d729",
+    "implementation_sha256": {
+      "src\\tiny_skill_agent\\assessment.py": "24d4be2356a0789d7012668c5ccb023a09acc8461c3a04a3a40941150b5c934e",
+      "src\\tiny_skill_agent\\adapters.py": "9cb39ba6533196fa18251a6f46a42e25b77c00fa20a61e9d9439f8ec46737b74",
+      "evals\\run.py": "ddc281e3789d034fc08fb99e2d7970077c9787f135fb8f1f8b6e11d1675ec189"
+    },
+    "packages": {
+      "langchain": "1.4.2",
+      "langchain-ollama": "1.1.0",
+      "langgraph": "1.2.12",
+      "pydantic": "2.13.5"
+    },
+    "assessment_config": {
+      "batch_size": 1,
+      "retry_batch_size": 1,
+      "max_retries": 2,
+      "confirm_no_match": true,
+      "review_consistency": true,
+      "review_decisions": true
+    },
+    "planned_cases": 4,
+    "finished_at": "2026-10-19T06:46:02.347960+00:00"
+  },
+  "cases": [
+    {
+      "id": "auto_incident_rate_calculation",
+      "category": "quantitative_boundaries",
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [
+          {
+            "id": "finding_1",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ]
+          }
+        ],
+        "decision_ready": true,
+        "rationale": "Three divided by 24 times 100 is 12.5, above 10. This is one aggregate finding, not three separate collision findings."
+      },
+      "result": {
+        "findings": [
+          {
+            "finding_id": "C1:F1",
+            "subject": "Summit Couriers",
+            "criterion_id": "C1",
+            "criterion": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+            "criterion_source": "synthetic-guideline:commercial_auto:v1",
+            "criterion_source_label": "Invented evaluation guideline",
+            "classification": "concern",
+            "facts": [
+              {
+                "evidence_id": "E1",
+                "source": "lossrun:2025",
+                "source_label": "lossrun:2025",
+                "locator": "paragraph:1",
+                "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+                "context": "Preventable collision count is three; do not include the glass claims."
+              },
+              {
+                "evidence_id": "E2",
+                "source": "fleet:2025",
+                "source_label": "fleet:2025",
+                "locator": "paragraph:2",
+                "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+                "context": "Denominator requested by the guideline is 24."
+              }
+            ],
+            "reason": "The preventable collision frequency for Summit Couriers in 2025 was 12.5 collisions per 100 active vehicles, which exceeds the threshold of 10 collisions per 100 active vehicles. Therefore, one fleet-level concern is flagged."
+          }
+        ],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule applies to the fleet level for the year 2025. The subject is Summit Couriers, which is a single fleet entity. The time period in scope is 2025. The preventable collision count for 2025 is 3 (from E1). The active fleet count is 24 (from E2). The frequency is calculated as (3 collisions / 24 vehicles) * 100 = 12.5 collisions per 100 vehicles. Since 12.5 > 10, the condition is true. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved contradiction regarding the preventable collision count or the active fleet count.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "condition_met",
+            "status": "matched",
+            "findings": [
+              {
+                "subject": "Summit Couriers",
+                "evidence_ids": [
+                  "E1",
+                  "E2"
+                ],
+                "reason": "The preventable collision frequency for Summit Couriers in 2025 was 12.5 collisions per 100 active vehicles, which exceeds the threshold of 10 collisions per 100 active vehicles. Therefore, one fleet-level concern is flagged."
+              }
+            ]
+          }
+        },
+        "source_assessments": {
+          "lossrun:2025": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence relates to the 2025 lossrun period, which matches the rule's temporal requirement for 2025 data. The preventable collision frequency was calculated as 3 collisions per 100 active vehicles (3/100 = 0.03 or 3%). This value does not exceed the threshold of 10 collisions per 100 active vehicles, so the condition is false. There are no explicit exceptions in the rule text that would apply to this case. No conflicting evidence is present. The provided evidence clearly states that there were three preventable collisions during 2025 and specifies that glass-only claims are not included in the collision count.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          },
+          "fleet:2025": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule's scope is explicitly defined as 'fleet:2025' and the payload's scope field matches this, making the subject in_scope. The guideline requires calculating preventable collision frequency as collisions per 100 active vehicles. The evidence E2 states that Summit operated 24 active vehicles throughout 2025. However, no information is provided regarding the number of preventable collisions during 2025. Since the actual collision count is missing, it is impossible to determine whether the frequency exceeds 10 per 100 active vehicles. Therefore, the condition cannot be evaluated as true or false and remains unknown. There are no explicit exceptions stated in the criterion text that would apply to this case. There is no conflicting evidence presented. The only available evidence E2 provides information about active vehicle count but does not mention any preventable collisions, which is necessary to evaluate the condition.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [
+            "C1"
+          ],
+          "no_match": [],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [],
+          "review_disagreements": [
+            "C1"
+          ],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": [
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E1']. Explain resolution, different scope, or unresolved conflict."
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E1']. Explain resolution, different scope, or unresolved conflict."
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E1']. Explain resolution, different scope, or unresolved conflict."
+            }
+          ]
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [
+          {
+            "source_id": "lossrun:2025",
+            "criterion_id": "C1",
+            "source_status": "no_match",
+            "case_status": "matched",
+            "review": "none"
+          }
+        ],
+        "pre_review_assessments": {},
+        "no_match_reviews": {},
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles.",
+            "scope_reason": "The rule applies to the fleet level for the year 2025. The subject is Summit Couriers, which is a single fleet entity. The time period in scope is 2025.",
+            "scope": "in_scope",
+            "condition_reason": "The preventable collision count for 2025 is 3 (from E1). The active fleet count is 24 (from E2). The frequency is calculated as (3 collisions / 24 vehicles) * 100 = 12.5 collisions per 100 vehicles. Since 12.5 > 10, the condition is true.",
+            "condition": "true",
+            "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict_reason": "There are no conflicting observations in the evidence provided that would create an unresolved contradiction regarding the preventable collision count or the active fleet count.",
+            "conflict": "none",
+            "findings": [
+              {
+                "subject": "Summit Couriers",
+                "evidence_ids": [
+                  "E1",
+                  "E2"
+                ],
+                "reason": "The preventable collision frequency for Summit Couriers in 2025 was 12.5 collisions per 100 active vehicles, which exceeds the threshold of 10 collisions per 100 active vehicles. Therefore, one fleet-level concern is flagged."
+              }
+            ]
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles.",
+            "scope_applies": true,
+            "exception_quote": "",
+            "verdict": "supported",
+            "issues": [],
+            "reason": "The final assessment correctly applies the rule's scope to Summit Couriers as a single fleet entity for the year 2025. The preventable collision frequency of 12.5 per 100 active vehicles (3 collisions / 24 vehicles * 100) exceeds the threshold of 10, meeting the condition for flagging a fleet-level concern. There are no exceptions or contradictions in the evidence that would invalidate this conclusion."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+              "source_id": "synthetic-guideline:commercial_auto:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "concern",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "lossrun:2025",
+              "source_label": "lossrun:2025",
+              "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+              "locator": "paragraph:1",
+              "context": "Preventable collision count is three; do not include the glass claims."
+            },
+            {
+              "id": "E2",
+              "source_id": "fleet:2025",
+              "source_label": "fleet:2025",
+              "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+              "locator": "paragraph:2",
+              "context": "Denominator requested by the guideline is 24."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "lossrun:2025",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:2025",
+                "source_label": "lossrun:2025",
+                "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+                "locator": "paragraph:1",
+                "context": "Preventable collision count is three; do not include the glass claims."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence relates to the 2025 lossrun period, which matches the rule's temporal requirement for 2025 data. The preventable collision frequency was calculated as 3 collisions per 100 active vehicles (3/100 = 0.03 or 3%). This value does not exceed the threshold of 10 collisions per 100 active vehicles, so the condition is false. There are no explicit exceptions in the rule text that would apply to this case. No conflicting evidence is present. The provided evidence clearly states that there were three preventable collisions during 2025 and specifies that glass-only claims are not included in the collision count.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 19.033
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "fleet:2025",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "fleet:2025",
+                "source_label": "fleet:2025",
+                "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+                "locator": "paragraph:2",
+                "context": "Denominator requested by the guideline is 24."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule's scope is explicitly defined as 'fleet:2025' and the payload's scope field matches this, making the subject in_scope. The guideline requires calculating preventable collision frequency as collisions per 100 active vehicles. The evidence E2 states that Summit operated 24 active vehicles throughout 2025. However, no information is provided regarding the number of preventable collisions during 2025. Since the actual collision count is missing, it is impossible to determine whether the frequency exceeds 10 per 100 active vehicles. Therefore, the condition cannot be evaluated as true or false and remains unknown. There are no explicit exceptions stated in the criterion text that would apply to this case. There is no conflicting evidence presented. The only available evidence E2 provides information about active vehicle count but does not mention any preventable collisions, which is necessary to evaluate the condition.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.782
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:2025",
+                "source_label": "lossrun:2025",
+                "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+                "locator": "paragraph:1",
+                "context": "Preventable collision count is three; do not include the glass claims."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "fleet:2025",
+                "source_label": "fleet:2025",
+                "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+                "locator": "paragraph:2",
+                "context": "Denominator requested by the guideline is 24."
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the whole case, which includes the fleet-level assessment for Summit Couriers. The subject is within the scope of the guideline's applicability. The preventable collision frequency was calculated as 3 collisions per 24 active vehicles. This equals 12.5 collisions per 100 active vehicles (3/24 * 100 = 12.5). Since 12.5 exceeds the threshold of 10 collisions per 100 active vehicles, the condition is met. There are no explicit exceptions in the rule text that apply to this case. The rule does not specify any conditions under which this concern would not be flagged. There are no conflicting pieces of evidence in the provided data that would prevent a determination of the condition's truth. The evidence supports a calculation that meets the threshold.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_met",
+              "status": "matched",
+              "findings": [
+                {
+                  "subject": "Summit Couriers",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "reason": "The preventable collision frequency for Summit Couriers in 2025 was 12.5 collisions per 100 active vehicles, which exceeds the threshold of 10 collisions per 100 active vehicles specified in criterion C1."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 3.646
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:2025",
+                "source_label": "lossrun:2025",
+                "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+                "locator": "paragraph:1",
+                "context": "Preventable collision count is three; do not include the glass claims."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "fleet:2025",
+                "source_label": "fleet:2025",
+                "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+                "locator": "paragraph:2",
+                "context": "Denominator requested by the guideline is 24."
+              }
+            },
+            "conflict_candidates": {},
+            "validation_feedback": {
+              "C1": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E1']. Explain resolution, different scope, or unresolved conflict."
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the whole case, and the subject (Summit Couriers) is within the scope of the guideline's applicability. There are no explicit exclusions for Summit Couriers in the criterion text. The preventable collision frequency was calculated as 3 collisions per 24 active vehicles, which equals 12.5 collisions per 100 active vehicles. This exceeds the threshold of 10 collisions per 100 active vehicles specified in the criterion. There are no exceptions explicitly stated in the criterion that would apply to Summit Couriers. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this case. There is no conflict in the evidence. Both E1 and E2 support the calculation of the collision frequency without contradiction. The lossrun confirms three preventable collisions, and the fleet record confirms 24 active vehicles.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_met",
+              "status": "matched",
+              "findings": [
+                {
+                  "subject": "Summit Couriers",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "reason": "Summit Couriers exceeded the preventable collision frequency threshold of 10 collisions per 100 active vehicles, with a calculated rate of 12.5 collisions per 100 active vehicles based on 3 collisions and 24 active vehicles."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 3.804
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:2025",
+                "source_label": "lossrun:2025",
+                "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+                "locator": "paragraph:1",
+                "context": "Preventable collision count is three; do not include the glass claims."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "fleet:2025",
+                "source_label": "fleet:2025",
+                "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+                "locator": "paragraph:2",
+                "context": "Denominator requested by the guideline is 24."
+              }
+            },
+            "conflict_candidates": {},
+            "validation_feedback": {
+              "C1": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E1']. Explain resolution, different scope, or unresolved conflict."
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the whole case, and the subject (Summit Couriers) is within the scope of the guideline's applicability. There are no explicit exclusions for Summit in the criterion text. The preventable collision frequency was calculated as 3 collisions per 24 active vehicles, which equals 12.5 collisions per 100 active vehicles. This exceeds the threshold of 10 collisions per 100 active vehicles specified in the criterion. There are no exceptions explicitly stated in the rule that would apply to Summit Couriers under the given conditions. There is no conflict between E1 and E2. Both pieces of evidence support the calculation of the collision frequency without contradiction. The lossrun (E1) reports three preventable collisions, and the fleet data (E2) confirms 24 active vehicles for the year.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_met",
+              "status": "matched",
+              "findings": [
+                {
+                  "subject": "Summit Couriers",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "reason": "The preventable collision frequency of 12.5 collisions per 100 active vehicles exceeds the threshold of 10 collisions per 100 active vehicles, triggering a fleet-level concern."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 3.493
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:2025",
+                "source_label": "lossrun:2025",
+                "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+                "locator": "paragraph:1",
+                "context": "Preventable collision count is three; do not include the glass claims."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "fleet:2025",
+                "source_label": "fleet:2025",
+                "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+                "locator": "paragraph:2",
+                "context": "Denominator requested by the guideline is 24."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles.",
+              "scope_reason": "The rule applies to the fleet level for the year 2025. The subject is Summit Couriers, which is a single fleet entity. The time period in scope is 2025.",
+              "scope": "in_scope",
+              "condition_reason": "The preventable collision count for 2025 is 3 (from E1). The active fleet count is 24 (from E2). The frequency is calculated as (3 collisions / 24 vehicles) * 100 = 12.5 collisions per 100 vehicles. Since 12.5 > 10, the condition is true.",
+              "condition": "true",
+              "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict_reason": "There are no conflicting observations in the evidence provided that would create an unresolved contradiction regarding the preventable collision count or the active fleet count.",
+              "conflict": "none",
+              "findings": [
+                {
+                  "subject": "Summit Couriers",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "reason": "The preventable collision frequency for Summit Couriers in 2025 was 12.5 collisions per 100 active vehicles, which exceeds the threshold of 10 collisions per 100 active vehicles. Therefore, one fleet-level concern is flagged."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 3.947
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles. Use the stated active fleet count as denominator.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:2025",
+                "source_label": "lossrun:2025",
+                "quote": "Summit Couriers recorded three preventable collisions during 2025. Two additional glass-only claims were not collisions. These counts are final for the full calendar year.",
+                "locator": "paragraph:1",
+                "context": "Preventable collision count is three; do not include the glass claims."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "fleet:2025",
+                "source_label": "fleet:2025",
+                "quote": "Summit operated 24 active vehicles throughout 2025. Four spare vehicles held in storage were not active and are outside the stated active fleet count.",
+                "locator": "paragraph:2",
+                "context": "Denominator requested by the guideline is 24."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to the fleet level for the year 2025. The subject is Summit Couriers, which is a single fleet entity. The time period in scope is 2025. The preventable collision count for 2025 is 3 (from E1). The active fleet count is 24 (from E2). The frequency is calculated as (3 collisions / 24 vehicles) * 100 = 12.5 collisions per 100 vehicles. Since 12.5 > 10, the condition is true. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved contradiction regarding the preventable collision count or the active fleet count.",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_met",
+                  "status": "matched",
+                  "findings": [
+                    {
+                      "subject": "Summit Couriers",
+                      "evidence_ids": [
+                        "E1",
+                        "E2"
+                      ],
+                      "reason": "The preventable collision frequency for Summit Couriers in 2025 was 12.5 collisions per 100 active vehicles, which exceeds the threshold of 10 collisions per 100 active vehicles. Therefore, one fleet-level concern is flagged."
+                    }
+                  ]
+                },
+                "explanation": {
+                  "assessment.reason": "The rule applies to the fleet level for the year 2025. The subject is Summit Couriers, which is a single fleet entity. The time period in scope is 2025. The preventable collision count for 2025 is 3 (from E1). The active fleet count is 24 (from E2). The frequency is calculated as (3 collisions / 24 vehicles) * 100 = 12.5 collisions per 100 vehicles. Since 12.5 > 10, the condition is true. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved contradiction regarding the preventable collision count or the active fleet count.",
+                  "finding:1.reason": "The preventable collision frequency for Summit Couriers in 2025 was 12.5 collisions per 100 active vehicles, which exceeds the threshold of 10 collisions per 100 active vehicles. Therefore, one fleet-level concern is flagged.",
+                  "decision_review.scope_reason": "The rule applies to the fleet level for the year 2025. The subject is Summit Couriers, which is a single fleet entity. The time period in scope is 2025.",
+                  "decision_review.condition_reason": "The preventable collision count for 2025 is 3 (from E1). The active fleet count is 24 (from E2). The frequency is calculated as (3 collisions / 24 vehicles) * 100 = 12.5 collisions per 100 vehicles. Since 12.5 > 10, the condition is true.",
+                  "decision_review.exception_reason": "There are no explicit exception prerequisites mentioned in the rule text for C1.",
+                  "decision_review.conflict_reason": "There are no conflicting observations in the evidence provided that would create an unresolved contradiction regarding the preventable collision count or the active fleet count."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "Flag one fleet-level concern if 2025 preventable collision frequency exceeds 10 collisions per 100 active vehicles.",
+              "scope_applies": true,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The final assessment correctly applies the rule's scope to Summit Couriers as a single fleet entity for the year 2025. The preventable collision frequency of 12.5 per 100 active vehicles (3 collisions / 24 vehicles * 100) exceeds the threshold of 10, meeting the condition for flagging a fleet-level concern. There are no exceptions or contradictions in the evidence that would invalidate this conclusion."
+            }
+          ],
+          "elapsed_seconds": 2.406
+        }
+      ],
+      "elapsed_seconds": 39.114,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": false,
+        "passed": false,
+        "expected_status": "matched",
+        "actual_status": "matched",
+        "expected_findings": 1,
+        "actual_findings": 1,
+        "required_evidence_count": 2,
+        "required_evidence_found": 2,
+        "missing_required_evidence": [],
+        "reference_checks": 7,
+        "reference_checks_passed": 7,
+        "false_positive_findings": 0,
+        "reason": "The rule applies to the fleet level for the year 2025. The subject is Summit Couriers, which is a single fleet entity. The time period in scope is 2025. The preventable collision count for 2025 is 3 (from E1). The active fleet count is 24 (from E2). The frequency is calculated as (3 collisions / 24 vehicles) * 100 = 12.5 collisions per 100 vehicles. Since 12.5 > 10, the condition is true. There are no explicit exception prerequisites mentioned in the rule text for C1. There are no conflicting observations in the evidence provided that would create an unresolved contradiction regarding the preventable collision count or the active fleet count."
+      }
+    },
+    {
+      "id": "property_cross_source_alarm_and_value",
+      "category": "cross_source_synthesis",
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [
+          {
+            "id": "finding_1",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ]
+          }
+        ],
+        "decision_ready": true,
+        "rationale": "The value and whole-stock alarm condition require combining both sources into one strength."
+      },
+      "result": {
+        "findings": [
+          {
+            "finding_id": "C1:F1",
+            "subject": "Haven Parts",
+            "criterion_id": "C1",
+            "criterion": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+            "criterion_source": "synthetic-guideline:property:v1",
+            "criterion_source_label": "Invented evaluation guideline",
+            "classification": "strength",
+            "facts": [
+              {
+                "evidence_id": "E1",
+                "source": "stock:declaration",
+                "source_label": "stock:declaration",
+                "locator": "paragraph:1",
+                "quote": "Haven Parts declares total insured stock of $425,000 as of 2025-09-01. All stock, including seasonal overflow, is held inside its sole insured warehouse. There is no outdoor or off-site stock.",
+                "context": "USD; the declaration is complete for all insured stock."
+              },
+              {
+                "evidence_id": "E2",
+                "source": "security:certificate",
+                "source_label": "security:certificate",
+                "locator": "paragraph:2",
+                "quote": "The alarm contractor certifies that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring. The system was active on 2025-09-01.",
+                "context": "Scope includes all warehouse storage areas."
+              }
+            ],
+            "reason": "The entire insured stock is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) is no greater than $500,000. The rule's trigger holds true for this subject."
+          }
+        ],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The subject is Haven Parts, and the period in scope is as of 2025-09-01, based on the evidence dates. The evidence covers all insured stock for this date. The entire insured stock is in a continuously monitored intruder-alarm area: E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. The total declared stock value is $425,000 (E1), which is no greater than $500,000. Both conditions of the trigger are met. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no actual incompatible observations. Both E1 and E2 support the trigger condition without contradiction.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "condition_met",
+            "status": "matched",
+            "findings": [
+              {
+                "subject": "Haven Parts",
+                "evidence_ids": [
+                  "E1",
+                  "E2"
+                ],
+                "reason": "The entire insured stock is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) is no greater than $500,000. The rule's trigger holds true for this subject."
+              }
+            ]
+          }
+        },
+        "source_assessments": {
+          "stock:declaration": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is 'stock:declaration' which identifies the evidence batch containing the declaration for the insured stock. The rule's applicability is not restricted to any specific subset of the stock beyond what is declared in this batch, so the scope is in_scope. The condition requires two elements: (1) the entire insured stock is in a continuously monitored intruder-alarm area, and (2) the total declared stock value is no greater than $500,000. From evidence E1, we know that the total declared stock value is $425,000, which satisfies the second element since $425,000 ≤ $500,000. However, there is no explicit statement in the evidence about whether the entire insured stock is in a continuously monitored intruder-alarm area. The evidence only states that all stock is held inside its sole insured warehouse but does not confirm the presence of an intruder-alarm system or its monitoring status. Therefore, the condition cannot be confirmed as true based on the available evidence. There are no explicit exceptions stated in the criterion text that would apply to this case. There is no conflicting evidence provided in the supplied data. The only evidence available does not confirm whether the stock is in a continuously monitored intruder-alarm area, but it also does not contradict this requirement.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          },
+          "security:certificate": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence covers the entire interior of the warehouse, which aligns with the rule's requirement for the 'entire insured stock' to be in a monitored area. The evidence explicitly states that the entire interior of the warehouse is covered by an intruder alarm system. The condition is TRUE because the evidence confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring, satisfying the requirement for a continuously monitored intruder-alarm area. However, the total declared stock value is not provided in the evidence, so we cannot determine if it meets the $500,000 threshold. Since the rule requires both conditions to be met (monitored area AND value <= $500,000), and the value condition cannot be verified from the provided evidence, the overall condition is UNKNOWN. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this situation. There is no conflict in the evidence provided. The evidence supports the presence of continuous monitoring but does not provide information about the declared stock value, which is necessary to fully evaluate the condition.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [
+            "C1"
+          ],
+          "no_match": [],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [
+            "C1"
+          ],
+          "review_disagreements": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule's scope is 'whole_case', which applies to the entire insured entity. The subject (Haven Parts) is within the scope of the rule as it is the sole insured party. The condition requires two elements: (1) the entire insured stock must be in a continuously monitored intruder-alarm area, and (2) the total declared stock value must not exceed $500,000. Evidence E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. Evidence E1 states that the total insured stock is $425,000, which is less than $500,000. Both conditions are satisfied. There are no explicit exceptions in the rule text that apply to this case. The rule does not contain any 'unless' or 'except' clauses that would prevent the strength from being recorded. There are no conflicting pieces of evidence. Both E1 and E2 support the fulfillment of the conditions required by the criterion.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "condition_met",
+            "status": "matched",
+            "findings": [
+              {
+                "subject": "Haven Parts",
+                "evidence_ids": [
+                  "E1",
+                  "E2"
+                ],
+                "reason": "The entire insured stock at Haven Parts is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) does not exceed $500,000. Therefore, one strength is recorded for this insured entity."
+              }
+            ]
+          }
+        },
+        "no_match_reviews": {},
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000",
+            "scope_reason": "The subject is Haven Parts, and the period in scope is as of 2025-09-01, based on the evidence dates. The evidence covers all insured stock for this date.",
+            "scope": "in_scope",
+            "condition_reason": "The entire insured stock is in a continuously monitored intruder-alarm area: E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. The total declared stock value is $425,000 (E1), which is no greater than $500,000. Both conditions of the trigger are met.",
+            "condition": "true",
+            "exception_reason": "There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict_reason": "There are no actual incompatible observations. Both E1 and E2 support the trigger condition without contradiction.",
+            "conflict": "none",
+            "findings": [
+              {
+                "subject": "Haven Parts",
+                "evidence_ids": [
+                  "E1",
+                  "E2"
+                ],
+                "reason": "The entire insured stock is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) is no greater than $500,000. The rule's trigger holds true for this subject."
+              }
+            ]
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "",
+            "scope_applies": null,
+            "exception_quote": "",
+            "verdict": "needs_review",
+            "issues": [
+              {
+                "explanation_id": "assessment.reason",
+                "reason": "The final status conflicts with the consistency review's explicit applicability judgment."
+              }
+            ],
+            "reason": "The final assessment correctly applies the rule's conditions to the evidence. The total declared stock value ($425,000) is no greater than $500,000, and the entire insured stock is in a continuously monitored intruder-alarm area as confirmed by E2. There are no exceptions or scope restrictions that would prevent application of the rule to Haven Parts as of 2025-09-01. The explanation supports the matched status with accurate reasoning based on the quoted evidence."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+              "source_id": "synthetic-guideline:property:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "stock:declaration",
+              "source_label": "stock:declaration",
+              "quote": "Haven Parts declares total insured stock of $425,000 as of 2025-09-01. All stock, including seasonal overflow, is held inside its sole insured warehouse. There is no outdoor or off-site stock.",
+              "locator": "paragraph:1",
+              "context": "USD; the declaration is complete for all insured stock."
+            },
+            {
+              "id": "E2",
+              "source_id": "security:certificate",
+              "source_label": "security:certificate",
+              "quote": "The alarm contractor certifies that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring. The system was active on 2025-09-01.",
+              "locator": "paragraph:2",
+              "context": "Scope includes all warehouse storage areas."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "stock:declaration",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "stock:declaration",
+                "source_label": "stock:declaration",
+                "quote": "Haven Parts declares total insured stock of $425,000 as of 2025-09-01. All stock, including seasonal overflow, is held inside its sole insured warehouse. There is no outdoor or off-site stock.",
+                "locator": "paragraph:1",
+                "context": "USD; the declaration is complete for all insured stock."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is 'stock:declaration' which identifies the evidence batch containing the declaration for the insured stock. The rule's applicability is not restricted to any specific subset of the stock beyond what is declared in this batch, so the scope is in_scope. The condition requires two elements: (1) the entire insured stock is in a continuously monitored intruder-alarm area, and (2) the total declared stock value is no greater than $500,000. From evidence E1, we know that the total declared stock value is $425,000, which satisfies the second element since $425,000 ≤ $500,000. However, there is no explicit statement in the evidence about whether the entire insured stock is in a continuously monitored intruder-alarm area. The evidence only states that all stock is held inside its sole insured warehouse but does not confirm the presence of an intruder-alarm system or its monitoring status. Therefore, the condition cannot be confirmed as true based on the available evidence. There are no explicit exceptions stated in the criterion text that would apply to this case. There is no conflicting evidence provided in the supplied data. The only evidence available does not confirm whether the stock is in a continuously monitored intruder-alarm area, but it also does not contradict this requirement.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.918
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "security:certificate",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "security:certificate",
+                "source_label": "security:certificate",
+                "quote": "The alarm contractor certifies that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring. The system was active on 2025-09-01.",
+                "locator": "paragraph:2",
+                "context": "Scope includes all warehouse storage areas."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence covers the entire interior of the warehouse, which aligns with the rule's requirement for the 'entire insured stock' to be in a monitored area. The evidence explicitly states that the entire interior of the warehouse is covered by an intruder alarm system. The condition is TRUE because the evidence confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring, satisfying the requirement for a continuously monitored intruder-alarm area. However, the total declared stock value is not provided in the evidence, so we cannot determine if it meets the $500,000 threshold. Since the rule requires both conditions to be met (monitored area AND value <= $500,000), and the value condition cannot be verified from the provided evidence, the overall condition is UNKNOWN. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this situation. There is no conflict in the evidence provided. The evidence supports the presence of continuous monitoring but does not provide information about the declared stock value, which is necessary to fully evaluate the condition.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.586
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "stock:declaration",
+                "source_label": "stock:declaration",
+                "quote": "Haven Parts declares total insured stock of $425,000 as of 2025-09-01. All stock, including seasonal overflow, is held inside its sole insured warehouse. There is no outdoor or off-site stock.",
+                "locator": "paragraph:1",
+                "context": "USD; the declaration is complete for all insured stock."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "security:certificate",
+                "source_label": "security:certificate",
+                "quote": "The alarm contractor certifies that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring. The system was active on 2025-09-01.",
+                "locator": "paragraph:2",
+                "context": "Scope includes all warehouse storage areas."
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule's scope is 'whole_case', which applies to the entire insured entity. The subject (Haven Parts) is within the scope of the rule as it is the sole insured party. The condition requires two elements: (1) the entire insured stock must be in a continuously monitored intruder-alarm area, and (2) the total declared stock value must not exceed $500,000. Evidence E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. Evidence E1 states that the total insured stock is $425,000, which is less than $500,000. Both conditions are satisfied. There are no explicit exceptions in the rule text that apply to this case. The rule does not contain any 'unless' or 'except' clauses that would prevent the strength from being recorded. There are no conflicting pieces of evidence. Both E1 and E2 support the fulfillment of the conditions required by the criterion.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_met",
+              "status": "matched",
+              "findings": [
+                {
+                  "subject": "Haven Parts",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "reason": "The entire insured stock at Haven Parts is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) does not exceed $500,000. Therefore, one strength is recorded for this insured entity."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 4.335
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "stock:declaration",
+                "source_label": "stock:declaration",
+                "quote": "Haven Parts declares total insured stock of $425,000 as of 2025-09-01. All stock, including seasonal overflow, is held inside its sole insured warehouse. There is no outdoor or off-site stock.",
+                "locator": "paragraph:1",
+                "context": "USD; the declaration is complete for all insured stock."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "security:certificate",
+                "source_label": "security:certificate",
+                "quote": "The alarm contractor certifies that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring. The system was active on 2025-09-01.",
+                "locator": "paragraph:2",
+                "context": "Scope includes all warehouse storage areas."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000",
+              "scope_reason": "The subject is Haven Parts, and the period in scope is as of 2025-09-01, based on the evidence dates. The evidence covers all insured stock for this date.",
+              "scope": "in_scope",
+              "condition_reason": "The entire insured stock is in a continuously monitored intruder-alarm area: E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. The total declared stock value is $425,000 (E1), which is no greater than $500,000. Both conditions of the trigger are met.",
+              "condition": "true",
+              "exception_reason": "There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict_reason": "There are no actual incompatible observations. Both E1 and E2 support the trigger condition without contradiction.",
+              "conflict": "none",
+              "findings": [
+                {
+                  "subject": "Haven Parts",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "reason": "The entire insured stock is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) is no greater than $500,000. The rule's trigger holds true for this subject."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 3.89
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record one strength if the entire insured stock is in a continuously monitored intruder-alarm area and the total declared stock value is no greater than $500,000.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "stock:declaration",
+                "source_label": "stock:declaration",
+                "quote": "Haven Parts declares total insured stock of $425,000 as of 2025-09-01. All stock, including seasonal overflow, is held inside its sole insured warehouse. There is no outdoor or off-site stock.",
+                "locator": "paragraph:1",
+                "context": "USD; the declaration is complete for all insured stock."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "security:certificate",
+                "source_label": "security:certificate",
+                "quote": "The alarm contractor certifies that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring. The system was active on 2025-09-01.",
+                "locator": "paragraph:2",
+                "context": "Scope includes all warehouse storage areas."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The subject is Haven Parts, and the period in scope is as of 2025-09-01, based on the evidence dates. The evidence covers all insured stock for this date. The entire insured stock is in a continuously monitored intruder-alarm area: E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. The total declared stock value is $425,000 (E1), which is no greater than $500,000. Both conditions of the trigger are met. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no actual incompatible observations. Both E1 and E2 support the trigger condition without contradiction.",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_met",
+                  "status": "matched",
+                  "findings": [
+                    {
+                      "subject": "Haven Parts",
+                      "evidence_ids": [
+                        "E1",
+                        "E2"
+                      ],
+                      "reason": "The entire insured stock is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) is no greater than $500,000. The rule's trigger holds true for this subject."
+                    }
+                  ]
+                },
+                "explanation": {
+                  "assessment.reason": "The subject is Haven Parts, and the period in scope is as of 2025-09-01, based on the evidence dates. The evidence covers all insured stock for this date. The entire insured stock is in a continuously monitored intruder-alarm area: E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. The total declared stock value is $425,000 (E1), which is no greater than $500,000. Both conditions of the trigger are met. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no actual incompatible observations. Both E1 and E2 support the trigger condition without contradiction.",
+                  "finding:1.reason": "The entire insured stock is in a continuously monitored intruder-alarm area, and the total declared stock value ($425,000) is no greater than $500,000. The rule's trigger holds true for this subject.",
+                  "decision_review.scope_reason": "The subject is Haven Parts, and the period in scope is as of 2025-09-01, based on the evidence dates. The evidence covers all insured stock for this date.",
+                  "decision_review.condition_reason": "The entire insured stock is in a continuously monitored intruder-alarm area: E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. The total declared stock value is $425,000 (E1), which is no greater than $500,000. Both conditions of the trigger are met.",
+                  "decision_review.exception_reason": "There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case.",
+                  "decision_review.conflict_reason": "There are no actual incompatible observations. Both E1 and E2 support the trigger condition without contradiction."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "",
+              "scope_applies": null,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The final assessment correctly applies the rule's conditions to the evidence. The total declared stock value ($425,000) is no greater than $500,000, and the entire insured stock is in a continuously monitored intruder-alarm area as confirmed by E2. There are no exceptions or scope restrictions that would prevent application of the rule to Haven Parts as of 2025-09-01. The explanation supports the matched status with accurate reasoning based on the quoted evidence."
+            }
+          ],
+          "elapsed_seconds": 2.03
+        }
+      ],
+      "elapsed_seconds": 17.76,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": false,
+        "passed": false,
+        "expected_status": "matched",
+        "actual_status": "matched",
+        "expected_findings": 1,
+        "actual_findings": 1,
+        "required_evidence_count": 2,
+        "required_evidence_found": 2,
+        "missing_required_evidence": [],
+        "reference_checks": 7,
+        "reference_checks_passed": 7,
+        "false_positive_findings": 0,
+        "reason": "The subject is Haven Parts, and the period in scope is as of 2025-09-01, based on the evidence dates. The evidence covers all insured stock for this date. The entire insured stock is in a continuously monitored intruder-alarm area: E2 confirms that the entire interior of Haven Parts' sole warehouse is covered by an intruder alarm with continuous remote monitoring as of 2025-09-01. The total declared stock value is $425,000 (E1), which is no greater than $500,000. Both conditions of the trigger are met. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no actual incompatible observations. Both E1 and E2 support the trigger condition without contradiction."
+      }
+    },
+    {
+      "id": "gl_loss_aggregation_without_duplicate",
+      "category": "cross_source_synthesis",
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [
+          {
+            "id": "finding_1",
+            "evidence_ids": [
+              "E1"
+            ],
+            "acceptable_evidence_sets": [
+              [
+                "E1"
+              ],
+              [
+                "E1",
+                "E2"
+              ]
+            ]
+          }
+        ],
+        "decision_ready": true,
+        "rationale": "Distinct claims sum to $325,000, above $300,000. Do not add the repeated GL-101 again or create a finding per claim."
+      },
+      "result": {
+        "findings": [
+          {
+            "finding_id": "C1:F1",
+            "subject": "2025 general liability claims",
+            "criterion_id": "C1",
+            "criterion": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+            "criterion_source": "synthetic-guideline:general_liability:v1",
+            "criterion_source_label": "Invented evaluation guideline",
+            "classification": "concern",
+            "facts": [
+              {
+                "evidence_id": "E1",
+                "source": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "locator": "paragraph:1",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              }
+            ],
+            "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern."
+          }
+        ],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch. The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true. The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline. There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist.",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict": "none",
+            "basis": "condition_met",
+            "status": "matched",
+            "findings": [
+              {
+                "subject": "2025 general liability claims",
+                "evidence_ids": [
+                  "E1"
+                ],
+                "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern."
+              }
+            ]
+          }
+        },
+        "source_assessments": {
+          "lossrun:primary": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The evidence is from the 'lossrun:primary' source, which is explicitly designated as the scope for this assessment. The subject matter concerns 2025 general liability claims, which aligns with the rule's applicability. There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-102 with a paid amount of $175,000. The total paid amount is $325,000 ($150,000 + $175,000). This exceeds the threshold of $300,000 specified in the criterion. There are no explicit exceptions mentioned in the rule that would apply to this case. The rule does not contain any conditions that would exempt these claims from the assessment. There is no conflicting evidence presented in the provided data. The evidence clearly states the paid amounts for two distinct claims and confirms there are no other 2025 GL claims.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_met",
+              "status": "matched",
+              "findings": [
+                {
+                  "subject": "2025 general liability claims",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000 and GL-102: $175,000) equals $325,000, which exceeds the $300,000 threshold. This meets the condition for flagging a concern."
+                }
+              ]
+            }
+          },
+          "broker:claim_note": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is 'broker:claim_note', which identifies the evidence batch. The rule's applicability is not restricted to a specific population or subject beyond the claim note itself, so the scope is in_scope. The condition requires assessing whether total paid amounts for distinct 2025 general liability claims exceed $300,000. The evidence E2 indicates that GL-101 is referenced twice but is explicitly stated to be a duplicate reference, not an additional claim or payment. Therefore, only one distinct claim (GL-101) is counted with its latest paid amount of $150,000. Since this amount does not exceed $300,000, the condition is false. There are no explicit exceptions in the rule text that would apply to this case. There is no conflict in the evidence. The only piece of evidence (E2) explicitly states that the reference to GL-101 is a duplicate, which supports the conclusion that only one distinct claim exists.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [
+            "C1"
+          ],
+          "no_match": [],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [],
+          "review_disagreements": [
+            "C1"
+          ],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": [
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-202 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-102) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-202 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-202 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $30300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-202) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-202 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-102 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-102) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-102 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+            },
+            {
+              "stage": "consistency_review",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Scope/exception quotations must occur in criterion.text or its same-source context"
+            }
+          ]
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [
+          {
+            "source_id": "broker:claim_note",
+            "criterion_id": "C1",
+            "source_status": "no_match",
+            "case_status": "matched",
+            "review": "none"
+          }
+        ],
+        "pre_review_assessments": {},
+        "no_match_reviews": {},
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+            "scope_reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch.",
+            "scope": "in_scope",
+            "condition_reason": "The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true.",
+            "condition": "true",
+            "exception_reason": "The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1"
+            ],
+            "conflict_reason": "There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist.",
+            "conflict": "none",
+            "findings": [
+              {
+                "subject": "2025 general liability claims",
+                "evidence_ids": [
+                  "E1"
+                ],
+                "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern."
+              }
+            ]
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000.",
+            "scope_applies": true,
+            "exception_quote": "",
+            "verdict": "supported",
+            "issues": [],
+            "reason": "The final assessment correctly applies the rule's scope to 2025 general liability claims and accurately determines that the total paid amount for distinct claims exceeds $300,000. The evidence supports counting only two distinct claims (GL-101 and GL-102) with their respective latest paid amounts, totaling $325,000. There are no exceptions specified in the rule, and the broker's note confirms that GL-101 is a duplicate reference, not an additional claim, which aligns with the rule's requirement to count each claim ID once. The conclusion that a concern should be flagged is consistent with the premises."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+              "source_id": "synthetic-guideline:general_liability:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "concern",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "lossrun:primary",
+              "source_label": "lossrun:primary",
+              "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+              "locator": "paragraph:1",
+              "context": "All values USD, paid amounts rather than incurred reserves."
+            },
+            {
+              "id": "E2",
+              "source_id": "broker:claim_note",
+              "source_label": "broker:claim_note",
+              "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+              "locator": "paragraph:2",
+              "context": "Duplicate identification is explicit."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "lossrun:primary",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "locator": "paragraph:1",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The evidence is from the 'lossrun:primary' source, which is explicitly designated as the scope for this assessment. The subject matter concerns 2025 general liability claims, which aligns with the rule's applicability. There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-102 with a paid amount of $175,000. The total paid amount is $325,000 ($150,000 + $175,000). This exceeds the threshold of $300,000 specified in the criterion. There are no explicit exceptions mentioned in the rule that would apply to this case. The rule does not contain any conditions that would exempt these claims from the assessment. There is no conflicting evidence presented in the provided data. The evidence clearly states the paid amounts for two distinct claims and confirms there are no other 2025 GL claims.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "condition_met",
+              "status": "matched",
+              "findings": [
+                {
+                  "subject": "2025 general liability claims",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000 and GL-102: $175,000) equals $325,000, which exceeds the $300,000 threshold. This meets the condition for flagging a concern."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 4.636
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "broker:claim_note",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:claim_note",
+                "source_label": "broker:claim_note",
+                "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+                "locator": "paragraph:2",
+                "context": "Duplicate identification is explicit."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is 'broker:claim_note', which identifies the evidence batch. The rule's applicability is not restricted to a specific population or subject beyond the claim note itself, so the scope is in_scope. The condition requires assessing whether total paid amounts for distinct 2025 general liability claims exceed $300,000. The evidence E2 indicates that GL-101 is referenced twice but is explicitly stated to be a duplicate reference, not an additional claim or payment. Therefore, only one distinct claim (GL-101) is counted with its latest paid amount of $150,000. Since this amount does not exceed $300,000, the condition is false. There are no explicit exceptions in the rule text that would apply to this case. There is no conflict in the evidence. The only piece of evidence (E2) explicitly states that the reference to GL-101 is a duplicate, which supports the conclusion that only one distinct claim exists.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.054
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "locator": "paragraph:1",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:claim_note",
+                "source_label": "broker:claim_note",
+                "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+                "locator": "paragraph:2",
+                "context": "Duplicate identification is explicit."
+              }
+            },
+            "conflict_candidates": {
+              "C1": [
+                "E1",
+                "E2"
+              ]
+            }
+          },
+          "error": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-202 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-102) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-202 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE ",
+          "elapsed_seconds": 5.519
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "locator": "paragraph:1",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:claim_note",
+                "source_label": "broker:claim_note",
+                "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+                "locator": "paragraph:2",
+                "context": "Duplicate identification is explicit."
+              }
+            },
+            "conflict_candidates": {
+              "C1": [
+                "E1",
+                "E2"
+              ]
+            },
+            "validation_feedback": {
+              "C1": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-202 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-102) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-202 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+            }
+          },
+          "error": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-202 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $30300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-202) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-202 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE ",
+          "elapsed_seconds": 5.019
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "locator": "paragraph:1",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:claim_note",
+                "source_label": "broker:claim_note",
+                "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+                "locator": "paragraph:2",
+                "context": "Duplicate identification is explicit."
+              }
+            },
+            "conflict_candidates": {
+              "C1": [
+                "E1",
+                "E2"
+              ]
+            },
+            "validation_feedback": {
+              "C1": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-202 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $30300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-202) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-202 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+            }
+          },
+          "error": "Model output could not be parsed: Failed to parse PredicateDraft from completion [{\"criterion_id\": \"C1\", \"condition_quote\": \"Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.\", \"scope_reason\": \"The scope is whole_case, which indicates the assessment applies to the entire case file; there are no explicit exclusions for the subject matter in the rule text.\", \"scope\": \"in_scope\", \"condition_reason\": \"There are two distinct 2025 general liability claims: GL-101 with a paid amount of $150,000 and GL-102 with a paid amount of $175,000. The total paid amount is $325,000, which exceeds the threshold of $300,000. Each claim ID is counted once using its latest stated paid amount.\", \"condition\": \"true\", \"exception_reason\": \"There are no exceptions explicitly stated in the rule that would apply to this case.\", \"exception\": \"does_not_apply\", \"evidence_ids\": [\"E1\", \"E2\"], \"conflict_reason\": \"The evidence shows a potential conflict: E1 lists two separate claims (GL-101 and GL-102) with paid amounts of $150,000 and $175,000 respectively. E2 indicates that the broker's note repeats claim GL-101 at its same latest paid amount of $150,000, suggesting a duplicate reference rather than an additional claim. However, since the rule requires counting each claim ID once using its latest stated paid amount and does not specify how to handle duplicates, the conflict is unresolved.\", \"conflict\": \"unresolved\", \"findings\": [{\"subject\": \"whole_case\", \"evidence_ids\": [\"E1\"], \"reason\": \"The total paid amounts for distinct 2025 general liability claims (GL-101 at $150,000 and GL-102 at $175,000) sum to $325,000, which exceeds the $300,000 threshold. The duplicate reference in E2 does not alter this calculation as it refers to the same claim ID.\"}]}]. Got: 1 validation error for PredicateDraft\n0\n  Value error, matched requires findings; other statuses require an empty findings list [type=value_error, input_value={'criterion_id': 'C1', 'r...o the same claim ID.')]}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/value_error\nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE ",
+          "elapsed_seconds": 4.993
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "locator": "paragraph:1",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:claim_note",
+                "source_label": "broker:claim_note",
+                "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+                "locator": "paragraph:2",
+                "context": "Duplicate identification is explicit."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+              "scope_reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch.",
+              "scope": "in_scope",
+              "condition_reason": "The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true.",
+              "condition": "true",
+              "exception_reason": "The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict_reason": "There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist.",
+              "conflict": "none",
+              "findings": [
+                {
+                  "subject": "2025 general liability claims",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern."
+                }
+              ]
+            }
+          ],
+          "elapsed_seconds": 5.394
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "locator": "paragraph:1",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:claim_note",
+                "source_label": "broker:claim_note",
+                "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+                "locator": "paragraph:2",
+                "context": "Duplicate identification is explicit."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch. The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true. The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline. There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_met",
+                  "status": "matched",
+                  "findings": [
+                    {
+                      "subject": "2025 general liability claims",
+                      "evidence_ids": [
+                        "E1"
+                      ],
+                      "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern."
+                    }
+                  ]
+                },
+                "explanation": {
+                  "assessment.reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch. The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true. The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline. There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist.",
+                  "finding:1.reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern.",
+                  "decision_review.scope_reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch.",
+                  "decision_review.condition_reason": "The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true.",
+                  "decision_review.exception_reason": "The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline.",
+                  "decision_review.conflict_reason": "There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000.",
+              "scope_applies": true,
+              "exception_quote": "The rule does not specify any exceptions.",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The final assessment correctly applies the rule's scope to 2025 general liability claims and accurately determines that the total paid amount for distinct claims exceeds $300,000. The evidence supports counting GL-101 ($150,000) and GL-102 ($175,000) as two distinct claims, with no applicable exceptions. The explanation is consistent with the premises and properly accounts for the duplicate reference noted in E2."
+            }
+          ],
+          "elapsed_seconds": 2.629
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000. Count each claim ID once, using its latest stated paid amount.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "lossrun:primary",
+                "source_label": "lossrun:primary",
+                "quote": "The final 2025 general liability loss run lists claim GL-101 with paid amount $150,000 and claim GL-102 with paid amount $175,000. These are separate claims, both incurred during 2025. There are no other 2025 GL claims.",
+                "locator": "paragraph:1",
+                "context": "All values USD, paid amounts rather than incurred reserves."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:claim_note",
+                "source_label": "broker:claim_note",
+                "quote": "The broker's separate note repeats claim GL-101 at its same latest paid amount of $150,000. This is a duplicate reference to GL-101, not an additional claim or additional payment.",
+                "locator": "paragraph:2",
+                "context": "Duplicate identification is explicit."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch. The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true. The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline. There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_met",
+                  "status": "matched",
+                  "findings": [
+                    {
+                      "subject": "2025 general liability claims",
+                      "evidence_ids": [
+                        "E1"
+                      ],
+                      "reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern."
+                    }
+                  ]
+                },
+                "explanation": {
+                  "assessment.reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch. The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true. The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline. There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist.",
+                  "finding:1.reason": "The total paid amount for distinct 2025 general liability claims (GL-101: $150,000; GL-102: $175,000) equals $325,000, which exceeds the threshold of $300,000. This meets the condition for flagging a concern.",
+                  "decision_review.scope_reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch.",
+                  "decision_review.condition_reason": "The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true.",
+                  "decision_review.exception_reason": "The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline.",
+                  "decision_review.conflict_reason": "There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist."
+                }
+              }
+            },
+            "validation_feedback": {
+              "C1": "Scope/exception quotations must occur in criterion.text or its same-source context"
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "Flag one concern if total paid amounts for distinct 2025 general liability claims exceed $300,000.",
+              "scope_applies": true,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The final assessment correctly applies the rule's scope to 2025 general liability claims and accurately determines that the total paid amount for distinct claims exceeds $300,000. The evidence supports counting only two distinct claims (GL-101 and GL-102) with their respective latest paid amounts, totaling $325,000. There are no exceptions specified in the rule, and the broker's note confirms that GL-101 is a duplicate reference, not an additional claim, which aligns with the rule's requirement to count each claim ID once. The conclusion that a concern should be flagged is consistent with the premises."
+            }
+          ],
+          "elapsed_seconds": 2.196
+        }
+      ],
+      "elapsed_seconds": 33.442,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": false,
+        "passed": false,
+        "expected_status": "matched",
+        "actual_status": "matched",
+        "expected_findings": 1,
+        "actual_findings": 1,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 5,
+        "reference_checks_passed": 5,
+        "false_positive_findings": 0,
+        "reason": "The rule applies to 2025 general liability claims. Evidence E1 lists two distinct 2025 claims (GL-101 and GL-102), which are the only 2025 GL claims in the evidence batch. The rule requires counting each claim ID once using its latest paid amount. Claim GL-101 has a paid amount of $150,000 (from E1). Claim GL-102 has a paid amount of $175,000 (from E1). The broker's note (E2) confirms that GL-101 is duplicated and not an additional claim. Therefore, only two distinct claims are counted: GL-101 ($150,000) and GL-102 ($175,000). Total paid amount = $150,000 + $175,000 = $325,000. Comparison: $325,000 > $300,000. The condition is true. The rule does not specify any exceptions. There are no explicit exception prerequisites or validity dates mentioned in the guideline. There are no conflicting observations regarding the paid amounts or claim IDs for 2025 general liability claims. The broker's note (E2) clarifies that GL-101 is a duplicate reference, not an additional claim, which supports rather than contradicts the claim count. No unresolved contradictions exist."
+      }
+    },
+    {
+      "id": "cyber_restore_duration_cross_midnight",
+      "category": "cross_source_synthesis",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [],
+        "decision_ready": true,
+        "rationale": "Elapsed time is 25.5 hours, exceeding the 24-hour maximum despite a successful eventual restore."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The subject is the full restore of the payroll application, and the period in scope is from 2025-08-01 08:00 UTC to 2025-08-02 09:30 UTC. The restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. Elapsed time = 25 hours and 30 minutes. Since the elapsed time exceeds 24 hours, the condition is false. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no conflicting observations in the provided evidence.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "condition_not_met",
+            "status": "no_match",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "restore:start_log": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence pertains to the payroll application's full restore, which aligns with the criterion's subject matter. The condition cannot be evaluated as true or false because only the start timestamp is provided (2025-08-01 08:00 UTC). The completion timestamp is missing, which is required to compute the elapsed time. Without the end time, it is impossible to determine whether the restore took no longer than 24 hours. There are no explicit exceptions in the criterion text that would apply to this case. There is no conflicting evidence provided; only the start timestamp is available, which does not allow for a determination of elapsed time.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          },
+          "restore:completion_log": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence pertains to the completion of a full payroll application restore, which aligns with the criterion's requirement for assessing the duration of such a restore. The condition cannot be evaluated as true or false because the start timestamp is not provided in the evidence. The completion timestamp is 2025-08-02 09:30 UTC, but without knowing when the restore started, it is impossible to compute the elapsed time and determine if it was within 24 hours. There are no explicit exceptions mentioned in the criterion that would apply to this situation. There is no conflicting evidence presented; however, the lack of a start timestamp prevents a definitive determination of whether the restore duration was within 24 hours.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "unresolved",
+              "basis": "unresolved_conflict",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [
+            "C1"
+          ],
+          "review_disagreements": [
+            "C1"
+          ],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": [
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E2']. Explain resolution, different scope, or unresolved conflict."
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E2']. Explain resolution, different scope, or unresolved conflict."
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E2']. Explain resolution, different scope, or unresolved conflict."
+            }
+          ]
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [
+          {
+            "source_id": "restore:completion_log",
+            "criterion_id": "C1",
+            "source_status": "insufficient_evidence",
+            "case_status": "no_match",
+            "review": "none"
+          }
+        ],
+        "pre_review_assessments": {},
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires determining whether the completed full restore of the payroll application took no longer than 24 hours, using the supplied UTC start and completion timestamps. The start timestamp is 2025-08-01 08:00 UTC (E1) and the completion timestamp is 2025-08-02 09:30 UTC (E2). Calculating the elapsed time: from 08:00 on August 1 to 09:30 on August 2 is exactly 25 hours and 30 minutes. This exceeds the 24-hour threshold specified in the criterion, making the condition false.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "verdict": "supported"
+          }
+        },
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+            "scope_reason": "The subject is the full restore of the payroll application, and the period in scope is from 2025-08-01 08:00 UTC to 2025-08-02 09:30 UTC.",
+            "scope": "in_scope",
+            "condition_reason": "The restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. Elapsed time = 25 hours and 30 minutes. Since the elapsed time exceeds 24 hours, the condition is false.",
+            "condition": "false",
+            "exception_reason": "There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict_reason": "There are no conflicting observations in the provided evidence.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "scope_quote": "",
+            "scope_applies": null,
+            "exception_quote": "",
+            "verdict": "needs_review",
+            "issues": [
+              {
+                "explanation_id": "assessment.reason",
+                "reason": "The final status conflicts with the consistency review's explicit applicability judgment."
+              }
+            ],
+            "reason": "The final assessment correctly computes the elapsed time between the start and completion timestamps, determining that the restore took 25 hours and 30 minutes, which exceeds the 24-hour threshold. The explanation is consistent with the evidence provided in E1 and E2, and there are no contradictions or missing elements that would invalidate the conclusion."
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+              "source_id": "synthetic-guideline:cyber:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "restore:start_log",
+              "source_label": "restore:start_log",
+              "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+              "locator": "paragraph:1",
+              "context": "Use UTC; there were no clock corrections."
+            },
+            {
+              "id": "E2",
+              "source_id": "restore:completion_log",
+              "source_label": "restore:completion_log",
+              "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+              "locator": "paragraph:2",
+              "context": "Use the full application's completion time."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "restore:start_log",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "restore:start_log",
+                "source_label": "restore:start_log",
+                "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+                "locator": "paragraph:1",
+                "context": "Use UTC; there were no clock corrections."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence pertains to the payroll application's full restore, which aligns with the criterion's subject matter. The condition cannot be evaluated as true or false because only the start timestamp is provided (2025-08-01 08:00 UTC). The completion timestamp is missing, which is required to compute the elapsed time. Without the end time, it is impossible to determine whether the restore took no longer than 24 hours. There are no explicit exceptions in the criterion text that would apply to this case. There is no conflicting evidence provided; only the start timestamp is available, which does not allow for a determination of elapsed time.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.755
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "restore:completion_log",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "restore:completion_log",
+                "source_label": "restore:completion_log",
+                "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+                "locator": "paragraph:2",
+                "context": "Use the full application's completion time."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is in_scope because the evidence pertains to the completion of a full payroll application restore, which aligns with the criterion's requirement for assessing the duration of such a restore. The condition cannot be evaluated as true or false because the start timestamp is not provided in the evidence. The completion timestamp is 2025-08-02 09:30 UTC, but without knowing when the restore started, it is impossible to compute the elapsed time and determine if it was within 24 hours. There are no explicit exceptions mentioned in the criterion that would apply to this situation. There is no conflicting evidence presented; however, the lack of a start timestamp prevents a definitive determination of whether the restore duration was within 24 hours.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "unresolved",
+              "basis": "unresolved_conflict",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.594
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "restore:start_log",
+                "source_label": "restore:start_log",
+                "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+                "locator": "paragraph:1",
+                "context": "Use UTC; there were no clock corrections."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "restore:completion_log",
+                "source_label": "restore:completion_log",
+                "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+                "locator": "paragraph:2",
+                "context": "Use the full application's completion time."
+              }
+            },
+            "conflict_candidates": {
+              "C1": [
+                "E2"
+              ]
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The scope is 'whole_case', indicating that the rule applies to the entire case, not to any specific subset or individual subject. The evidence provided relates to a single full restore event within the case, making it applicable to the whole case. The full restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. The elapsed time is calculated as 25 hours and 30 minutes (from 08:00 on August 1 to 09:30 on August 2). Since this exceeds the 24-hour threshold, the condition is not met. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this scenario. There is no conflict in the evidence. E2 supports the completion time, and E1 provides the start time. Both pieces of evidence are consistent with each other and support the calculation of elapsed time.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.22
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "restore:start_log",
+                "source_label": "restore:start_log",
+                "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+                "locator": "paragraph:1",
+                "context": "Use UTC; there were no clock corrections."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "restore:completion_log",
+                "source_label": "restore:completion_log",
+                "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+                "locator": "paragraph:2",
+                "context": "Use the full application's completion time."
+              }
+            },
+            "conflict_candidates": {
+              "C1": [
+                "E2"
+              ]
+            },
+            "validation_feedback": {
+              "C1": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E2']. Explain resolution, different scope, or unresolved conflict."
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the whole case as no explicit exclusion or scope restriction is present for C1. The payload's scope field 'whole_case' indicates the assessment covers all relevant entities/events in the case, not just a subset. The full restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. The elapsed time is calculated as 25 hours and 30 minutes (from 08:00 on day 1 to 09:30 on day 2). This exceeds the 24-hour threshold specified in the criterion. There are no explicit exceptions listed in the rule text for C1. The rule does not contain any conditional language such as 'unless' or 'except' that would apply to this case. There is no conflict between E1 and E2. Both pieces of evidence support the same timeline for the restore process, with E1 providing the start time and E2 providing the completion time. The timestamps are consistent and do not contradict each other.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.208
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "restore:start_log",
+                "source_label": "restore:start_log",
+                "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+                "locator": "paragraph:1",
+                "context": "Use UTC; there were no clock corrections."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "restore:completion_log",
+                "source_label": "restore:completion_log",
+                "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+                "locator": "paragraph:2",
+                "context": "Use the full application's completion time."
+              }
+            },
+            "conflict_candidates": {
+              "C1": [
+                "E2"
+              ]
+            },
+            "validation_feedback": {
+              "C1": "C1: review opposing source judgments; conflict must not be none and assessment evidence_ids must include ['E2']. Explain resolution, different scope, or unresolved conflict."
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the whole case as no explicit exclusion is provided for the subject matter or scope. The full restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. The elapsed time is calculated as 25 hours and 30 minutes. This exceeds the 24-hour threshold specified in the criterion. There are no explicit exceptions mentioned in the rule that would apply to this case. Evidence E2 contradicts the assumption of a 24-hour or less restore by providing a completion time that results in an elapsed duration exceeding 24 hours. However, since E1 and E2 are both from the same case and refer to the same event (the full payroll application restore), there is no unresolved conflict; rather, the evidence supports a single, clear timeline.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.764
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "restore:start_log",
+                "source_label": "restore:start_log",
+                "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+                "locator": "paragraph:1",
+                "context": "Use UTC; there were no clock corrections."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "restore:completion_log",
+                "source_label": "restore:completion_log",
+                "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+                "locator": "paragraph:2",
+                "context": "Use the full application's completion time."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+              "scope_reason": "The subject is the full restore of the payroll application, and the period in scope is from 2025-08-01 08:00 UTC to 2025-08-02 09:30 UTC.",
+              "scope": "in_scope",
+              "condition_reason": "The restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. Elapsed time = 25 hours and 30 minutes. Since the elapsed time exceeds 24 hours, the condition is false.",
+              "condition": "false",
+              "exception_reason": "There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict_reason": "There are no conflicting observations in the provided evidence.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.916
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "restore:start_log",
+                "source_label": "restore:start_log",
+                "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+                "locator": "paragraph:1",
+                "context": "Use UTC; there were no clock corrections."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "restore:completion_log",
+                "source_label": "restore:completion_log",
+                "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+                "locator": "paragraph:2",
+                "context": "Use the full application's completion time."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires determining whether the completed full restore of the payroll application took no longer than 24 hours, using the supplied UTC start and completion timestamps. The start timestamp is 2025-08-01 08:00 UTC (E1) and the completion timestamp is 2025-08-02 09:30 UTC (E2). Calculating the elapsed time: from 08:00 on August 1 to 09:30 on August 2 is exactly 25 hours and 30 minutes. This exceeds the 24-hour threshold specified in the criterion, making the condition false.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 1.976
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if the completed full restore of the payroll application took no longer than 24 hours. Compute elapsed time using the supplied UTC start and completion timestamps.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "restore:start_log",
+                "source_label": "restore:start_log",
+                "quote": "The payroll application's full restore began at 2025-08-01 08:00 UTC. This timestamp is the start of actual restoration, not the time the incident was reported.",
+                "locator": "paragraph:1",
+                "context": "Use UTC; there were no clock corrections."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "restore:completion_log",
+                "source_label": "restore:completion_log",
+                "quote": "The full payroll application restore completed at 2025-08-02 09:30 UTC and passed verification. The team had previously restored a small test folder, but that was not the full application restore.",
+                "locator": "paragraph:2",
+                "context": "Use the full application's completion time."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The subject is the full restore of the payroll application, and the period in scope is from 2025-08-01 08:00 UTC to 2025-08-02 09:30 UTC. The restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. Elapsed time = 25 hours and 30 minutes. Since the elapsed time exceeds 24 hours, the condition is false. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no conflicting observations in the provided evidence.",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The subject is the full restore of the payroll application, and the period in scope is from 2025-08-01 08:00 UTC to 2025-08-02 09:30 UTC. The restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. Elapsed time = 25 hours and 30 minutes. Since the elapsed time exceeds 24 hours, the condition is false. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no conflicting observations in the provided evidence.",
+                  "decision_review.scope_reason": "The subject is the full restore of the payroll application, and the period in scope is from 2025-08-01 08:00 UTC to 2025-08-02 09:30 UTC.",
+                  "decision_review.condition_reason": "The restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. Elapsed time = 25 hours and 30 minutes. Since the elapsed time exceeds 24 hours, the condition is false.",
+                  "decision_review.exception_reason": "There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case.",
+                  "decision_review.conflict_reason": "There are no conflicting observations in the provided evidence."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "scope_quote": "",
+              "scope_applies": null,
+              "exception_quote": "",
+              "verdict": "supported",
+              "issues": [],
+              "reason": "The final assessment correctly computes the elapsed time between the start and completion timestamps, determining that the restore took 25 hours and 30 minutes, which exceeds the 24-hour threshold. The explanation is consistent with the evidence provided in E1 and E2, and there are no contradictions or missing elements that would invalidate the conclusion."
+            }
+          ],
+          "elapsed_seconds": 1.782
+        }
+      ],
+      "elapsed_seconds": 21.216,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": false,
+        "passed": false,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 2,
+        "required_evidence_found": 2,
+        "missing_required_evidence": [],
+        "reference_checks": 4,
+        "reference_checks_passed": 4,
+        "false_positive_findings": 0,
+        "reason": "The subject is the full restore of the payroll application, and the period in scope is from 2025-08-01 08:00 UTC to 2025-08-02 09:30 UTC. The restore started at 2025-08-01 08:00 UTC and completed at 2025-08-02 09:30 UTC. Elapsed time = 25 hours and 30 minutes. Since the elapsed time exceeds 24 hours, the condition is false. There are no explicit exception prerequisites or validity dates mentioned in the rule that would apply to this case. There are no conflicting observations in the provided evidence."
+      }
+    }
+  ]
+}

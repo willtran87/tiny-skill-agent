@@ -1,0 +1,104 @@
+[
+  {
+    "payload": {
+      "stage": "criterion_extraction",
+      "source_id": "guide:fleet-guideline.md",
+      "text": "# Cedar regional haulage: evaluation manual\n\nThis is an invented evaluation manual for a synthetic account. The assessment date is 30 September 2026. The manual contains three independently evaluable underwriting rules, distributed among ordinary explanatory sections. Apply every substantive rule to the named applicant and current observations. Administrative descriptions explain evidence handling; they are not additional underwriting outcomes. A positive credit or favorable treatment denotes a strength. A referral, adverse treatment, or requirement to decline denotes a concern. These vocabulary definitions apply throughout this document, including rules that do not repeat an outcome label. They do not establish that any applicant satisfies a rule.\n\nCedar operates a regional delivery fleet under its own motor authority. Driver and maintenance records have different responsible managers. Driver reviews are recorded per active driver, while defect records refer to individual vehicles. The commercial schedule includes five leased passenger vehicles and eight heavy goods vehicles. Vehicle purchase budgets are forecasts and do not document repairs.\n\n## Review section 1\n\nRead the whole rule together with its scope and stated exception. An exception changes the application of that particular rule; it does not erase a different independent rule. The date of an observation determines which period it describes. Document order is a filing convention and does not alone establish authority. An explicit correction that identifies an earlier entry can supersede that entry. Without such a correction, equally authoritative incompatible current observations remain unresolved. A planned improvement does not establish present completion. A quoted price for work does not demonstrate that the work has been done. Administrative correspondence does not replace a technical measurement.\n\n[concern] A heavy goods vehicle with an unresolved brake defect is a concern.\n\n## Review section 2\n\nWhen evaluating a numerical threshold, preserve its unit, denominator, and comparison operator. A threshold stated as strictly greater than a value excludes equality. A threshold stated as at least a value includes equality. Counts from different populations cannot be combined without a documented relationship. A percentage requiring all members of a population cannot be established by observing a sample unless the rule explicitly permits sampling. A quantity that has not been reported remains unknown. Absence of an inspection record does not prove either a successful inspection or a failed inspection. Distinguish an unanswered question from affirmative evidence that a condition is false.\n\n[strength] Completed annual driving-record reviews for all active drivers are a strength.\n\n## Review section 3\n\nEach rule stands on the applicant evidence relevant to its subject. A favorable observation about an office process does not establish a technical control in the operating business. Likewise, adverse historical observations do not necessarily describe the present state when a supported correction or completed change has been documented. Keep independent entities separate when more than one qualifies under a rule. Two citations corroborating the same observation need not create two findings. When contradictory observations concern the same entity and date, retain both in the assessment rather than treating them as independent qualifying events. This manual supplies no tie-breaking preference based on page position.\n\nGive favorable treatment when verified telematics show a harsh-braking rate below 2 events per 1000 miles across the active fleet.\n\n## Reading the complete packet\n\nThe source packet may contain working notes, completed exhibits, and administrative descriptions. The purpose of retaining surrounding material is to preserve qualifiers and distinguish observations from proposals. A summary may be shorter than the supporting exhibit and should not be used to invent details absent from it. The policy vocabulary above describes how rule outcomes are recorded; the condition within each rule still has to be established. No outcome is implied by the presence of a heading alone. Record unanswered evidence questions as such, and keep the explanation tied to the actual observations, applicable rule, and any relevant exception or limitation.",
+      "labels": [
+        "strength",
+        "concern"
+      ],
+      "known_criteria": {
+        "[concern] A heavy goods vehicle with an unresolved brake defect is a concern.": "concern",
+        "[strength] Completed annual driving-record reviews for all active drivers are a strength.": "strength"
+      },
+      "source_lines": {
+        "L1": "# Cedar regional haulage: evaluation manual",
+        "L3": "This is an invented evaluation manual for a synthetic account. The assessment date is 30 September 2026. The manual contains three independently evaluable underwriting rules, distributed among ordinary explanatory sections. Apply every substantive rule to the named applicant and current observations. Administrative descriptions explain evidence handling; they are not additional underwriting outcomes. A positive credit or favorable treatment denotes a strength. A referral, adverse treatment, or requirement to decline denotes a concern. These vocabulary definitions apply throughout this document, including rules that do not repeat an outcome label. They do not establish that any applicant satisfies a rule.",
+        "L5": "Cedar operates a regional delivery fleet under its own motor authority. Driver and maintenance records have different responsible managers. Driver reviews are recorded per active driver, while defect records refer to individual vehicles. The commercial schedule includes five leased passenger vehicles and eight heavy goods vehicles. Vehicle purchase budgets are forecasts and do not document repairs.",
+        "L7": "## Review section 1",
+        "L9": "Read the whole rule together with its scope and stated exception. An exception changes the application of that particular rule; it does not erase a different independent rule. The date of an observation determines which period it describes. Document order is a filing convention and does not alone establish authority. An explicit correction that identifies an earlier entry can supersede that entry. Without such a correction, equally authoritative incompatible current observations remain unresolved. A planned improvement does not establish present completion. A quoted price for work does not demonstrate that the work has been done. Administrative correspondence does not replace a technical measurement.",
+        "L13": "## Review section 2",
+        "L15": "When evaluating a numerical threshold, preserve its unit, denominator, and comparison operator. A threshold stated as strictly greater than a value excludes equality. A threshold stated as at least a value includes equality. Counts from different populations cannot be combined without a documented relationship. A percentage requiring all members of a population cannot be established by observing a sample unless the rule explicitly permits sampling. A quantity that has not been reported remains unknown. Absence of an inspection record does not prove either a successful inspection or a failed inspection. Distinguish an unanswered question from affirmative evidence that a condition is false.",
+        "L19": "## Review section 3",
+        "L21": "Each rule stands on the applicant evidence relevant to its subject. A favorable observation about an office process does not establish a technical control in the operating business. Likewise, adverse historical observations do not necessarily describe the present state when a supported correction or completed change has been documented. Keep independent entities separate when more than one qualifies under a rule. Two citations corroborating the same observation need not create two findings. When contradictory observations concern the same entity and date, retain both in the assessment rather than treating them as independent qualifying events. This manual supplies no tie-breaking preference based on page position.",
+        "L23": "Give favorable treatment when verified telematics show a harsh-braking rate below 2 events per 1000 miles across the active fleet.",
+        "L25": "## Reading the complete packet",
+        "L27": "The source packet may contain working notes, completed exhibits, and administrative descriptions. The purpose of retaining surrounding material is to preserve qualifiers and distinguish observations from proposals. A summary may be shorter than the supporting exhibit and should not be used to invent details absent from it. The policy vocabulary above describes how rule outcomes are recorded; the condition within each rule still has to be established. No outcome is implied by the presence of a heading alone. Record unanswered evidence questions as such, and keep the explanation tied to the actual observations, applicable rule, and any relevant exception or limitation."
+      }
+    },
+    "output": {
+      "reviewed_lines": [
+        {
+          "line_id": "L1",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L3",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L5",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L7",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L9",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L13",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L15",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L19",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L21",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L23",
+          "rule_quotes": [
+            "Give favorable treatment when verified telematics show a harsh-braking rate below 2 events per 1000 miles across the active fleet."
+          ]
+        },
+        {
+          "line_id": "L25",
+          "rule_quotes": []
+        },
+        {
+          "line_id": "L27",
+          "rule_quotes": []
+        }
+      ],
+      "complete": true,
+      "criteria": [
+        {
+          "quote": "[concern] A heavy goods vehicle with an unresolved brake defect is a concern.",
+          "classification": "concern",
+          "classification_quote": "concern"
+        },
+        {
+          "quote": "[strength] Completed annual driving-record reviews for all active drivers are a strength.",
+          "classification": "strength",
+          "classification_quote": "strength"
+        },
+        {
+          "quote": "Give favorable treatment when verified telematics show a harsh-braking rate below 2 events per 1000 miles across the active fleet.",
+          "classification": "strength",
+          "classification_quote": "strength"
+        }
+      ],
+      "issues": []
+    }
+  }
+]

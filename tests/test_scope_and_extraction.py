@@ -43,7 +43,8 @@ class ScopeAndExtractionTests(unittest.TestCase):
         return tools, messages
 
     def extractor(self, payload):
-        return {"complete": True, "criteria": [{"quote": "A roof older than 20 years is a concern.", "classification": "concern"}], "issues": []}
+        return {"complete": True, "criteria": [{"quote": "A roof older than 20 years is a concern.", "classification": "concern", "classification_quote": ""}], "issues": [],
+                "reviewed_lines": [{"line_id": key, "rule_quotes": [line]} for key, line in payload.get("source_lines", {}).items()]}
 
     def test_prose_source_quote_and_context_are_preserved(self):
         tools, messages = self.fixtures()
@@ -71,7 +72,7 @@ class ScopeAndExtractionTests(unittest.TestCase):
     def test_incomplete_extraction_never_reaches_assessment(self):
         tools, messages = self.fixtures()
         wrapper = AssessmentMiddleware(lambda _: self.fail("No partial assessment allowed"), tools=tools,
-            criterion_extractor=lambda _: {"complete": False, "criteria": [], "issues": ["Uncertain rule"]})
+            criterion_extractor=lambda _: {"complete": False, "criteria": [], "issues": ["Uncertain rule"], "reviewed_lines": []})
         output = wrapper.after_agent({"messages": messages}, None)
         self.assertIsNone(output["assessment"])
         self.assertIn("Incomplete criterion extraction", output["assessment_error"]["message"])
@@ -99,7 +100,8 @@ class ScopeAndExtractionTests(unittest.TestCase):
         text = "[concern] A roof older than 20 years is a concern."
         tools, messages = self.fixtures(text + "\nFull sprinklers are a strength.")
         def reclassify(payload):
-            return {"complete": True, "criteria": [{"quote": text, "classification": "strength"}], "issues": []}
+            return {"complete": True, "criteria": [{"quote": text, "classification": "strength", "classification_quote": ""}], "issues": [],
+                    "reviewed_lines": [{"line_id": key, "rule_quotes": [line] if line == text else []} for key,line in payload["source_lines"].items()]}
         with self.assertRaisesRegex(ValueError, "classification|reclassifies"):
             inputs_from_messages(messages, tools, criterion_extractor=reclassify)
 
@@ -107,15 +109,17 @@ class ScopeAndExtractionTests(unittest.TestCase):
         text = "[strength] All buildings are sprinklered.\nBuilding count means the total active inventory.\nUnrepaired damage is a concern."
         tools, messages = self.fixtures(text)
         def invalid(payload):
-            return {"complete": True, "criteria": [{"quote": "Building count means the total active inventory.", "classification": "concern"}], "issues": []}
-        with self.assertRaisesRegex(ValueError, "explicitly name"):
+            return {"complete": True, "criteria": [{"quote": "Building count means the total active inventory.", "classification": "concern", "classification_quote": ""}], "issues": [],
+                    "reviewed_lines": [{"line_id": key, "rule_quotes": [line] if key != "L3" else []} for key,line in payload["source_lines"].items()]}
+        with self.assertRaisesRegex(ValueError, "classification_quote"):
             inputs_from_messages(messages, tools, criterion_extractor=invalid)
 
-    def test_known_rules_and_definitions_need_no_extraction_call(self):
+    def test_known_rules_and_definitions_receive_full_source_review(self):
         tools, messages = self.fixtures("[strength] All buildings are sprinklered.\nBuilding count means the total active inventory.")
-        def unexpected(payload):
-            self.fail("No unlabelled candidate names an allowed outcome")
-        inputs = inputs_from_messages(messages, tools, criterion_extractor=unexpected)
+        def reviewed(payload):
+            return {"complete": True, "criteria": [], "issues": [], "reviewed_lines": [
+                {"line_id": "L2", "rule_quotes": []}]}
+        inputs = inputs_from_messages(messages, tools, criterion_extractor=reviewed)
         self.assertEqual(len(inputs.criteria), 1)
 
     def test_case_scope_validation_and_custom_mapper_cannot_bypass_scope(self):
@@ -162,9 +166,9 @@ class ScopeAndExtractionTests(unittest.TestCase):
             def __init__(self, metadata=None, error=None):
                 self.metadata, self.error = metadata or {}, error
             def with_structured_output(self, schema, **kwargs):
-                parent.assertIs(schema, CriterionExtraction)
+                parent.assertIn("lines", schema.model_fields)
                 return RunnableLambda(lambda _: {"raw": AIMessage(content="", response_metadata=self.metadata),
-                    "parsed": parent.extractor({}), "parsing_error": self.error})
+                    "parsed": {"lines": {}}, "parsing_error": self.error})
         self.assertTrue(make_langchain_criterion_extractor(Model())({}).complete)
         for model in (Model({"done_reason": "length"}), Model(error="Invalid JSON")):
             with self.assertRaises(ValueError):

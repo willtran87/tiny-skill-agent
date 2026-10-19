@@ -1,0 +1,62 @@
+{
+  "state": "completed",
+  "started_at": "2026-10-19T05:56:20.578181+00:00",
+  "planned_runs": 3,
+  "case_count": 32,
+  "model": "qwen3-coder:30b",
+  "model_settings": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 4096
+  },
+  "case_order": [
+    "cyber_remote_access_unknown",
+    "property_pump_service_unknown",
+    "auto_driver_screening_unknown",
+    "gl_subcontract_limit_unknown",
+    "auto_incident_rate_calculation",
+    "property_reserves_exact_threshold",
+    "property_roof_exact_boundary",
+    "cyber_patch_coverage_boundary",
+    "property_alarm_equal_reports",
+    "cyber_backup_immutability_conflict",
+    "auto_mileage_corrected_denominator",
+    "property_later_repair_does_not_rewrite_history",
+    "property_electrical_exception",
+    "cyber_service_account_exception",
+    "gl_hot_work_scope_exclusion",
+    "auto_passenger_scope_exclusion",
+    "property_multiple_warehouse_concerns",
+    "auto_multiple_expired_licences",
+    "cyber_multiple_restore_strengths",
+    "property_corroboration_not_two_events",
+    "gl_sister_company_evidence",
+    "cyber_prior_year_does_not_prove_current",
+    "property_building_specific_scope",
+    "wc_partial_payroll_period",
+    "gl_document_submission_condition",
+    "wc_document_absence_is_concern",
+    "wc_activity_explicitly_not_performed",
+    "property_inspection_date_unknown",
+    "property_cross_source_alarm_and_value",
+    "gl_loss_aggregation_without_duplicate",
+    "cyber_restore_duration_cross_midnight",
+    "property_expired_exception_certificate"
+  ],
+  "frozen_sha256": {
+    "evals\\unseen_cases_v1.json": "75be2099868b4b5cab8159fb7fb10ef0b8ea7e76b27efc3656ab3ef3e1b8ddd1",
+    "evals\\repeat.py": "202e99b498ca9e8153bf784a42534720b4aa324b5f93f445497a30a89bb156c3",
+    "evals\\run.py": "ddc281e3789d034fc08fb99e2d7970077c9787f135fb8f1f8b6e11d1675ec189",
+    "src\\tiny_skill_agent\\assessment.py": "5873fcae4c3f5b167696becff99364f62feb8b6d9ef522375f4eee213bcc39df",
+    "src\\tiny_skill_agent\\adapters.py": "195eb830cbcacbf550cd2fc427eadd3d80bf0459275402f6457dc949e141d9e5"
+  },
+  "status_distribution": {
+    "insufficient_evidence": 10,
+    "matched": 12,
+    "no_match": 7,
+    "not_applicable": 3
+  },
+  "gold_not_expert_validated": true,
+  "finished_at": "2026-10-19T06:31:42.167186+00:00"
+}

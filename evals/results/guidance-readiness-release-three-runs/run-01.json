@@ -1,0 +1,2100 @@
+{
+  "state": "running",
+  "metadata": {
+    "started_at": "2026-10-19T07:26:11.568301+00:00",
+    "model": "qwen3-coder:30b",
+    "model_settings": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096
+    },
+    "ollama_version": {
+      "version": "0.35.0"
+    },
+    "model_metadata": {
+      "name": "qwen3-coder:30b",
+      "model": "qwen3-coder:30b",
+      "modified_at": "2026-01-30T20:50:10.3385655-06:00",
+      "size": 18556700761,
+      "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3moe",
+        "families": [
+          "qwen3moe"
+        ],
+        "parameter_size": "30.5B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2048
+      },
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "git_commit": "9d746491033df9db6c2aaebc35aeb10d2498439c",
+    "git_status": "M README.md\n M docs/DESIGN.md\n M docs/INTEGRATION.md\n M evals/README.md\n M src/tiny_skill_agent/adapters.py\n M src/tiny_skill_agent/assessment.py\n M src/tiny_skill_agent/criteria.py\n M tests/test_adapters.py\n M tests/test_assessment.py\n M tests/test_decision_review.py\n M tests/test_scope_and_extraction.py\n?? evals/HOLDOUT_EVALUATION.md\n?? evals/build_holdout.py\n?? evals/holdout.py\n?? evals/holdout/\n?? evals/results/2026-10-19-consistency-calibration.json\n?? evals/results/2026-10-19-guidance-readiness-comparison.md\n?? evals/results/2026-10-19-guidance-readiness-contrasts.json\n?? evals/results/2026-10-19-guidance-readiness-contrasts.md\n?? evals/results/2026-10-19-guidance-readiness-core.json\n?? evals/results/2026-10-19-guidance-readiness-core.md\n?? evals/results/2026-10-19-guidance-readiness-documents.json\n?? evals/results/2026-10-19-guidance-readiness-documents.md\n?? evals/results/2026-10-19-guidance-readiness-e2e.json\n?? evals/results/2026-10-19-guidance-readiness-e2e.md\n?? evals/results/2026-10-19-guidance-readiness-extraction-probe-v2.json\n?? evals/results/2026-10-19-guidance-readiness-extraction-probe-v3.json\n?? evals/results/2026-10-19-guidance-readiness-extraction-probe.json\n?? evals/results/2026-10-19-guidance-readiness-manifest.json\n?? evals/results/2026-10-19-guidance-readiness-probe-cases.json\n?? evals/results/2026-10-19-guidance-readiness-probe-v2.json\n?? evals/results/2026-10-19-guidance-readiness-probe-v2.md\n?? evals/results/2026-10-19-guidance-readiness-probe.json\n?? evals/results/2026-10-19-guidance-readiness-probe.md\n?? evals/results/2026-10-19-guidance-readiness-release-contrasts.json\n?? evals/results/2026-10-19-guidance-readiness-release-contrasts.md\n?? evals/results/2026-10-19-guidance-readiness-release-core.json\n?? evals/results/2026-10-19-guidance-readiness-release-core.md\n?? evals/results/2026-10-19-guidance-readiness-release-documents.json\n?? evals/results/2026-10-19-guidance-readiness-release-documents.md\n?? evals/results/2026-10-19-guidance-readiness-release-e2e.json\n?? evals/results/2026-10-19-guidance-readiness-release-e2e.md\n?? evals/results/2026-10-19-guidance-readiness-release-manifest.json\n?? evals/results/2026-10-19-guidance-readiness-verification.json\n?? evals/results/2026-10-19-guideline-consistency-comparison.md\n?? evals/results/2026-10-19-guideline-consistency-complete-documents.json\n?? evals/results/2026-10-19-guideline-consistency-complete-documents.md\n?? evals/results/2026-10-19-guideline-consistency-contrasts.json\n?? evals/results/2026-10-19-guideline-consistency-contrasts.md\n?? evals/results/2026-10-19-guideline-consistency-core.json\n?? evals/results/2026-10-19-guideline-consistency-core.md\n?? evals/results/2026-10-19-guideline-consistency-documents-final.json\n?? evals/results/2026-10-19-guideline-consistency-documents-final.md\n?? evals/results/2026-10-19-guideline-consistency-documents-v3.json\n?? evals/results/2026-10-19-guideline-consistency-documents-v3.md\n?? evals/results/2026-10-19-guideline-consistency-documents-v4.json\n?? evals/results/2026-10-19-guideline-consistency-documents-v4.md\n?? evals/results/2026-10-19-guideline-consistency-documents-validated.json\n?? evals/results/2026-10-19-guideline-consistency-documents-validated.md\n?? evals/results/2026-10-19-guideline-consistency-documents.json\n?? evals/results/2026-10-19-guideline-consistency-documents.md\n?? evals/results/2026-10-19-guideline-consistency-e2e.json\n?? evals/results/2026-10-19-guideline-consistency-e2e.md\n?? evals/results/2026-10-19-guideline-consistency-explanation-audit.json\n?? evals/results/2026-10-19-guideline-consistency-final-documents.json\n?? evals/results/2026-10-19-guideline-consistency-final-documents.md\n?? evals/results/2026-10-19-guideline-consistency-release-contrasts.json\n?? evals/results/2026-10-19-guideline-consistency-release-contrasts.md\n?? evals/results/2026-10-19-guideline-consistency-release-core.json\n?? evals/results/2026-10-19-guideline-consistency-release-core.md\n?? evals/results/2026-10-19-guideline-consistency-release-documents.json\n?? evals/results/2026-10-19-guideline-consistency-release-documents.md\n?? evals/results/2026-10-19-guideline-consistency-release-e2e.json\n?? evals/results/2026-10-19-guideline-consistency-release-e2e.md\n?? evals/results/2026-10-19-guideline-consistency-release-explanation-audit.json\n?? evals/results/2026-10-19-guideline-consistency-verification.json\n?? evals/results/2026-10-19-guideline-consistency-verified-e2e.json\n?? evals/results/2026-10-19-guideline-consistency-verified-e2e.md\n?? evals/results/2026-10-19-heldout-explanation-audit.json\n?? evals/results/2026-10-19-heldout-interpretation.md\n?? evals/results/2026-10-19-heldout-long-documents.json\n?? evals/results/2026-10-19-heldout-long-documents.md\n?? evals/results/guidance-readiness-release-three-runs/\n?? evals/results/guideline-consistency-release-three-runs/\n?? tests/test_consistency_and_implicit.py\n?? tests/test_holdout_evaluation.py",
+    "dataset_sha256": "75be2099868b4b5cab8159fb7fb10ef0b8ea7e76b27efc3656ab3ef3e1b8ddd1",
+    "assessment_prompt_sha256": "f75fa3f2404d4ed396fe981cb3a3dec21929e742607ec7c573b10a214daec7eb",
+    "no_match_review_prompt_sha256": "79eb9a4c6c1f25c25bd83c8211f6e6068abb9aa16e556d58ec38e2263a5c629a",
+    "predicate_prompt_sha256": "2ab3a27c78d031313dc984522103da4f4bd988a086727735858798031693cfeb",
+    "decision_review_prompt_sha256": "866bf068a6d08a11bdd9ad97e0bc7e1f528d874022f345b1201fc852e355d729",
+    "implementation_sha256": {
+      "src\\tiny_skill_agent\\assessment.py": "64198653959712d1507779d1f7dc162b10183578f2032c70c0e4cd0dd4f10003",
+      "src\\tiny_skill_agent\\adapters.py": "3d37751586b77f5ac6ad19cbec3a59391b3fde7500c620064fc710ff9ab29440",
+      "evals\\run.py": "ddc281e3789d034fc08fb99e2d7970077c9787f135fb8f1f8b6e11d1675ec189"
+    },
+    "packages": {
+      "langchain": "1.4.2",
+      "langchain-ollama": "1.1.0",
+      "langgraph": "1.2.12",
+      "pydantic": "2.13.5"
+    },
+    "assessment_config": {
+      "batch_size": 1,
+      "retry_batch_size": 1,
+      "max_retries": 2,
+      "confirm_no_match": true,
+      "review_consistency": true,
+      "review_decisions": true
+    },
+    "planned_cases": 32
+  },
+  "cases": [
+    {
+      "id": "cyber_remote_access_unknown",
+      "category": "missing_information",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "decision_ready": false,
+        "rationale": "Administrator MFA does not establish workforce MFA; blank or unavailable records do not prove absence of the control."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The subject is 'remote workforce login' to Harbor Analytics. The period in scope is 'as of 2025-09-01'. The evidence indicates that MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown. There are no explicit exception prerequisites mentioned in the rule that would apply here. There is no actual incompatible observation. The lack of information about workforce remote access does not create a contradiction with the presence of MFA for administrators.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "questionnaire:it": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule applies to remote workforce login protection as of 2025-09-01. The evidence describes MFA for cloud administrators but does not address ordinary workforce remote access or login protection for the broader workforce. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. However, the evidence only states that MFA is enabled for cloud administrators and does not provide information about remote workforce login protection or authentication for ordinary staff members. There are no explicit exceptions stated in the rule that would apply to this case. No conflicting evidence is present. The evidence does not establish whether MFA protects all remote workforce logins, but it also does not contradict the requirement.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "scope_excluded",
+              "status": "not_applicable",
+              "findings": []
+            }
+          },
+          "broker:email": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule applies to remote workforce logins to Harbor Analytics as of 2025-09-01. The evidence does not identify the specific system or time period, but it refers to a remote-login configuration for a client's workforce, which aligns with the scope of the rule. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. The evidence states that the client requested its VPN configuration report but it was not available at submission, and the broker has not verified the remote-login configuration. This indicates that there is no confirmation or documentation that MFA is in place for all remote workforce logins, so the condition is not met. There are no explicit exceptions stated in the rule that would apply to this case. There is no conflicting evidence provided. The evidence indicates a lack of verification and documentation regarding MFA for remote workforce logins, which does not support the condition being true.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [
+            "C1"
+          ],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [
+            "C1"
+          ],
+          "review_disagreements": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [
+          {
+            "source_id": "questionnaire:it",
+            "criterion_id": "C1",
+            "source_status": "not_applicable",
+            "case_status": "insufficient_evidence",
+            "review": "none"
+          },
+          {
+            "source_id": "broker:email",
+            "criterion_id": "C1",
+            "source_status": "no_match",
+            "case_status": "insufficient_evidence",
+            "review": "none"
+          }
+        ],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule applies to remote workforce login protection as of 2025-09-01. The subject is Harbor Analytics, and the assessment date aligns with the rule's temporal scope. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. Evidence E1 states that MFA is enabled for all four cloud administrators but does not confirm MFA for the full remote workforce, which includes 85 staff across three offices. Evidence E2 indicates that a VPN configuration report was not available and that no attestation of workforce MFA was supplied. There is no confirmation that MFA protects every remote workforce login; thus, the condition cannot be established as true. There are no explicit exceptions in the rule text that would apply to this case. Evidence E1 and E2 do not directly contradict each other but both indicate a lack of confirmation regarding MFA for the full remote workforce. E1 mentions MFA for administrators but omits workforce coverage, while E2 notes missing documentation and verification. These observations together leave the condition undetermined rather than contradictory.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "unresolved",
+            "basis": "unresolved_conflict",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {},
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01",
+            "scope_reason": "The subject is 'remote workforce login' to Harbor Analytics. The period in scope is 'as of 2025-09-01'.",
+            "scope": "in_scope",
+            "condition_reason": "The evidence indicates that MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown.",
+            "condition": "unknown",
+            "exception_reason": "There are no explicit exception prerequisites mentioned in the rule that would apply here.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict_reason": "There is no actual incompatible observation. The lack of information about workforce remote access does not create a contradiction with the presence of MFA for administrators.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. The evidence shows MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown.",
+            "scope_applies": null,
+            "scope_quote": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+            "exception_quote": "",
+            "issues": [],
+            "verdict": "uncertain"
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+              "source_id": "synthetic-guideline:cyber:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "questionnaire:it",
+              "source_label": "questionnaire:it",
+              "quote": "Harbor Analytics employs 85 staff across three offices. MFA is enabled for all four cloud administrators. The response to the separate question about workforce VPN and remote desktop authentication was left blank.",
+              "locator": "paragraph:1",
+              "context": "Renewal submission dated 2025-09-01; administrator controls do not describe ordinary workforce remote access."
+            },
+            {
+              "id": "E2",
+              "source_id": "broker:email",
+              "source_label": "broker:email",
+              "quote": "The client has requested its VPN configuration report but it was not available at submission. The broker has not verified the remote-login configuration. No losses were reported on the application.",
+              "locator": "paragraph:2",
+              "context": "No additional attestation of workforce MFA was supplied."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "questionnaire:it",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "questionnaire:it",
+                "source_label": "questionnaire:it",
+                "quote": "Harbor Analytics employs 85 staff across three offices. MFA is enabled for all four cloud administrators. The response to the separate question about workforce VPN and remote desktop authentication was left blank.",
+                "locator": "paragraph:1",
+                "context": "Renewal submission dated 2025-09-01; administrator controls do not describe ordinary workforce remote access."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to remote workforce login protection as of 2025-09-01. The evidence describes MFA for cloud administrators but does not address ordinary workforce remote access or login protection for the broader workforce. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. However, the evidence only states that MFA is enabled for cloud administrators and does not provide information about remote workforce login protection or authentication for ordinary staff members. There are no explicit exceptions stated in the rule that would apply to this case. No conflicting evidence is present. The evidence does not establish whether MFA protects all remote workforce logins, but it also does not contradict the requirement.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "scope_excluded",
+              "status": "not_applicable",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 17.074
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "broker:email",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:email",
+                "source_label": "broker:email",
+                "quote": "The client has requested its VPN configuration report but it was not available at submission. The broker has not verified the remote-login configuration. No losses were reported on the application.",
+                "locator": "paragraph:2",
+                "context": "No additional attestation of workforce MFA was supplied."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to remote workforce logins to Harbor Analytics as of 2025-09-01. The evidence does not identify the specific system or time period, but it refers to a remote-login configuration for a client's workforce, which aligns with the scope of the rule. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. The evidence states that the client requested its VPN configuration report but it was not available at submission, and the broker has not verified the remote-login configuration. This indicates that there is no confirmation or documentation that MFA is in place for all remote workforce logins, so the condition is not met. There are no explicit exceptions stated in the rule that would apply to this case. There is no conflicting evidence provided. The evidence indicates a lack of verification and documentation regarding MFA for remote workforce logins, which does not support the condition being true.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "condition_not_met",
+              "status": "no_match",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.611
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "questionnaire:it",
+                "source_label": "questionnaire:it",
+                "quote": "Harbor Analytics employs 85 staff across three offices. MFA is enabled for all four cloud administrators. The response to the separate question about workforce VPN and remote desktop authentication was left blank.",
+                "locator": "paragraph:1",
+                "context": "Renewal submission dated 2025-09-01; administrator controls do not describe ordinary workforce remote access."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:email",
+                "source_label": "broker:email",
+                "quote": "The client has requested its VPN configuration report but it was not available at submission. The broker has not verified the remote-login configuration. No losses were reported on the application.",
+                "locator": "paragraph:2",
+                "context": "No additional attestation of workforce MFA was supplied."
+              }
+            },
+            "source_assessments": {
+              "questionnaire:it": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to remote workforce login protection as of 2025-09-01. The evidence describes MFA for cloud administrators but does not address ordinary workforce remote access or login protection for the broader workforce. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. However, the evidence only states that MFA is enabled for cloud administrators and does not provide information about remote workforce login protection or authentication for ordinary staff members. There are no explicit exceptions stated in the rule that would apply to this case. No conflicting evidence is present. The evidence does not establish whether MFA protects all remote workforce logins, but it also does not contradict the requirement.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "scope_excluded",
+                  "status": "not_applicable",
+                  "findings": []
+                }
+              },
+              "broker:email": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to remote workforce logins to Harbor Analytics as of 2025-09-01. The evidence does not identify the specific system or time period, but it refers to a remote-login configuration for a client's workforce, which aligns with the scope of the rule. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. The evidence states that the client requested its VPN configuration report but it was not available at submission, and the broker has not verified the remote-login configuration. This indicates that there is no confirmation or documentation that MFA is in place for all remote workforce logins, so the condition is not met. There are no explicit exceptions stated in the rule that would apply to this case. There is no conflicting evidence provided. The evidence indicates a lack of verification and documentation regarding MFA for remote workforce logins, which does not support the condition being true.",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "condition_not_met",
+                  "status": "no_match",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {
+              "C1": [
+                "E1",
+                "E2"
+              ]
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to remote workforce login protection as of 2025-09-01. The subject is Harbor Analytics, and the assessment date aligns with the rule's temporal scope. The condition requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. Evidence E1 states that MFA is enabled for all four cloud administrators but does not confirm MFA for the full remote workforce, which includes 85 staff across three offices. Evidence E2 indicates that a VPN configuration report was not available and that no attestation of workforce MFA was supplied. There is no confirmation that MFA protects every remote workforce login; thus, the condition cannot be established as true. There are no explicit exceptions in the rule text that would apply to this case. Evidence E1 and E2 do not directly contradict each other but both indicate a lack of confirmation regarding MFA for the full remote workforce. E1 mentions MFA for administrators but omits workforce coverage, while E2 notes missing documentation and verification. These observations together leave the condition undetermined rather than contradictory.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "unresolved",
+              "basis": "unresolved_conflict",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.929
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "questionnaire:it",
+                "source_label": "questionnaire:it",
+                "quote": "Harbor Analytics employs 85 staff across three offices. MFA is enabled for all four cloud administrators. The response to the separate question about workforce VPN and remote desktop authentication was left blank.",
+                "locator": "paragraph:1",
+                "context": "Renewal submission dated 2025-09-01; administrator controls do not describe ordinary workforce remote access."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:email",
+                "source_label": "broker:email",
+                "quote": "The client has requested its VPN configuration report but it was not available at submission. The broker has not verified the remote-login configuration. No losses were reported on the application.",
+                "locator": "paragraph:2",
+                "context": "No additional attestation of workforce MFA was supplied."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01",
+              "scope_reason": "The subject is 'remote workforce login' to Harbor Analytics. The period in scope is 'as of 2025-09-01'.",
+              "scope": "in_scope",
+              "condition_reason": "The evidence indicates that MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown.",
+              "condition": "unknown",
+              "exception_reason": "There are no explicit exception prerequisites mentioned in the rule that would apply here.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict_reason": "There is no actual incompatible observation. The lack of information about workforce remote access does not create a contradiction with the presence of MFA for administrators.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.006
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+                "source_id": "synthetic-guideline:cyber:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "questionnaire:it",
+                "source_label": "questionnaire:it",
+                "quote": "Harbor Analytics employs 85 staff across three offices. MFA is enabled for all four cloud administrators. The response to the separate question about workforce VPN and remote desktop authentication was left blank.",
+                "locator": "paragraph:1",
+                "context": "Renewal submission dated 2025-09-01; administrator controls do not describe ordinary workforce remote access."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:email",
+                "source_label": "broker:email",
+                "quote": "The client has requested its VPN configuration report but it was not available at submission. The broker has not verified the remote-login configuration. No losses were reported on the application.",
+                "locator": "paragraph:2",
+                "context": "No additional attestation of workforce MFA was supplied."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The subject is 'remote workforce login' to Harbor Analytics. The period in scope is 'as of 2025-09-01'. The evidence indicates that MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown. There are no explicit exception prerequisites mentioned in the rule that would apply here. There is no actual incompatible observation. The lack of information about workforce remote access does not create a contradiction with the presence of MFA for administrators.",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The subject is 'remote workforce login' to Harbor Analytics. The period in scope is 'as of 2025-09-01'. The evidence indicates that MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown. There are no explicit exception prerequisites mentioned in the rule that would apply here. There is no actual incompatible observation. The lack of information about workforce remote access does not create a contradiction with the presence of MFA for administrators.",
+                  "decision_review.scope_reason": "The subject is 'remote workforce login' to Harbor Analytics. The period in scope is 'as of 2025-09-01'.",
+                  "decision_review.condition_reason": "The evidence indicates that MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown.",
+                  "decision_review.exception_reason": "There are no explicit exception prerequisites mentioned in the rule that would apply here.",
+                  "decision_review.conflict_reason": "There is no actual incompatible observation. The lack of information about workforce remote access does not create a contradiction with the presence of MFA for administrators."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule requires that MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01. The evidence shows MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown.",
+              "scope_applies": null,
+              "scope_quote": "Record a strength if MFA protects every remote workforce login to Harbor Analytics as of 2025-09-01.",
+              "exception_quote": "",
+              "issues": [],
+              "verdict": "uncertain"
+            }
+          ],
+          "elapsed_seconds": 2.51
+        }
+      ],
+      "elapsed_seconds": 28.131,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": true,
+        "passed": true,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 4,
+        "reference_checks_passed": 4,
+        "false_positive_findings": 0,
+        "reason": "The subject is 'remote workforce login' to Harbor Analytics. The period in scope is 'as of 2025-09-01'. The evidence indicates that MFA is enabled for all four cloud administrators (E1), but there is no information about ordinary workforce remote access or VPN authentication. The questionnaire does not specify whether the workforce uses VPN or remote desktop, and the broker's email states that a VPN configuration report was not available (E2). Since there is insufficient evidence to confirm that MFA protects ALL remote workforce logins, the condition cannot be confirmed as true. However, it also cannot be definitively proven false due to missing data about ordinary workforce access. Therefore, the truth of the trigger is unknown. There are no explicit exception prerequisites mentioned in the rule that would apply here. There is no actual incompatible observation. The lack of information about workforce remote access does not create a contradiction with the presence of MFA for administrators."
+      }
+    },
+    {
+      "id": "property_pump_service_unknown",
+      "category": "missing_information",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "decision_ready": false,
+        "rationale": "Unlocated records and a visual inspection cannot establish a missed service visit."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "Subject is the fire pump at Cedar Components; period in scope is calendar 2025 The evidence does not contain any record of fire pump servicing occurring in 2025. E1 states that the maintenance binder was held off site and unavailable, which implies no accessible service records. E2 indicates that the pump contractor's 2025 service invoice cannot be located, and there is no confirmation of whether the visit took place. There are no positive assertions confirming that servicing occurred in 2025. Therefore, it cannot be established that the fire pump was serviced during calendar 2025. There are no explicit exception prerequisites mentioned in the rule that would apply to this case. There are no contradictory observations regarding the fire pump's servicing status in 2025. The lack of service records does not constitute a contradiction but rather an absence of evidence supporting the servicing occurred.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "survey:equipment": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the fire pump at Cedar Components, which is the subject of the evidence. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition tests whether the fire pump was not serviced during calendar 2025. The evidence states that the maintenance binder was held off site and unavailable to the surveyor (E1). This absence of documentation regarding servicing means that it cannot be confirmed whether the fire pump was serviced in 2025. Since the lack of evidence does not establish that servicing occurred, but also does not definitively prove it did not occur, the condition remains unknown. There are no explicit exceptions stated in the rule that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would create an exception for this subject. There is no conflicting evidence presented in the provided information. The only evidence available indicates that maintenance records were not accessible, which leaves the servicing status undetermined rather than contradictory.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          },
+          "facilities:email": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the fire pump at Cedar Components, which is the subject in question. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition requires that the fire pump at Cedar Components was serviced during calendar 2025. The evidence E2 states that the pump contractor's 2025 service invoice cannot be located and it is uncertain whether the visit took place. This uncertainty means the actual condition (whether the pump was serviced) cannot be confirmed as true or false, leaving it in an unknown state. There are no explicit exceptions stated in the rule that would apply to this case. The rule does not contain any conditions that would exempt Cedar Components from the requirement to have the fire pump serviced during 2025. There is no conflicting evidence presented. The only evidence (E2) indicates uncertainty about whether the service occurred, but does not assert that it did not occur. Therefore, there is no unresolved conflict.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [
+            "C1"
+          ],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [],
+          "review_disagreements": [],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule applies to the fire pump at Cedar Components, which is the subject of the case. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition requires that the fire pump at Cedar Components was serviced during calendar 2025. Evidence E1 indicates that the maintenance binder was held off site and unavailable to the surveyor, and E2 states that the pump contractor's 2025 service invoice cannot yet be located, with no confirmation of whether the visit took place. These facts do not establish that servicing occurred in 2025; rather, they indicate a lack of confirmatory documentation or records. Since there is no direct evidence confirming that the fire pump was serviced during 2025, and the absence of records does not affirmatively prove non-service, the condition remains unknown. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this subject from the requirement. There is no unresolved conflict in the evidence. The evidence does not contradict itself; rather, it reflects a lack of confirmatory documentation regarding the fire pump's servicing in 2025.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {},
+        "decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "the fire pump at Cedar Components was not serviced during calendar 2025",
+            "scope_reason": "Subject is the fire pump at Cedar Components; period in scope is calendar 2025",
+            "scope": "in_scope",
+            "condition_reason": "The evidence does not contain any record of fire pump servicing occurring in 2025. E1 states that the maintenance binder was held off site and unavailable, which implies no accessible service records. E2 indicates that the pump contractor's 2025 service invoice cannot be located, and there is no confirmation of whether the visit took place. There are no positive assertions confirming that servicing occurred in 2025. Therefore, it cannot be established that the fire pump was serviced during calendar 2025.",
+            "condition": "unknown",
+            "exception_reason": "There are no explicit exception prerequisites mentioned in the rule that would apply to this case.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict_reason": "There are no contradictory observations regarding the fire pump's servicing status in 2025. The lack of service records does not constitute a contradiction but rather an absence of evidence supporting the servicing occurred.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "superseded_decision_reviews": {},
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule requires checking if the fire pump at Cedar Components was serviced during calendar 2025. The evidence shows that the maintenance binder was unavailable (E1) and the contractor's 2025 service invoice cannot be located (E2). There are no positive assertions confirming servicing occurred in 2025. Since there is no record of servicing and no confirmation that it took place, the lack of evidence supports an insufficient_evidence status.",
+            "scope_applies": true,
+            "scope_quote": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+            "exception_quote": "",
+            "issues": [],
+            "verdict": "supported"
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+              "source_id": "synthetic-guideline:property:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "concern",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "survey:equipment",
+              "source_label": "survey:equipment",
+              "quote": "Cedar Components operates a 42,000-square-foot machining plant. The fire pump appears clean, has no visible leaks, and its local gauge is in the normal band. The maintenance binder was held off site and unavailable to the surveyor.",
+              "locator": "paragraph:1",
+              "context": "Survey completed 2026-01-15. Visual condition does not establish whether servicing occurred in 2025."
+            },
+            {
+              "id": "E2",
+              "source_id": "facilities:email",
+              "source_label": "facilities:email",
+              "quote": "We cannot yet locate the pump contractor's 2025 service invoice. We are still checking the contractor's archive and cannot confirm whether the visit took place.",
+              "locator": "paragraph:2",
+              "context": "Open document request; no assertion that the work did not occur."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "survey:equipment",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "survey:equipment",
+                "source_label": "survey:equipment",
+                "quote": "Cedar Components operates a 42,000-square-foot machining plant. The fire pump appears clean, has no visible leaks, and its local gauge is in the normal band. The maintenance binder was held off site and unavailable to the surveyor.",
+                "locator": "paragraph:1",
+                "context": "Survey completed 2026-01-15. Visual condition does not establish whether servicing occurred in 2025."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the fire pump at Cedar Components, which is the subject of the evidence. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition tests whether the fire pump was not serviced during calendar 2025. The evidence states that the maintenance binder was held off site and unavailable to the surveyor (E1). This absence of documentation regarding servicing means that it cannot be confirmed whether the fire pump was serviced in 2025. Since the lack of evidence does not establish that servicing occurred, but also does not definitively prove it did not occur, the condition remains unknown. There are no explicit exceptions stated in the rule that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would create an exception for this subject. There is no conflicting evidence presented in the provided information. The only evidence available indicates that maintenance records were not accessible, which leaves the servicing status undetermined rather than contradictory.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.867
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "facilities:email",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "facilities:email",
+                "source_label": "facilities:email",
+                "quote": "We cannot yet locate the pump contractor's 2025 service invoice. We are still checking the contractor's archive and cannot confirm whether the visit took place.",
+                "locator": "paragraph:2",
+                "context": "Open document request; no assertion that the work did not occur."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the fire pump at Cedar Components, which is the subject in question. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition requires that the fire pump at Cedar Components was serviced during calendar 2025. The evidence E2 states that the pump contractor's 2025 service invoice cannot be located and it is uncertain whether the visit took place. This uncertainty means the actual condition (whether the pump was serviced) cannot be confirmed as true or false, leaving it in an unknown state. There are no explicit exceptions stated in the rule that would apply to this case. The rule does not contain any conditions that would exempt Cedar Components from the requirement to have the fire pump serviced during 2025. There is no conflicting evidence presented. The only evidence (E2) indicates uncertainty about whether the service occurred, but does not assert that it did not occur. Therefore, there is no unresolved conflict.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.608
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "survey:equipment",
+                "source_label": "survey:equipment",
+                "quote": "Cedar Components operates a 42,000-square-foot machining plant. The fire pump appears clean, has no visible leaks, and its local gauge is in the normal band. The maintenance binder was held off site and unavailable to the surveyor.",
+                "locator": "paragraph:1",
+                "context": "Survey completed 2026-01-15. Visual condition does not establish whether servicing occurred in 2025."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "facilities:email",
+                "source_label": "facilities:email",
+                "quote": "We cannot yet locate the pump contractor's 2025 service invoice. We are still checking the contractor's archive and cannot confirm whether the visit took place.",
+                "locator": "paragraph:2",
+                "context": "Open document request; no assertion that the work did not occur."
+              }
+            },
+            "source_assessments": {
+              "survey:equipment": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to the fire pump at Cedar Components, which is the subject of the evidence. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition tests whether the fire pump was not serviced during calendar 2025. The evidence states that the maintenance binder was held off site and unavailable to the surveyor (E1). This absence of documentation regarding servicing means that it cannot be confirmed whether the fire pump was serviced in 2025. Since the lack of evidence does not establish that servicing occurred, but also does not definitively prove it did not occur, the condition remains unknown. There are no explicit exceptions stated in the rule that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would create an exception for this subject. There is no conflicting evidence presented in the provided information. The only evidence available indicates that maintenance records were not accessible, which leaves the servicing status undetermined rather than contradictory.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              },
+              "facilities:email": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to the fire pump at Cedar Components, which is the subject in question. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition requires that the fire pump at Cedar Components was serviced during calendar 2025. The evidence E2 states that the pump contractor's 2025 service invoice cannot be located and it is uncertain whether the visit took place. This uncertainty means the actual condition (whether the pump was serviced) cannot be confirmed as true or false, leaving it in an unknown state. There are no explicit exceptions stated in the rule that would apply to this case. The rule does not contain any conditions that would exempt Cedar Components from the requirement to have the fire pump serviced during 2025. There is no conflicting evidence presented. The only evidence (E2) indicates uncertainty about whether the service occurred, but does not assert that it did not occur. Therefore, there is no unresolved conflict.",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to the fire pump at Cedar Components, which is the subject of the case. There is no explicit exclusion of the subject by the rule, so scope is in_scope. The condition requires that the fire pump at Cedar Components was serviced during calendar 2025. Evidence E1 indicates that the maintenance binder was held off site and unavailable to the surveyor, and E2 states that the pump contractor's 2025 service invoice cannot yet be located, with no confirmation of whether the visit took place. These facts do not establish that servicing occurred in 2025; rather, they indicate a lack of confirmatory documentation or records. Since there is no direct evidence confirming that the fire pump was serviced during 2025, and the absence of records does not affirmatively prove non-service, the condition remains unknown. There are no explicit exceptions in the rule text that would apply to this case. The rule does not contain any conditional language such as 'unless' or 'except' that would exclude this subject from the requirement. There is no unresolved conflict in the evidence. The evidence does not contradict itself; rather, it reflects a lack of confirmatory documentation regarding the fire pump's servicing in 2025.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.089
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "survey:equipment",
+                "source_label": "survey:equipment",
+                "quote": "Cedar Components operates a 42,000-square-foot machining plant. The fire pump appears clean, has no visible leaks, and its local gauge is in the normal band. The maintenance binder was held off site and unavailable to the surveyor.",
+                "locator": "paragraph:1",
+                "context": "Survey completed 2026-01-15. Visual condition does not establish whether servicing occurred in 2025."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "facilities:email",
+                "source_label": "facilities:email",
+                "quote": "We cannot yet locate the pump contractor's 2025 service invoice. We are still checking the contractor's archive and cannot confirm whether the visit took place.",
+                "locator": "paragraph:2",
+                "context": "Open document request; no assertion that the work did not occur."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "the fire pump at Cedar Components was not serviced during calendar 2025",
+              "scope_reason": "Subject is the fire pump at Cedar Components; period in scope is calendar 2025",
+              "scope": "in_scope",
+              "condition_reason": "The evidence does not contain any record of fire pump servicing occurring in 2025. E1 states that the maintenance binder was held off site and unavailable, which implies no accessible service records. E2 indicates that the pump contractor's 2025 service invoice cannot be located, and there is no confirmation of whether the visit took place. There are no positive assertions confirming that servicing occurred in 2025. Therefore, it cannot be established that the fire pump was serviced during calendar 2025.",
+              "condition": "unknown",
+              "exception_reason": "There are no explicit exception prerequisites mentioned in the rule that would apply to this case.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict_reason": "There are no contradictory observations regarding the fire pump's servicing status in 2025. The lack of service records does not constitute a contradiction but rather an absence of evidence supporting the servicing occurred.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.663
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+                "source_id": "synthetic-guideline:property:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "concern",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "survey:equipment",
+                "source_label": "survey:equipment",
+                "quote": "Cedar Components operates a 42,000-square-foot machining plant. The fire pump appears clean, has no visible leaks, and its local gauge is in the normal band. The maintenance binder was held off site and unavailable to the surveyor.",
+                "locator": "paragraph:1",
+                "context": "Survey completed 2026-01-15. Visual condition does not establish whether servicing occurred in 2025."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "facilities:email",
+                "source_label": "facilities:email",
+                "quote": "We cannot yet locate the pump contractor's 2025 service invoice. We are still checking the contractor's archive and cannot confirm whether the visit took place.",
+                "locator": "paragraph:2",
+                "context": "Open document request; no assertion that the work did not occur."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "Subject is the fire pump at Cedar Components; period in scope is calendar 2025 The evidence does not contain any record of fire pump servicing occurring in 2025. E1 states that the maintenance binder was held off site and unavailable, which implies no accessible service records. E2 indicates that the pump contractor's 2025 service invoice cannot be located, and there is no confirmation of whether the visit took place. There are no positive assertions confirming that servicing occurred in 2025. Therefore, it cannot be established that the fire pump was serviced during calendar 2025. There are no explicit exception prerequisites mentioned in the rule that would apply to this case. There are no contradictory observations regarding the fire pump's servicing status in 2025. The lack of service records does not constitute a contradiction but rather an absence of evidence supporting the servicing occurred.",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "Subject is the fire pump at Cedar Components; period in scope is calendar 2025 The evidence does not contain any record of fire pump servicing occurring in 2025. E1 states that the maintenance binder was held off site and unavailable, which implies no accessible service records. E2 indicates that the pump contractor's 2025 service invoice cannot be located, and there is no confirmation of whether the visit took place. There are no positive assertions confirming that servicing occurred in 2025. Therefore, it cannot be established that the fire pump was serviced during calendar 2025. There are no explicit exception prerequisites mentioned in the rule that would apply to this case. There are no contradictory observations regarding the fire pump's servicing status in 2025. The lack of service records does not constitute a contradiction but rather an absence of evidence supporting the servicing occurred.",
+                  "decision_review.scope_reason": "Subject is the fire pump at Cedar Components; period in scope is calendar 2025",
+                  "decision_review.condition_reason": "The evidence does not contain any record of fire pump servicing occurring in 2025. E1 states that the maintenance binder was held off site and unavailable, which implies no accessible service records. E2 indicates that the pump contractor's 2025 service invoice cannot be located, and there is no confirmation of whether the visit took place. There are no positive assertions confirming that servicing occurred in 2025. Therefore, it cannot be established that the fire pump was serviced during calendar 2025.",
+                  "decision_review.exception_reason": "There are no explicit exception prerequisites mentioned in the rule that would apply to this case.",
+                  "decision_review.conflict_reason": "There are no contradictory observations regarding the fire pump's servicing status in 2025. The lack of service records does not constitute a contradiction but rather an absence of evidence supporting the servicing occurred."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule requires checking if the fire pump at Cedar Components was serviced during calendar 2025. The evidence shows that the maintenance binder was unavailable (E1) and the contractor's 2025 service invoice cannot be located (E2). There are no positive assertions confirming servicing occurred in 2025. Since there is no record of servicing and no confirmation that it took place, the lack of evidence supports an insufficient_evidence status.",
+              "scope_applies": true,
+              "scope_quote": "Flag a concern if the fire pump at Cedar Components was not serviced during calendar 2025.",
+              "exception_quote": "",
+              "issues": [],
+              "verdict": "supported"
+            }
+          ],
+          "elapsed_seconds": 1.929
+        }
+      ],
+      "elapsed_seconds": 13.156,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": true,
+        "passed": true,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 4,
+        "reference_checks_passed": 4,
+        "false_positive_findings": 0,
+        "reason": "Subject is the fire pump at Cedar Components; period in scope is calendar 2025 The evidence does not contain any record of fire pump servicing occurring in 2025. E1 states that the maintenance binder was held off site and unavailable, which implies no accessible service records. E2 indicates that the pump contractor's 2025 service invoice cannot be located, and there is no confirmation of whether the visit took place. There are no positive assertions confirming that servicing occurred in 2025. Therefore, it cannot be established that the fire pump was serviced during calendar 2025. There are no explicit exception prerequisites mentioned in the rule that would apply to this case. There are no contradictory observations regarding the fire pump's servicing status in 2025. The lack of service records does not constitute a contradiction but rather an absence of evidence supporting the servicing occurred."
+      }
+    },
+    {
+      "id": "auto_driver_screening_unknown",
+      "category": "missing_information",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "decision_ready": false,
+        "rationale": "Neither the interview process nor missing files establishes whether all MVR reviews occurred."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that motor vehicle records be reviewed for every employed driver before hire. While E1 indicates that hiring includes an interview and a route test, it does not confirm whether MVR reviews were conducted. E2 states that driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since there is no evidence confirming that MVR reviews were performed for all employed drivers before hire, and the absence of documentation does not prove the activity did not occur, the condition cannot be confirmed as true.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "fleet:application": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The criterion applies to employed drivers, and the evidence describes 18 employed delivery drivers. The subject is within the rule's population scope. The evidence states that hiring includes an interview and a route test, but the MVR review field is unanswered. There is no confirmation that motor vehicle records were reviewed for every employed driver before hire. Since the absence of a record does not confirm the activity was not performed, and the rule requires documented proof, the condition cannot be confirmed as true. There are no explicit exceptions in the criterion text that apply to this case. No conflicting evidence is present. The only relevant information is that the MVR review field is unanswered, which does not establish either presence or absence of the activity.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          },
+          "broker:followup": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule applies to employed drivers. The evidence does not identify any specific driver or employment status, so the scope cannot be determined from the provided information. The evidence states that 'The driver files have not been provided' and 'There is no statement from the applicant confirming or denying pre-hire MVR reviews.' This absence of information means it is unknown whether motor vehicle records were reviewed for every employed driver before hire. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence provided. The only evidence indicates a lack of information regarding MVR reviews, which does not establish either the presence or absence of such reviews.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [
+            "C1"
+          ],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [
+            "C1"
+          ],
+          "review_disagreements": [
+            "C1"
+          ],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion applies to employed drivers. The application mentions '18 employed delivery drivers' and the context specifies 'employed drivers only.' The subject is within the rule's scope. The evidence does not confirm that MVR reviews were conducted for every employed driver before hire. E1 states that the MVR review field is unanswered, and E2 confirms that driver files (which would include MVR records) have not been provided. There is no statement confirming pre-hire MVR reviews. The absence of documentation or confirmation leaves the condition unknown. There are no explicit exceptions in the rule text that apply to this case. There is no direct contradiction between E1 and E2. Both sources indicate a lack of information or documentation regarding MVR reviews, but they do not contradict each other.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that motor vehicle records be reviewed for every employed driver before hire. While E1 indicates that hiring includes an interview and a route test, it does not confirm whether MVR reviews were conducted. E2 states that driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since there is no evidence confirming that MVR reviews were performed for all employed drivers before hire, and the absence of documentation does not prove the activity did not occur, the condition cannot be confirmed as true.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "verdict": "missing_evidence"
+          }
+        },
+        "decision_reviews": {},
+        "superseded_decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+            "scope_reason": "The subject is 'employed drivers' and the period in scope is 'before hire'. The evidence batch covers application and follow-up information related to hired drivers.",
+            "scope": "in_scope",
+            "condition_reason": "The rule requires that current motor vehicle records (MVRs) were reviewed for every employed driver before hire. Evidence E1 states that 'The MVR review field is unanswered' in the application, indicating no record of MVR review being completed. Evidence E2 confirms that 'The driver files have not been provided' and there is no statement confirming or denying pre-hire MVR reviews. There are no supporting facts that confirm MVRs were reviewed for every employed driver before hire. Therefore, it cannot be confirmed that the condition is true.",
+            "condition": "false",
+            "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text that would apply to this case.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict_reason": "There is no actual incompatible observation. The lack of documentation regarding MVR reviews does not constitute a contradiction but rather an absence of evidence supporting the trigger condition.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule requires that current motor vehicle records be reviewed for every employed driver before hire. The scope restriction is 'for every employed driver' and there is no exception stated. E1 mentions hiring includes an interview and route test but does not confirm MVR reviews. E2 states driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since the absence of documentation does not prove the activity did not occur, and there is no explicit statement confirming the reviews were conducted, the condition cannot be confirmed as true.",
+            "scope_applies": true,
+            "scope_quote": "for every employed driver",
+            "exception_quote": "",
+            "issues": [],
+            "verdict": "uncertain"
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+              "source_id": "synthetic-guideline:commercial_auto:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "fleet:application",
+              "source_label": "fleet:application",
+              "quote": "Maple Dispatch lists 18 employed delivery drivers and six vans. Hiring includes an interview and a route test. The MVR review field is unanswered; payroll records show no employee turnover this quarter.",
+              "locator": "paragraph:1",
+              "context": "Application describes employed drivers only."
+            },
+            {
+              "id": "E2",
+              "source_id": "broker:followup",
+              "source_label": "broker:followup",
+              "quote": "The driver files have not been provided. There is no statement from the applicant confirming or denying pre-hire MVR reviews.",
+              "locator": "paragraph:2",
+              "context": "The request remains outstanding."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "fleet:application",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "fleet:application",
+                "source_label": "fleet:application",
+                "quote": "Maple Dispatch lists 18 employed delivery drivers and six vans. Hiring includes an interview and a route test. The MVR review field is unanswered; payroll records show no employee turnover this quarter.",
+                "locator": "paragraph:1",
+                "context": "Application describes employed drivers only."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion applies to employed drivers, and the evidence describes 18 employed delivery drivers. The subject is within the rule's population scope. The evidence states that hiring includes an interview and a route test, but the MVR review field is unanswered. There is no confirmation that motor vehicle records were reviewed for every employed driver before hire. Since the absence of a record does not confirm the activity was not performed, and the rule requires documented proof, the condition cannot be confirmed as true. There are no explicit exceptions in the criterion text that apply to this case. No conflicting evidence is present. The only relevant information is that the MVR review field is unanswered, which does not establish either presence or absence of the activity.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.356
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "broker:followup",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:followup",
+                "source_label": "broker:followup",
+                "quote": "The driver files have not been provided. There is no statement from the applicant confirming or denying pre-hire MVR reviews.",
+                "locator": "paragraph:2",
+                "context": "The request remains outstanding."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to employed drivers. The evidence does not identify any specific driver or employment status, so the scope cannot be determined from the provided information. The evidence states that 'The driver files have not been provided' and 'There is no statement from the applicant confirming or denying pre-hire MVR reviews.' This absence of information means it is unknown whether motor vehicle records were reviewed for every employed driver before hire. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence provided. The only evidence indicates a lack of information regarding MVR reviews, which does not establish either the presence or absence of such reviews.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.056
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "fleet:application",
+                "source_label": "fleet:application",
+                "quote": "Maple Dispatch lists 18 employed delivery drivers and six vans. Hiring includes an interview and a route test. The MVR review field is unanswered; payroll records show no employee turnover this quarter.",
+                "locator": "paragraph:1",
+                "context": "Application describes employed drivers only."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:followup",
+                "source_label": "broker:followup",
+                "quote": "The driver files have not been provided. There is no statement from the applicant confirming or denying pre-hire MVR reviews.",
+                "locator": "paragraph:2",
+                "context": "The request remains outstanding."
+              }
+            },
+            "source_assessments": {
+              "fleet:application": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The criterion applies to employed drivers, and the evidence describes 18 employed delivery drivers. The subject is within the rule's population scope. The evidence states that hiring includes an interview and a route test, but the MVR review field is unanswered. There is no confirmation that motor vehicle records were reviewed for every employed driver before hire. Since the absence of a record does not confirm the activity was not performed, and the rule requires documented proof, the condition cannot be confirmed as true. There are no explicit exceptions in the criterion text that apply to this case. No conflicting evidence is present. The only relevant information is that the MVR review field is unanswered, which does not establish either presence or absence of the activity.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              },
+              "broker:followup": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to employed drivers. The evidence does not identify any specific driver or employment status, so the scope cannot be determined from the provided information. The evidence states that 'The driver files have not been provided' and 'There is no statement from the applicant confirming or denying pre-hire MVR reviews.' This absence of information means it is unknown whether motor vehicle records were reviewed for every employed driver before hire. There are no explicit exceptions stated in the criterion that would apply to this situation. There is no conflicting evidence provided. The only evidence indicates a lack of information regarding MVR reviews, which does not establish either the presence or absence of such reviews.",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion applies to employed drivers. The application mentions '18 employed delivery drivers' and the context specifies 'employed drivers only.' The subject is within the rule's scope. The evidence does not confirm that MVR reviews were conducted for every employed driver before hire. E1 states that the MVR review field is unanswered, and E2 confirms that driver files (which would include MVR records) have not been provided. There is no statement confirming pre-hire MVR reviews. The absence of documentation or confirmation leaves the condition unknown. There are no explicit exceptions in the rule text that apply to this case. There is no direct contradiction between E1 and E2. Both sources indicate a lack of information or documentation regarding MVR reviews, but they do not contradict each other.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.298
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "fleet:application",
+                "source_label": "fleet:application",
+                "quote": "Maple Dispatch lists 18 employed delivery drivers and six vans. Hiring includes an interview and a route test. The MVR review field is unanswered; payroll records show no employee turnover this quarter.",
+                "locator": "paragraph:1",
+                "context": "Application describes employed drivers only."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:followup",
+                "source_label": "broker:followup",
+                "quote": "The driver files have not been provided. There is no statement from the applicant confirming or denying pre-hire MVR reviews.",
+                "locator": "paragraph:2",
+                "context": "The request remains outstanding."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+              "scope_reason": "The subject is 'employed drivers' and the period in scope is 'before hire'. The evidence batch covers application and follow-up information related to hired drivers.",
+              "scope": "in_scope",
+              "condition_reason": "The rule requires that current motor vehicle records (MVRs) were reviewed for every employed driver before hire. Evidence E1 states that 'The MVR review field is unanswered' in the application, indicating no record of MVR review being completed. Evidence E2 confirms that 'The driver files have not been provided' and there is no statement confirming or denying pre-hire MVR reviews. There are no supporting facts that confirm MVRs were reviewed for every employed driver before hire. Therefore, it cannot be confirmed that the condition is true.",
+              "condition": "false",
+              "exception_reason": "There are no explicit exception prerequisites mentioned in the rule text that would apply to this case.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict_reason": "There is no actual incompatible observation. The lack of documentation regarding MVR reviews does not constitute a contradiction but rather an absence of evidence supporting the trigger condition.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.744
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "fleet:application",
+                "source_label": "fleet:application",
+                "quote": "Maple Dispatch lists 18 employed delivery drivers and six vans. Hiring includes an interview and a route test. The MVR review field is unanswered; payroll records show no employee turnover this quarter.",
+                "locator": "paragraph:1",
+                "context": "Application describes employed drivers only."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:followup",
+                "source_label": "broker:followup",
+                "quote": "The driver files have not been provided. There is no statement from the applicant confirming or denying pre-hire MVR reviews.",
+                "locator": "paragraph:2",
+                "context": "The request remains outstanding."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that motor vehicle records be reviewed for every employed driver before hire. While E1 indicates that hiring includes an interview and a route test, it does not confirm whether MVR reviews were conducted. E2 states that driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since there is no evidence confirming that MVR reviews were performed for all employed drivers before hire, and the absence of documentation does not prove the activity did not occur, the condition cannot be confirmed as true.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "verdict": "missing_evidence"
+            }
+          ],
+          "elapsed_seconds": 1.545
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if current motor vehicle records were reviewed for every employed driver before hire.",
+                "source_id": "synthetic-guideline:commercial_auto:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "fleet:application",
+                "source_label": "fleet:application",
+                "quote": "Maple Dispatch lists 18 employed delivery drivers and six vans. Hiring includes an interview and a route test. The MVR review field is unanswered; payroll records show no employee turnover this quarter.",
+                "locator": "paragraph:1",
+                "context": "Application describes employed drivers only."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:followup",
+                "source_label": "broker:followup",
+                "quote": "The driver files have not been provided. There is no statement from the applicant confirming or denying pre-hire MVR reviews.",
+                "locator": "paragraph:2",
+                "context": "The request remains outstanding."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The criterion requires that motor vehicle records be reviewed for every employed driver before hire. While E1 indicates that hiring includes an interview and a route test, it does not confirm whether MVR reviews were conducted. E2 states that driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since there is no evidence confirming that MVR reviews were performed for all employed drivers before hire, and the absence of documentation does not prove the activity did not occur, the condition cannot be confirmed as true.",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The criterion requires that motor vehicle records be reviewed for every employed driver before hire. While E1 indicates that hiring includes an interview and a route test, it does not confirm whether MVR reviews were conducted. E2 states that driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since there is no evidence confirming that MVR reviews were performed for all employed drivers before hire, and the absence of documentation does not prove the activity did not occur, the condition cannot be confirmed as true."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule requires that current motor vehicle records be reviewed for every employed driver before hire. The scope restriction is 'for every employed driver' and there is no exception stated. E1 mentions hiring includes an interview and route test but does not confirm MVR reviews. E2 states driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since the absence of documentation does not prove the activity did not occur, and there is no explicit statement confirming the reviews were conducted, the condition cannot be confirmed as true.",
+              "scope_applies": true,
+              "scope_quote": "for every employed driver",
+              "exception_quote": "",
+              "issues": [],
+              "verdict": "uncertain"
+            }
+          ],
+          "elapsed_seconds": 1.908
+        }
+      ],
+      "elapsed_seconds": 12.908,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": true,
+        "passed": true,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 4,
+        "reference_checks_passed": 4,
+        "false_positive_findings": 0,
+        "reason": "The criterion requires that motor vehicle records be reviewed for every employed driver before hire. While E1 indicates that hiring includes an interview and a route test, it does not confirm whether MVR reviews were conducted. E2 states that driver files have not been provided and there is no confirmation or denial of pre-hire MVR reviews. Since there is no evidence confirming that MVR reviews were performed for all employed drivers before hire, and the absence of documentation does not prove the activity did not occur, the condition cannot be confirmed as true."
+      }
+    },
+    {
+      "id": "gl_subcontract_limit_unknown",
+      "category": "missing_information",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "decision_ready": false,
+        "rationale": "Unspecified insurance limits cannot satisfy or disprove the $2 million requirement."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every active roofing subcontractor maintains at least $2 million of general liability limits. While the evidence shows that both subcontractors are marked as insured in the vendor register (E1), it does not provide information about their actual liability limits. Additionally, certificates requesting the limits have not been received (E2). Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "source_assessments": {
+          "contractor:schedule": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule applies to active roofing subcontractors. The evidence identifies two active subcontractors (North Roof and Ridge Team) who are marked insured in the vendor register, meeting the scope requirement for active subcontractors. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. However, the evidence does not provide information about the actual limits or policy numbers for either North Roof or Ridge Team. The vendor register only confirms they are marked insured but does not specify the required liability limits. There are no explicit exceptions stated in the rule that would apply to this situation. There is no conflicting evidence provided. The only evidence available confirms the existence of two active subcontractors but does not establish whether they meet the liability limit requirement.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          },
+          "broker:certificate_request": {
+            "C1": {
+              "criterion_id": "C1",
+              "reason": "The rule applies to active roofing subcontractors. The evidence does not identify whether the subcontractors are active, but the lack of received certificates suggests they may not be confirmed as active or verified as meeting the limit requirement. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. The evidence indicates that certificates for both roofing subcontractors have been requested but not received, and their general liability limits have not been confirmed. Since the limits are unconfirmed, it cannot be established that the subcontractors meet the minimum requirement. There are no explicit exceptions stated in the rule that would apply to this situation. There is no conflicting evidence provided; the only evidence indicates a lack of confirmation regarding the general liability limits.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [
+            "C1"
+          ],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "unverified_no_match": [],
+          "review_downgraded": [],
+          "unreviewed": [],
+          "unverified_consistency": [],
+          "inconsistent_explanations": [
+            "C1"
+          ],
+          "review_disagreements": [
+            "C1"
+          ],
+          "complete": true,
+          "unresolved_conflicts": [],
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "pre_review_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule applies to every active roofing subcontractor. The evidence identifies two active subcontractors, North Roof and Ridge Team, who are marked insured in the vendor register. The population of active subcontractors is complete for this assessment, so the scope is in_scope. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. Evidence E1 indicates that both subcontractors are marked insured in the vendor register but does not provide information on their actual limits or policy numbers. Evidence E2 states that certificates for both subcontractors have been requested but not received, and their general liability limits have not been confirmed. Since there is no confirmation of the limits for either subcontractor, it cannot be established that they meet the minimum $2 million threshold. There are no explicit exceptions in the rule text that would apply to this case. The rule does not specify any conditions under which the requirement might be waived or altered. There is no conflict between the pieces of evidence. Both E1 and E2 indicate a lack of information regarding the general liability limits of the subcontractors, which leaves the condition undetermined rather than contradictory.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict": "none",
+            "basis": "missing_evidence",
+            "status": "insufficient_evidence",
+            "findings": []
+          }
+        },
+        "no_match_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The criterion requires that every active roofing subcontractor maintains at least $2 million of general liability limits. While the evidence shows that both subcontractors are marked as insured in the vendor register (E1), it does not provide information about their actual liability limits. Additionally, certificates requesting the limits have not been received (E2). Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence.",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "verdict": "missing_evidence"
+          }
+        },
+        "decision_reviews": {},
+        "superseded_decision_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "condition_quote": "every active roofing subcontractor maintains at least $2 million of general liability limits",
+            "scope_reason": "The rule applies to every active roofing subcontractor. The subject is 'Elm Renovation' with two active roofing subcontractors: North Roof and Ridge Team.",
+            "scope": "in_scope",
+            "condition_reason": "The evidence shows that both subcontractors (North Roof and Ridge Team) are marked as insured in the vendor register, but the register does not record general liability limits or policy numbers. Certificates for both subcontractors have been requested but not received, and their general liability limits have not been confirmed. There is no supporting evidence that either subcontractor maintains at least $2 million of general liability limits. Therefore, it cannot be established that the condition is true.",
+            "condition": "false",
+            "exception_reason": "There are no explicit exception prerequisites mentioned in the rule.",
+            "exception": "does_not_apply",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "conflict_reason": "There are no conflicting observations regarding the general liability limits of the subcontractors. The lack of documentation does not create a contradiction, as it simply means the information is unknown.",
+            "conflict": "none",
+            "findings": []
+          }
+        },
+        "consistency_reviews": {
+          "C1": {
+            "criterion_id": "C1",
+            "reason": "The rule requires that every active roofing subcontractor maintains at least $2 million of general liability limits. The evidence shows that both subcontractors are marked as insured in the vendor register (E1), but the register does not record limits or policy numbers. Additionally, certificates for the subcontractors have been requested but not received (E2), and their general liability limits have not been confirmed. Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence.",
+            "scope_applies": true,
+            "scope_quote": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+            "exception_quote": "",
+            "issues": [],
+            "verdict": "uncertain"
+          }
+        },
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+              "source_id": "synthetic-guideline:general_liability:v1",
+              "source_label": "Invented evaluation guideline",
+              "classification": "strength",
+              "context": "",
+              "classification_quote": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "contractor:schedule",
+              "source_label": "contractor:schedule",
+              "quote": "Elm Renovation uses two active roofing subcontractors, North Roof and Ridge Team. Both are marked insured in the vendor register. The register does not record limits or policy numbers.",
+              "locator": "paragraph:1",
+              "context": "Active subcontractor population is complete for this assessment."
+            },
+            {
+              "id": "E2",
+              "source_id": "broker:certificate_request",
+              "source_label": "broker:certificate_request",
+              "quote": "Certificates for both roofing subcontractors have been requested but not received. Their general liability limits have not been confirmed.",
+              "locator": "paragraph:2",
+              "context": "Insured status alone is not an attestation of a particular limit."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "contractor:schedule",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "contractor:schedule",
+                "source_label": "contractor:schedule",
+                "quote": "Elm Renovation uses two active roofing subcontractors, North Roof and Ridge Team. Both are marked insured in the vendor register. The register does not record limits or policy numbers.",
+                "locator": "paragraph:1",
+                "context": "Active subcontractor population is complete for this assessment."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to active roofing subcontractors. The evidence identifies two active subcontractors (North Roof and Ridge Team) who are marked insured in the vendor register, meeting the scope requirement for active subcontractors. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. However, the evidence does not provide information about the actual limits or policy numbers for either North Roof or Ridge Team. The vendor register only confirms they are marked insured but does not specify the required liability limits. There are no explicit exceptions stated in the rule that would apply to this situation. There is no conflicting evidence provided. The only evidence available confirms the existence of two active subcontractors but does not establish whether they meet the liability limit requirement.",
+              "evidence_ids": [
+                "E1"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.408
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "broker:certificate_request",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:certificate_request",
+                "source_label": "broker:certificate_request",
+                "quote": "Certificates for both roofing subcontractors have been requested but not received. Their general liability limits have not been confirmed.",
+                "locator": "paragraph:2",
+                "context": "Insured status alone is not an attestation of a particular limit."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to active roofing subcontractors. The evidence does not identify whether the subcontractors are active, but the lack of received certificates suggests they may not be confirmed as active or verified as meeting the limit requirement. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. The evidence indicates that certificates for both roofing subcontractors have been requested but not received, and their general liability limits have not been confirmed. Since the limits are unconfirmed, it cannot be established that the subcontractors meet the minimum requirement. There are no explicit exceptions stated in the rule that would apply to this situation. There is no conflicting evidence provided; the only evidence indicates a lack of confirmation regarding the general liability limits.",
+              "evidence_ids": [
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.207
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "contractor:schedule",
+                "source_label": "contractor:schedule",
+                "quote": "Elm Renovation uses two active roofing subcontractors, North Roof and Ridge Team. Both are marked insured in the vendor register. The register does not record limits or policy numbers.",
+                "locator": "paragraph:1",
+                "context": "Active subcontractor population is complete for this assessment."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:certificate_request",
+                "source_label": "broker:certificate_request",
+                "quote": "Certificates for both roofing subcontractors have been requested but not received. Their general liability limits have not been confirmed.",
+                "locator": "paragraph:2",
+                "context": "Insured status alone is not an attestation of a particular limit."
+              }
+            },
+            "source_assessments": {
+              "contractor:schedule": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to active roofing subcontractors. The evidence identifies two active subcontractors (North Roof and Ridge Team) who are marked insured in the vendor register, meeting the scope requirement for active subcontractors. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. However, the evidence does not provide information about the actual limits or policy numbers for either North Roof or Ridge Team. The vendor register only confirms they are marked insured but does not specify the required liability limits. There are no explicit exceptions stated in the rule that would apply to this situation. There is no conflicting evidence provided. The only evidence available confirms the existence of two active subcontractors but does not establish whether they meet the liability limit requirement.",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              },
+              "broker:certificate_request": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "reason": "The rule applies to active roofing subcontractors. The evidence does not identify whether the subcontractors are active, but the lack of received certificates suggests they may not be confirmed as active or verified as meeting the limit requirement. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. The evidence indicates that certificates for both roofing subcontractors have been requested but not received, and their general liability limits have not been confirmed. Since the limits are unconfirmed, it cannot be established that the subcontractors meet the minimum requirement. There are no explicit exceptions stated in the rule that would apply to this situation. There is no conflicting evidence provided; the only evidence indicates a lack of confirmation regarding the general liability limits.",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                }
+              }
+            },
+            "conflict_candidates": {}
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule applies to every active roofing subcontractor. The evidence identifies two active subcontractors, North Roof and Ridge Team, who are marked insured in the vendor register. The population of active subcontractors is complete for this assessment, so the scope is in_scope. The condition requires that every active roofing subcontractor maintains at least $2 million of general liability limits. Evidence E1 indicates that both subcontractors are marked insured in the vendor register but does not provide information on their actual limits or policy numbers. Evidence E2 states that certificates for both subcontractors have been requested but not received, and their general liability limits have not been confirmed. Since there is no confirmation of the limits for either subcontractor, it cannot be established that they meet the minimum $2 million threshold. There are no explicit exceptions in the rule text that would apply to this case. The rule does not specify any conditions under which the requirement might be waived or altered. There is no conflict between the pieces of evidence. Both E1 and E2 indicate a lack of information regarding the general liability limits of the subcontractors, which leaves the condition undetermined rather than contradictory.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict": "none",
+              "basis": "missing_evidence",
+              "status": "insufficient_evidence",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 3.053
+        },
+        {
+          "payload": {
+            "stage": "decision_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "contractor:schedule",
+                "source_label": "contractor:schedule",
+                "quote": "Elm Renovation uses two active roofing subcontractors, North Roof and Ridge Team. Both are marked insured in the vendor register. The register does not record limits or policy numbers.",
+                "locator": "paragraph:1",
+                "context": "Active subcontractor population is complete for this assessment."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:certificate_request",
+                "source_label": "broker:certificate_request",
+                "quote": "Certificates for both roofing subcontractors have been requested but not received. Their general liability limits have not been confirmed.",
+                "locator": "paragraph:2",
+                "context": "Insured status alone is not an attestation of a particular limit."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "condition_quote": "every active roofing subcontractor maintains at least $2 million of general liability limits",
+              "scope_reason": "The rule applies to every active roofing subcontractor. The subject is 'Elm Renovation' with two active roofing subcontractors: North Roof and Ridge Team.",
+              "scope": "in_scope",
+              "condition_reason": "The evidence shows that both subcontractors (North Roof and Ridge Team) are marked as insured in the vendor register, but the register does not record general liability limits or policy numbers. Certificates for both subcontractors have been requested but not received, and their general liability limits have not been confirmed. There is no supporting evidence that either subcontractor maintains at least $2 million of general liability limits. Therefore, it cannot be established that the condition is true.",
+              "condition": "false",
+              "exception_reason": "There are no explicit exception prerequisites mentioned in the rule.",
+              "exception": "does_not_apply",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "conflict_reason": "There are no conflicting observations regarding the general liability limits of the subcontractors. The lack of documentation does not create a contradiction, as it simply means the information is unknown.",
+              "conflict": "none",
+              "findings": []
+            }
+          ],
+          "elapsed_seconds": 2.967
+        },
+        {
+          "payload": {
+            "stage": "no_match_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "contractor:schedule",
+                "source_label": "contractor:schedule",
+                "quote": "Elm Renovation uses two active roofing subcontractors, North Roof and Ridge Team. Both are marked insured in the vendor register. The register does not record limits or policy numbers.",
+                "locator": "paragraph:1",
+                "context": "Active subcontractor population is complete for this assessment."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:certificate_request",
+                "source_label": "broker:certificate_request",
+                "quote": "Certificates for both roofing subcontractors have been requested but not received. Their general liability limits have not been confirmed.",
+                "locator": "paragraph:2",
+                "context": "Insured status alone is not an attestation of a particular limit."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The criterion requires that every active roofing subcontractor maintains at least $2 million of general liability limits. While the evidence shows that both subcontractors are marked as insured in the vendor register (E1), it does not provide information about their actual liability limits. Additionally, certificates requesting the limits have not been received (E2). Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence.",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "verdict": "missing_evidence"
+            }
+          ],
+          "elapsed_seconds": 1.739
+        },
+        {
+          "payload": {
+            "stage": "consistency_review",
+            "scope": "whole_case",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+                "source_id": "synthetic-guideline:general_liability:v1",
+                "source_label": "Invented evaluation guideline",
+                "classification": "strength",
+                "context": "",
+                "classification_quote": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "contractor:schedule",
+                "source_label": "contractor:schedule",
+                "quote": "Elm Renovation uses two active roofing subcontractors, North Roof and Ridge Team. Both are marked insured in the vendor register. The register does not record limits or policy numbers.",
+                "locator": "paragraph:1",
+                "context": "Active subcontractor population is complete for this assessment."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "broker:certificate_request",
+                "source_label": "broker:certificate_request",
+                "quote": "Certificates for both roofing subcontractors have been requested but not received. Their general liability limits have not been confirmed.",
+                "locator": "paragraph:2",
+                "context": "Insured status alone is not an attestation of a particular limit."
+              }
+            },
+            "candidates": {
+              "C1": {
+                "assessment": {
+                  "criterion_id": "C1",
+                  "reason": "The criterion requires that every active roofing subcontractor maintains at least $2 million of general liability limits. While the evidence shows that both subcontractors are marked as insured in the vendor register (E1), it does not provide information about their actual liability limits. Additionally, certificates requesting the limits have not been received (E2). Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence.",
+                  "evidence_ids": [
+                    "E1",
+                    "E2"
+                  ],
+                  "conflict": "none",
+                  "basis": "missing_evidence",
+                  "status": "insufficient_evidence",
+                  "findings": []
+                },
+                "explanation": {
+                  "assessment.reason": "The criterion requires that every active roofing subcontractor maintains at least $2 million of general liability limits. While the evidence shows that both subcontractors are marked as insured in the vendor register (E1), it does not provide information about their actual liability limits. Additionally, certificates requesting the limits have not been received (E2). Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "reason": "The rule requires that every active roofing subcontractor maintains at least $2 million of general liability limits. The evidence shows that both subcontractors are marked as insured in the vendor register (E1), but the register does not record limits or policy numbers. Additionally, certificates for the subcontractors have been requested but not received (E2), and their general liability limits have not been confirmed. Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence.",
+              "scope_applies": true,
+              "scope_quote": "Record a strength if every active roofing subcontractor maintains at least $2 million of general liability limits.",
+              "exception_quote": "",
+              "issues": [],
+              "verdict": "uncertain"
+            }
+          ],
+          "elapsed_seconds": 2.419
+        }
+      ],
+      "elapsed_seconds": 14.797,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "readiness_correct": true,
+        "passed": true,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 4,
+        "reference_checks_passed": 4,
+        "false_positive_findings": 0,
+        "reason": "The criterion requires that every active roofing subcontractor maintains at least $2 million of general liability limits. While the evidence shows that both subcontractors are marked as insured in the vendor register (E1), it does not provide information about their actual liability limits. Additionally, certificates requesting the limits have not been received (E2). Since there is no confirmation of the specific liability limits for either subcontractor, and the absence of this information prevents determining whether the condition is met, the decision cannot be definitively negative based on the provided evidence."
+      }
+    }
+  ]
+}

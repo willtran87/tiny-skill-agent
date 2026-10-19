@@ -34,11 +34,11 @@ print(result.model_dump_json(indent=2))
 
 Plain dictionaries matching these records are accepted too. IDs must be nonempty and unique within each registry. Classification is caller supplied and may use any domain's vocabulary. The message adapter defaults to `[strength]` and `[concern]`, but the core does not require bracketed labels or a particular ID prefix.
 
-`model` is a synchronous callable. For `stage="source"` or `"case"`, it returns `CoverageDraft` or a list of assessments. Its payload contains `stage`, `scope`, `user_request`, `criteria`, and `evidence_spans`; case calls also receive `source_assessments` and `conflict_candidates`. For `stage="decision_review"`, it returns `PredicateDraft` or a list of predicate assessments. That payload contains only original `criteria`, all `evidence_spans`, stage/scope, and optional validation feedback. Previous judgments and the user request are omitted. The payload's `scope` identifies the evidence batch; it is not a rule applicability restriction.
+`model` is a synchronous callable. For `stage="source"` or `"case"`, it returns `CoverageDraft` or a list of assessments. Its payload contains `stage`, `scope`, `user_request`, `criteria`, and `evidence_spans`; case calls also receive `source_assessments` and evidence IDs in `conflict_candidates`. The standard LangChain adapter omits provisional source opinions from its provider request; custom callable payloads remain compatible. For `stage="decision_review"`, it returns `PredicateDraft` or a list of predicate assessments. That payload contains only original `criteria`, all `evidence_spans`, stage/scope, and optional validation feedback. Previous judgments and the user request are omitted. The payload's `scope` identifies the evidence batch; it is not a rule applicability restriction.
 
 The LangChain adapter requests `PredicateDraft` for source, case, and review calls. It uses `PREDICATE_PROMPT` for source/case and a separately worded `DECISION_REVIEW_PROMPT` for the independent review. Source/case predicate responses are converted with `row.assessment()` into the existing `CoverageDraft` API contract. `status` and `basis` are derived from the predicates instead of being separately selected by the model. Custom adapters may retain `CoverageDraft` for source/case but must implement `PredicateDraft` for review. No global state is used.
 
-`AssessmentConfig` controls `batch_size`, `retry_batch_size`, `max_retries`, `review_decisions`, and `confirm_no_match` (both reviews default true). Every criterion receives a separate predicate review, including abstentions and missing case responses. Final `no_match` results additionally receive the existing focused `no_match_review` challenge using `NoMatchReviewDraft` / `NO_MATCH_REVIEW_PROMPT`. This narrower check tests whether affirmative evidence refutes the condition, because two general passes can repeat the same absence-of-proof error. Unknown evidence, wrong-source citations, invalid criterion quotes, malformed output, duplicate or unrequested IDs reject that response. Retries are bounded; errors remain recorded after recovery. Disabling all-outcome review always prevents readiness; disabling the focused negative check prevents readiness for `no_match` decisions.
+`AssessmentConfig` controls `batch_size`, `retry_batch_size`, `max_retries`, `review_decisions`, `confirm_no_match`, and `review_consistency` (all default true). Every criterion receives a separate predicate review, including abstentions and missing case responses. Final `no_match` results additionally receive the existing focused `no_match_review` challenge using `NoMatchReviewDraft` / `NO_MATCH_REVIEW_PROMPT`. This narrower check tests whether affirmative evidence refutes the condition, because two general passes can repeat the same absence-of-proof error. Unknown evidence, wrong-source citations, invalid criterion quotes, malformed output, duplicate or unrequested IDs reject that response. Retries are bounded; errors remain recorded after recovery. Disabling all-outcome review always prevents readiness; disabling the focused negative check prevents readiness for `no_match` decisions.
 
 ## LangChain messages
 
@@ -212,32 +212,39 @@ the mapper, not simultaneously through the wrapper's `criterion_extractor` optio
 Direct adapter callers can use `source_scope_ids` for the same ledger filtering;
 the older `allowed_source_ids` parameter restricts only criterion sources.
 
-The optional `criterion_extractor` adds one structured call per permitted
-directive source **only when** an additional line explicitly names an allowed
-outcome label. This includes mixed labelled/prose documents. Existing bracketed
-criteria are retained deterministically. The model proposes additional exact
-quotations and classifications explicitly named in those quotations (for example,
-"is a concern" without brackets). Code assigns IDs and source labels, preserves
-the entire source as context, and rejects altered quotations, unapproved labels,
-overlapping rules, conflicting reclassification, a missing classification word or
-phrase in the quote, and declared incompleteness. Explanatory text must not be
-turned into a new assessment rule. Labelled-only sources with no additional
-explicit-label candidates need no model extraction call. Implicit categories such as "decline this risk"
-cannot automatically become `concern` under this conservative contract; use a
-reviewed upstream mapping or appropriately configured labels.
-No application facts are supplied to this extraction stage. Data sources never
-become guideline sources merely because they contain instruction-like text.
+The optional `criterion_extractor` makes one structured call for each permitted
+directive source with nonempty lines beyond its already extracted bracketed rules.
+It reads all remaining text, including rules without explicit classification
+words. Every remaining line receives a `reviewed_lines` entry linking its rule
+quotes, or an empty list for context and mappings. A dynamic schema fixes the review count;
+code checks exact IDs, complete coverage, and links between rule lines and quotes.
+Already labelled rules retain their deterministic coverage and classification.
 
-Only explicit labels are supported; this is not a completeness check for rules
-with implicit categories elsewhere in a mixed document. Sources containing only
-implicit categories yield no criteria, so they cannot become decision-ready.
+An implicit rule can use a separate, exact `classification_quote` from the **same
+source**, such as a definition mapping referral to concern. The criterion's `text`
+stays the exact rule; the mapping is stored separately on `Criterion`. Code checks
+that the mapping occurs in the source and names the allowed classification.
+The semantic connection between outcome and label is still a model judgment.
+There is no built-in assumption that particular underwriting verbs imply a label.
+Explicitly labelled rules need no mapping; redundant proposed mappings for them
+are discarded. Unknown mappings or declared ambiguities fail extraction.
 
-The extractor uses the existing model provider and adds no dependencies or hidden
-retries. Parsing/truncation/provider failures make assessment unavailable rather
-than proceeding with partial criteria. A model can still omit a rule while
-claiming completeness or misinterpret its classification; exact citations do not
-prove semantic completeness. Custom labels and criterion-source allowlists are
-available through `inputs_from_messages` in a custom mapper.
+Code assigns IDs and source labels, preserves the entire source as context, and
+rejects altered rule quotations, unapproved labels, overlapping rules, conflicting
+reclassification, missing line reviews, and declared incompleteness. Definitions
+and operational instructions must not become assessment rules. No applicant facts
+are supplied to this extraction stage; data tools cannot become guideline sources.
+
+The structured extractor callable makes one call. The message adapter allows one
+explicit repair attempt for invalid structure/quotes by default, passing
+`validation_feedback` to the extractor. Set `extraction_max_retries=0` on
+`inputs_from_messages` to disable repair, or configure a bounded value in a custom
+mapper. Every attempt invokes the same callable and is visible to tracing.
+Declared incompleteness/ambiguity fails immediately without a repair attempt.
+There are no new dependencies. Failure makes assessment unavailable.
+A model can still misclassify a substantive line as context, or read a
+mapping incorrectly: structural line coverage does not prove semantic completeness.
+Custom labels and criterion-source allowlists remain available through a mapper.
 
 These options isolate **assessment inputs**. They preserve agent messages and
 do not enforce document access permissions, remove history from the agent's
@@ -294,6 +301,8 @@ The node returns only its output update and does not mutate incoming state. It i
 - `source_assessments`: provisional source-level assessments retained for inspection.
 - `pre_review_assessments`: original case proposals for all statuses, before independent review.
 - `decision_reviews`: accepted independent predicate reviews, including exact criterion trigger quotes and separate scope/condition/exception explanations.
+- `superseded_decision_reviews`: earlier reviews whose decisions were subsequently downgraded by the focused negative review; retained as history, outside the active explanation.
+- `consistency_reviews`: final checks of scope, status, findings, and explanation consistency, with references to original explanation section IDs and supporting reasons.
 - `no_match_reviews`: focused sufficiency checks on final negative decisions, with verdict, citations and reason.
 - `disagreements`: decisive source/case status differences in both directions, and source unresolved conflicts changed by the case; each retains the case review disposition.
 - `coverage` and `source_coverage`: missing assessments, unreviewed criteria, review disagreements, unconfirmed negative statuses, and errors.
@@ -304,6 +313,67 @@ The independent review supplies the final assessment when valid; otherwise the o
 `decision_ready` requires a nonempty criterion set, complete source/case/review coverage, no insufficient evidence, agreement between case and predicate review on status and the multiset of finding citation groups, and a supported focused review for every `no_match`. The focused check can downgrade a negative to `insufficient_evidence`; `needs_reassessment` or failure leaves it unverified. Exact finding-group comparison is deliberately conservative: alternative valid corroborating citations may require manual resolution. Agreement does not compare explanation wording or prove semantic equivalence. Different source statuses remain review candidates, not proof of factual contradiction. Source coverage failures still block readiness. No evidence yields deterministic `insufficient_evidence` without a model call. The caller owns any human-review workflow.
 
 ### Structured-output migration
+
+The latest contract also requires `stage="consistency_review"` responses using
+`ConsistencyDraft`. It receives the original criteria/evidence and final candidates
+with their written explanations. This check is deliberately allowed to inspect
+the candidate; the earlier `decision_review` remains independent of it. The
+LangChain adapter handles the additional stage automatically. A custom callable
+that does not support it leaves consistency unverified and cannot make results ready.
+
+`AssessmentConfig.review_consistency` defaults to true. With independent decision
+review enabled, it adds one final call per assessed criterion, with the existing
+bounded retries for invalid responses. It reports defects without changing the
+candidate or agent output. `coverage.unverified_consistency` and
+`coverage.inconsistent_explanations` both block readiness. Disabling this check
+also blocks readiness; an uncertain or unavailable critique cannot certify a result.
+It is skipped when independent decision review is disabled, because readiness is
+already unavailable. No new dependencies, orchestration service, or global state.
+
+The critique quotes scope/exception clauses from the criterion or its same-source
+context and references problematic explanation
+sections by IDs such as `assessment.reason`, `finding:1.reason`, and
+`decision_review.condition_reason`. Code validates those IDs against the original
+text; the critic does not regenerate explanation quotations. Simple English
+`only`, `unless`, and `except` anchors require clause
+acknowledgment; they do not decide applicability. Semantic support still depends
+on the model, including when the critique returns supported. There is no guarantee
+that all explanation errors or shared model mistakes will be detected.
+
+The review also reports `scope_applies`: true for population membership, false for
+explicit exclusion, null for unknown membership. Code requires excluded subjects
+to have `not_applicable` and unknown membership to have `insufficient_evidence`;
+an otherwise supported verdict cannot override a mismatch. The applicability
+judgment itself remains model-derived, so this is a consistency constraint rather
+than a deterministic underwriting rule engine.
+
+Custom criterion extractors must now provide `reviewed_lines` and each proposed
+rule's `classification_quote` (empty for explicit labels). The supplied LangChain
+extractor adapts its schema to the input line count. These are model-call contract
+changes; the `assess` entry point and agent integration remain unchanged.
+
+For example, the source `A referral denotes a concern.\nRefer unguarded presses.`
+can yield this extraction (the adapter assigns the eventual criterion/source IDs):
+
+```json
+{
+  "complete": true,
+  "criteria": [{
+    "quote": "Refer unguarded presses.",
+    "classification": "concern",
+    "classification_quote": "A referral denotes a concern."
+  }],
+  "issues": [],
+  "reviewed_lines": [
+    {"line_id": "L1", "rule_quotes": []},
+    {"line_id": "L2", "rule_quotes": ["Refer unguarded presses."]}
+  ]
+}
+```
+
+`coverage.complete` retains its source/case/independent-review coverage meaning.
+Consistency verification is reported separately and is an additional requirement
+for `decision_ready`, even when the coverage count is otherwise complete.
 
 Custom assessment callables must retain the `basis`, `findings`, and `conflict` fields for source/case assessments, handle `stage="decision_review"` with `PredicateDraft`, and retain `stage="no_match_review"` with `NoMatchReviewDraft`. Old callables that do not implement these checks fail closed for readiness. The supplied LangChain adapter migrates automatically; the LangGraph state interface and `assess` arguments are unchanged. Legacy helpers in `evidence.py` retain their previous contract.
 
@@ -344,3 +414,38 @@ The condition quote must be an exact substring of `criterion.text`. Scope exclus
 Caller-supplied records are trusted inputs. Direct API use does not authenticate documents or independently verify quotes against an external store. The message adapter adds observed-tool provenance checks. Neither path proves semantic support, upstream truth, or underwriting correctness. Nested line-of-business routing remains a separate future extension.
 
 The notebook now delegates to this API. It retains `result["structured_response"]` as a top-level Pydantic findings list for display; other fields match `AssessmentResult.model_dump()`. The old notebook's `criterion_inventory`, `source_catalog`, and `evidence_spans` result keys are replaced by the portable `inputs.criteria` and `inputs.evidence` records. Low-level legacy helpers in `evidence.py` remain available for existing callers.
+
+
+### Whole-source review and complementary evidence
+
+The LangChain extraction adapter reviews every nonempty source line, including
+known labelled rules. Each line receives a context, outcome-rule, or unresolved
+disposition before any criterion is emitted. The provider schema uses required source-line keys and an enum of caller-supplied labels to prevent skipped lines and invented classifications. Code converts this provider response
+to the existing `CriterionExtraction` contract and deduplicates known rules.
+Operational guidance stays in each criterion's full source context. Ambiguous
+outcome rules, missing lines, invalid quotations and unsupported classifications
+still fail extraction. Custom extractor call signatures remain unchanged.
+
+The LangChain assessment adapter describes the evidence batch separately from
+rule applicability. Case inference reads original evidence and conflict-candidate
+IDs; provisional source opinions remain available in the result audit trail.
+A changed status after combining complementary sources does not itself require
+a conflict label. Required review citations are still enforced; mixed conclusive
+source judgments and explicitly unresolved source conflicts still require
+resolution. Independent status/finding agreement, full source coverage, negative
+evidence review, and final explanation consistency remain readiness requirements.
+The consistency schema requests its reasoning before its verdict; contradictory
+or uncertain reviews continue to block readiness. No additional model stage or
+production dependency is introduced.
+
+
+The standard negative-evidence review also emits `requirement_kind` (underlying
+fact, record existence, or explicit record receipt) and `observation_kind`
+(affirmative fact, confirmed absence, nonreceipt only, unavailable, or conflicting).
+A supported negative based only on nonreceipt cannot refute an underlying fact or
+record existence: code downgrades it to missing evidence and archives the rejected
+active explanation. Nonreceipt may refute an explicit submission requirement.
+These two fields are optional for legacy custom callables and required by the
+standard LangChain provider schema. Custom callables should populate them to use
+this guard. The categories are model judgments; citation checks do not prove
+that the selected category is semantically correct. No extra review stage is added.
