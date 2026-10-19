@@ -18,6 +18,7 @@ docs/
   INTEGRATION.md         Direct API and framework integration examples
   RESEARCH.md            Related papers and evaluation guidance
 tests/                   Provenance and assessment tests
+evals/                   Synthetic cases, local-model runner, and saved results
 ```
 
 ## Install and run
@@ -45,9 +46,13 @@ The notebook assigns short IDs to observed sources (`S`), labeled criteria (`C`)
 | `insufficient_evidence` | Available evidence cannot decide the criterion. |
 | `not_applicable` | Evidence shows the criterion's stated scope excludes the case. |
 
-`result["structured_response"]` contains accepted case findings with one or more resolved fact citations. `result["criterion_assessments"]` contains all four statuses. Source assessments are provisional; case reconciliation can overturn them, and `disagreements` retains those changes for review. Coverage exposes missing assessments. `decision_ready` is false when coverage is incomplete, evidence is insufficient, criteria are absent, or a source match disagrees with the case. Citation validation confirms that referenced spans appeared in observed sources. It does not prove the model's interpretation or the upstream data is correct.
+`result["structured_response"]` contains accepted case findings with one or more resolved fact citations. One criterion assessment can contain multiple findings, each with its own subject, citations, and reason. `result["criterion_assessments"]` contains all four statuses plus a validated decision basis. Source assessments are provisional; case reconciliation reviews opposing judgments in both directions and retains them in `disagreements`. Coverage exposes missing assessments and unresolved conflicts. `decision_ready` is false when coverage is incomplete, evidence is insufficient, criteria are absent, or conflicts remain unreviewed/unresolved. Citation and consistency checks do not prove the model's interpretation, conflict resolution, or upstream data is correct. Custom model callables need the updated response fields described in [INTEGRATION.md](docs/INTEGRATION.md#structured-output-migration).
 
 See [docs/DESIGN.md](docs/DESIGN.md) for the schema and flow, and [docs/RESEARCH.md](docs/RESEARCH.md) for related research.
+
+Every criterion receives an independent review of the original evidence, including matches, exclusions, and abstentions. The model quotes the criterion trigger and evaluates scope, condition truth, and exceptions; code derives status. Missing/invalid reviews and disagreements about status or finding citation groups block `decision_ready`. The reviewer can correct the displayed result, but a changed result requires manual resolution. Inspect `pre_review_assessments`, `decision_reviews`, and `coverage.review_disagreements`; findings are provisional whenever readiness is false. This uses the same model with a separate prompt and adds no dependencies. Agreement is not a guarantee of correctness.
+
+Final `no_match` judgments retain a focused evidence-sufficiency challenge: missing information must not become a confirmed negative just because two general passes agree. Its verdict appears in `no_match_reviews`; failed, inconclusive, or disabled negative checks block readiness for those decisions.
 
 ## Use in an existing application
 
@@ -83,6 +88,12 @@ agent = create_agent(model, tools=tools, middleware=[EvidenceMetadataMiddleware(
 The middleware adds `_meta` to successful tool results. `collect_evidence` checks the observed call and registered tag before accepting a result as data or a directive. A classified criterion can come from a skill, directive tool, or system prompt.
 
 ## Verify
+
+See [evals/README.md](evals/README.md) for the eight-case assessment evaluation covering unrelated evidence, contradictions, exceptions, and multiple findings per criterion, including a saved local-model baseline. Run it against Ollama with `.venv\Scripts\python -m evals.run`.
+
+The larger [32-case repeated evaluation](evals/UNSEEN_EVALUATION.md) adds fresh synthetic scenarios and three fixed-setting runs. It exposes substantial accuracy/readiness gaps beyond the small development set; full traces and a manual failure analysis are preserved.
+
+See the subsequent [all-outcome review comparison](evals/results/2026-10-18-review-comparison.md) for the readiness changes, repeated regression runs, remaining errors, and inference-cost tradeoff.
 
 ```powershell
 .venv\Scripts\python -m unittest discover -s tests

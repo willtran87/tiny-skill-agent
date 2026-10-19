@@ -34,9 +34,11 @@ print(result.model_dump_json(indent=2))
 
 Plain dictionaries matching these records are accepted too. IDs must be nonempty and unique within each registry. Classification is caller supplied and may use any domain's vocabulary. The message adapter defaults to `[strength]` and `[concern]`, but the core does not require bracketed labels or a particular ID prefix.
 
-`model` is a synchronous callable: `payload -> CoverageDraft | list[assessment]`. Its payload contains `stage`, `scope`, `user_request`, `criteria`, and `evidence_spans`; case calls also receive relevant `source_assessments`. A custom provider adapter can use `CoverageDraft.model_json_schema()` and `ASSESSMENT_PROMPT`. No global variables or print/display calls are used inside the assessment API.
+`model` is a synchronous callable. For `stage="source"` or `"case"`, it returns `CoverageDraft` or a list of assessments. Its payload contains `stage`, `scope`, `user_request`, `criteria`, and `evidence_spans`; case calls also receive `source_assessments` and `conflict_candidates`. For `stage="decision_review"`, it returns `PredicateDraft` or a list of predicate assessments. That payload contains only original `criteria`, all `evidence_spans`, stage/scope, and optional validation feedback. Previous judgments and the user request are omitted. The payload's `scope` identifies the evidence batch; it is not a rule applicability restriction.
 
-`AssessmentConfig` controls `batch_size`, `retry_batch_size`, `max_retries`, and `confirm_no_match`. Retries are bounded per scope. Unknown evidence, evidence from the wrong source, malformed output, duplicate or unrequested criterion IDs reject that response batch. Missing criteria are retried. Errors remain recorded even when later calls recover.
+The LangChain adapter requests `PredicateDraft` for source, case, and review calls. It uses `PREDICATE_PROMPT` for source/case and a separately worded `DECISION_REVIEW_PROMPT` for the independent review. Source/case predicate responses are converted with `row.assessment()` into the existing `CoverageDraft` API contract. `status` and `basis` are derived from the predicates instead of being separately selected by the model. Custom adapters may retain `CoverageDraft` for source/case but must implement `PredicateDraft` for review. No global state is used.
+
+`AssessmentConfig` controls `batch_size`, `retry_batch_size`, `max_retries`, `review_decisions`, and `confirm_no_match` (both reviews default true). Every criterion receives a separate predicate review, including abstentions and missing case responses. Final `no_match` results additionally receive the existing focused `no_match_review` challenge using `NoMatchReviewDraft` / `NO_MATCH_REVIEW_PROMPT`. This narrower check tests whether affirmative evidence refutes the condition, because two general passes can repeat the same absence-of-proof error. Unknown evidence, wrong-source citations, invalid criterion quotes, malformed output, duplicate or unrequested IDs reject that response. Retries are bounded; errors remain recorded after recovery. Disabling all-outcome review always prevents readiness; disabling the focused negative check prevents readiness for `no_match` decisions.
 
 ## LangChain messages
 
@@ -111,14 +113,57 @@ The node returns only its output update and does not mutate incoming state. It i
 
 `AssessmentResult` contains:
 
-- `findings`: accepted case matches, with criterion ID, caller-supplied classification, exact supplied evidence quotes, source IDs, and locators.
-- `criterion_assessments`: all accepted final case statuses.
+- `findings`: separate accepted case findings, with generated finding ID, subject, criterion ID, caller-supplied classification, exact supplied evidence quotes, source IDs, and locators. Multiple entries may share a criterion ID.
+- `criterion_assessments`: one accepted final assessment per criterion, including status, basis, nested findings, and conflict review disposition.
 - `source_assessments`: provisional source-level assessments retained for inspection.
-- `disagreements`: source matches that the case pass changed to another status.
-- `coverage` and `source_coverage`: missing assessments, unconfirmed negative statuses, and errors.
+- `pre_review_assessments`: original case proposals for all statuses, before independent review.
+- `decision_reviews`: accepted independent predicate reviews, including exact criterion trigger quotes and separate scope/condition/exception explanations.
+- `no_match_reviews`: focused sufficiency checks on final negative decisions, with verdict, citations and reason.
+- `disagreements`: decisive source/case status differences in both directions, and source unresolved conflicts changed by the case; each retains the case review disposition.
+- `coverage` and `source_coverage`: missing assessments, unreviewed criteria, review disagreements, unconfirmed negative statuses, and errors.
 - `inputs`: the criterion and evidence registries used for this assessment.
 
-The case pass is authoritative. Source matches are not automatically promoted if case reconciliation fails or disagrees. Disagreements keep `decision_ready` false for review. An empty criterion set is not decision ready; no evidence yields `insufficient_evidence` without calling a model. A complete report describes only supplied observations and criteria, not source discovery or exhaustive finding recall.
+The independent review supplies the final assessment when valid; otherwise the original accepted case proposal remains visible and unreviewed. A changed status or finding citation grouping is recorded in `coverage.review_disagreements` and blocks readiness. A recovered missing case also requires manual resolution. Thus a reviewer can correct an output without silently making it ready. Findings returned with `decision_ready=False` are provisional and require review. Original proposals and reviewer outputs are retained; neither is independent factual truth.
+
+`decision_ready` requires a nonempty criterion set, complete source/case/review coverage, no insufficient evidence, agreement between case and predicate review on status and the multiset of finding citation groups, and a supported focused review for every `no_match`. The focused check can downgrade a negative to `insufficient_evidence`; `needs_reassessment` or failure leaves it unverified. Exact finding-group comparison is deliberately conservative: alternative valid corroborating citations may require manual resolution. Agreement does not compare explanation wording or prove semantic equivalence. Different source statuses remain review candidates, not proof of factual contradiction. Source coverage failures still block readiness. No evidence yields deterministic `insufficient_evidence` without a model call. The caller owns any human-review workflow.
+
+### Structured-output migration
+
+Custom assessment callables must retain the `basis`, `findings`, and `conflict` fields for source/case assessments, handle `stage="decision_review"` with `PredicateDraft`, and retain `stage="no_match_review"` with `NoMatchReviewDraft`. Old callables that do not implement these checks fail closed for readiness. The supplied LangChain adapter migrates automatically; the LangGraph state interface and `assess` arguments are unchanged. Legacy helpers in `evidence.py` retain their previous contract.
+
+```python
+assessment = {
+    "criterion_id": "C1", "status": "matched", "basis": "condition_met",
+    "evidence_ids": ["E1"], "conflict": "none",
+    "reason": "The applicant's cash reserves exceed the six-month threshold.",
+    "findings": [{
+        "subject": "Applicant", "evidence_ids": ["E1"],
+        "reason": "Eight months of reserves exceeds the six-month threshold.",
+    }],
+}
+```
+
+Use one nested finding per independent event/entity, with multiple citations for corroboration of the same finding. Nonmatched assessments require `findings=[]`. Basis/status mappings and conflict handling are detailed in [DESIGN.md](DESIGN.md). Final finding IDs such as `C1:F1` are assigned by code and only identify entries within a result. This revision strengthens structural validation; model-declared status bases and conflict resolutions are still semantic judgments.
+
+A review returns the following shape (all fields required):
+
+```python
+review = [{
+    "criterion_id": "C1",
+    "condition_quote": "Cash reserves of at least six months",
+    "scope_reason": "The evidence concerns the applicant and current reserves.",
+    "scope": "in_scope",  # or out_of_scope / unknown
+    "condition_reason": "Eight months is greater than or equal to six months.",
+    "condition": "true",  # or false / unknown
+    "exception_reason": "The criterion specifies no exception to this condition.",
+    "exception": "does_not_apply",  # or applies / unknown
+    "evidence_ids": ["E1"], "conflict": "none",
+    "conflict_reason": "No incompatible observations are present in this evidence.",
+    "findings": assessment["findings"],
+}]
+```
+
+The condition quote must be an exact substring of `criterion.text`. Scope exclusion yields `not_applicable`; unresolved conflict or unknown scope yields `insufficient_evidence`; an applicable exception or proven false condition yields `no_match`; unknown condition/exception yields `insufficient_evidence`; otherwise a true condition yields `matched`. Nonmatched records must have no findings. The model is asked to show calculations, date handling, and exception reasoning explicitly, but arithmetic and semantic interpretation are still model judgments—not a deterministic calculator or formal rule engine.
 
 Caller-supplied records are trusted inputs. Direct API use does not authenticate documents or independently verify quotes against an external store. The message adapter adds observed-tool provenance checks. Neither path proves semantic support, upstream truth, or underwriting correctness. Nested line-of-business routing remains a separate future extension.
 

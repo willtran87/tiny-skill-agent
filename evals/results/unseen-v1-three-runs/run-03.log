@@ -1,0 +1,186 @@
+START cyber_remote_access_unknown
+  source questionnaire:it: 1.6s
+  source broker:email: 1.3s
+  case whole_case: 1.9s
+  case whole_case: 2.3s
+  case whole_case: 2.2s
+RESULT cyber_remote_access_unknown: FAIL; status=missing; findings=0/0
+START property_pump_service_unknown
+  source survey:equipment: 1.4s
+  source facilities:email: 1.8s
+  case whole_case: 2.0s
+  case whole_case: 1.8s
+RESULT property_pump_service_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_driver_screening_unknown
+  source fleet:application: 1.4s
+  source broker:followup: 1.2s
+  case whole_case: 1.7s
+  no_match_review whole_case: 1.6s
+RESULT auto_driver_screening_unknown: PASS; status=insufficient_evidence; findings=0/0
+START gl_subcontract_limit_unknown
+  source contractor:schedule: 1.9s
+  source broker:certificate_request: 1.3s
+  case whole_case: 1.9s
+  no_match_review whole_case: 1.7s
+RESULT gl_subcontract_limit_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_incident_rate_calculation
+  source lossrun:2025: 1.3s
+  source lossrun:2025: 1.2s
+  source lossrun:2025: 1.0s
+  source fleet:2025: 1.5s
+  case whole_case: 1.5s
+RESULT auto_incident_rate_calculation: FAIL; status=insufficient_evidence; findings=0/1
+START property_reserves_exact_threshold
+  source finance:certified: 2.2s
+  case whole_case: 2.2s
+RESULT property_reserves_exact_threshold: PASS; status=matched; findings=1/1
+START property_roof_exact_boundary
+  source survey:unit7: 1.6s
+  case whole_case: 1.5s
+  no_match_review whole_case: 1.4s
+RESULT property_roof_exact_boundary: PASS; status=no_match; findings=0/0
+START cyber_patch_coverage_boundary
+  source security:patch_export: 2.8s
+  case whole_case: 2.8s
+RESULT cyber_patch_coverage_boundary: PASS; status=matched; findings=1/1
+START property_alarm_equal_reports
+  source alarm:provider_a: 1.9s
+  source alarm:provider_b: 1.2s
+  source alarm:provider_b: 1.3s
+  source alarm:provider_b: 1.1s
+  case whole_case: 1.7s
+RESULT property_alarm_equal_reports: FAIL; status=insufficient_evidence; findings=0/0
+START cyber_backup_immutability_conflict
+  source security:signed_attestation: 1.8s
+  source infrastructure:signed_attestation: 1.3s
+  case whole_case: 1.7s
+RESULT cyber_backup_immutability_conflict: PASS; status=insufficient_evidence; findings=0/0
+START auto_mileage_corrected_denominator
+  source lossrun:northline: 2.4s
+  source fleet:original_mileage: 1.5s
+  source fleet:signed_correction: 2.9s
+  case whole_case: 3.3s
+RESULT auto_mileage_corrected_denominator: FAIL; status=matched; findings=1/0
+START property_later_repair_does_not_rewrite_history
+  source inspection:historical: 1.8s
+  source contractor:repair: 2.4s
+  case whole_case: 3.0s
+RESULT property_later_repair_does_not_rewrite_history: FAIL; status=matched; findings=2/1
+START property_electrical_exception
+  source schedule:building: 1.3s
+  source electrical:completion: 2.1s
+  case whole_case: 2.1s
+  case whole_case: 1.8s
+RESULT property_electrical_exception: FAIL; status=matched; findings=1/0
+START cyber_service_account_exception
+  source identity:account: 1.2s
+  source security:rotation: 1.2s
+  case whole_case: 2.0s
+  case whole_case: 2.0s
+  case whole_case: 1.8s
+RESULT cyber_service_account_exception: FAIL; status=missing; findings=0/0
+START gl_hot_work_scope_exclusion
+  source operations:attestation: 1.4s
+  case whole_case: 1.3s
+  no_match_review whole_case: 1.3s
+RESULT gl_hot_work_scope_exclusion: FAIL; status=insufficient_evidence; findings=0/0
+START auto_passenger_scope_exclusion
+  source fleet:operations: 1.4s
+  case whole_case: 1.2s
+RESULT auto_passenger_scope_exclusion: PASS; status=not_applicable; findings=0/0
+START property_multiple_warehouse_concerns
+  source survey:east: 2.0s
+  source survey:west: 2.0s
+  source schedule:office: 1.4s
+  case whole_case: 2.8s
+  case whole_case: 2.7s
+RESULT property_multiple_warehouse_concerns: PASS; status=matched; findings=2/2
+START auto_multiple_expired_licences
+  source hr:driver_a: 1.9s
+  source hr:driver_b: 2.2s
+  source hr:driver_c: 1.5s
+  case whole_case: 4.0s
+  case whole_case: 3.6s
+  case whole_case: 3.8s
+RESULT auto_multiple_expired_licences: FAIL; status=missing; findings=0/2
+START cyber_multiple_restore_strengths
+  source test:billing: 2.2s
+  source test:inventory: 1.9s
+  case whole_case: 4.1s
+RESULT cyber_multiple_restore_strengths: PASS; status=matched; findings=2/2
+START property_corroboration_not_two_events
+  source contractor:test: 2.3s
+  source engineer:verification: 2.3s
+  case whole_case: 2.9s
+RESULT property_corroboration_not_two_events: PASS; status=matched; findings=1/1
+START gl_sister_company_evidence
+  source broker:corporate_chart: 1.3s
+  source news:recall_summary: 1.5s
+  case whole_case: 1.7s
+  no_match_review whole_case: 1.6s
+RESULT gl_sister_company_evidence: PASS; status=insufficient_evidence; findings=0/0
+START cyber_prior_year_does_not_prove_current
+  source audit:2024: 1.6s
+  source broker:2025_update: 1.4s
+  case whole_case: 1.8s
+  no_match_review whole_case: 1.7s
+RESULT cyber_prior_year_does_not_prove_current: PASS; status=insufficient_evidence; findings=0/0
+START property_building_specific_scope
+  source survey:a: 1.6s
+  source survey:b: 1.3s
+  case whole_case: 1.5s
+  no_match_review whole_case: 1.4s
+RESULT property_building_specific_scope: FAIL; status=no_match; findings=0/0
+START wc_partial_payroll_period
+  source payroll:q1: 2.1s
+  source payroll:request: 1.5s
+  case whole_case: 2.0s
+RESULT wc_partial_payroll_period: FAIL; status=not_applicable; findings=0/0
+START gl_document_submission_condition
+  source intake:complete_receipt: 1.3s
+  case whole_case: 1.1s
+  no_match_review whole_case: 0.9s
+RESULT gl_document_submission_condition: PASS; status=no_match; findings=0/0
+START wc_document_absence_is_concern
+  source intake:document_inventory: 1.4s
+  case whole_case: 1.2s
+  no_match_review whole_case: 1.1s
+RESULT wc_document_absence_is_concern: FAIL; status=no_match; findings=0/1
+START wc_activity_explicitly_not_performed
+  source manager:signed_declaration: 1.6s
+  case whole_case: 1.4s
+  no_match_review whole_case: 1.5s
+RESULT wc_activity_explicitly_not_performed: PASS; status=no_match; findings=0/0
+START property_inspection_date_unknown
+  source maintenance:records: 1.6s
+  source survey:visual: 1.5s
+  case whole_case: 1.6s
+RESULT property_inspection_date_unknown: PASS; status=insufficient_evidence; findings=0/0
+START property_cross_source_alarm_and_value
+  source stock:declaration: 1.4s
+  source security:certificate: 1.4s
+  source security:certificate: 1.4s
+  source security:certificate: 1.2s
+  case whole_case: 1.4s
+  no_match_review whole_case: 1.6s
+RESULT property_cross_source_alarm_and_value: FAIL; status=no_match; findings=0/1
+START gl_loss_aggregation_without_duplicate
+  source lossrun:primary: 3.9s
+  source broker:claim_note: 2.0s
+  source broker:claim_note: 1.7s
+  source broker:claim_note: 1.4s
+  case whole_case: 4.9s
+RESULT gl_loss_aggregation_without_duplicate: FAIL; status=matched; findings=1/1
+START cyber_restore_duration_cross_midnight
+  source restore:start_log: 1.5s
+  source restore:completion_log: 2.2s
+  case whole_case: 3.3s
+  case whole_case: 2.0s
+RESULT cyber_restore_duration_cross_midnight: FAIL; status=insufficient_evidence; findings=0/0
+START property_expired_exception_certificate
+  source survey:stack_height: 1.8s
+  source engineer:approval: 1.6s
+  case whole_case: 2.3s
+  no_match_review whole_case: 2.3s
+RESULT property_expired_exception_certificate: FAIL; status=no_match; findings=0/1
+Saved C:\Users\Will\Projects\project-langchain-source\evals\results\unseen-v1-three-runs\run-03.json and C:\Users\Will\Projects\project-langchain-source\evals\results\unseen-v1-three-runs\run-03.md

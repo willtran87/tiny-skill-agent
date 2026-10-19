@@ -8,7 +8,8 @@ from langchain_core.messages import ToolMessage
 
 from .assessment import (
     ASSESSMENT_PROMPT, AssessmentConfig, AssessmentInputs, AssessmentModel,
-    CoverageDraft, Criterion, Evidence, assess,
+    CoverageDraft, Criterion, Evidence, NoMatchReviewDraft, NO_MATCH_REVIEW_PROMPT, assess,
+    PredicateDraft, PREDICATE_PROMPT, DECISION_REVIEW_PROMPT,
 )
 from .evidence import (
     SOURCE_KINDS, build_criterion_inventory, build_fact_spans,
@@ -67,11 +68,15 @@ def make_langchain_assessor(model: Any, *, method: str | None = None) -> Assessm
     exceptions, parsing failures, and truncation are retried/reported by assess.
     """
     options = {"method": method} if method is not None else {}
-    structured = model.with_structured_output(CoverageDraft, include_raw=True, **options)
+    structured = model.with_structured_output(PredicateDraft, include_raw=True, **options)
 
-    def invoke(payload: dict[str, Any]) -> CoverageDraft:
-        response = structured.invoke([
-            ("system", ASSESSMENT_PROMPT),
+    def invoke(payload: dict[str, Any]) -> CoverageDraft | NoMatchReviewDraft | PredicateDraft:
+        reviewing = payload.get("stage") == "no_match_review"
+        independent = payload.get("stage") == "decision_review"
+        schema = NoMatchReviewDraft if reviewing else PredicateDraft
+        runnable = model.with_structured_output(schema, include_raw=True, **options) if reviewing else structured
+        response = runnable.invoke([
+            ("system", NO_MATCH_REVIEW_PROMPT if reviewing else DECISION_REVIEW_PROMPT if independent else PREDICATE_PROMPT),
             ("human", json.dumps(payload, ensure_ascii=False)),
         ])
         raw = response.get("raw")
@@ -81,7 +86,13 @@ def make_langchain_assessor(model: Any, *, method: str | None = None) -> Assessm
             raise ValueError("Model output was truncated")
         if response.get("parsing_error") or response.get("parsed") is None:
             raise ValueError(f"Model output could not be parsed: {response.get('parsing_error')}")
-        return CoverageDraft.model_validate(response["parsed"])
+        draft = schema.model_validate(response["parsed"])
+        if not reviewing:
+            for row in draft.root:
+                rule = payload["criteria"].get(row.criterion_id)
+                if rule is None or row.condition_quote not in rule["text"]:
+                    raise ValueError("condition_quote must be an exact excerpt from the requested criterion.text")
+        return draft if reviewing or independent else CoverageDraft([row.assessment() for row in draft.root])
 
     return invoke
 

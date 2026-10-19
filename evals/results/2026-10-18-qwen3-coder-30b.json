@@ -1,0 +1,2741 @@
+{
+  "state": "completed",
+  "metadata": {
+    "started_at": "2026-10-18T23:15:01.055812+00:00",
+    "model": "qwen3-coder:30b",
+    "model_settings": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096
+    },
+    "ollama_version": {
+      "version": "0.35.0"
+    },
+    "model_metadata": {
+      "name": "qwen3-coder:30b",
+      "model": "qwen3-coder:30b",
+      "modified_at": "2026-01-30T20:50:10.3385655-06:00",
+      "size": 18556700761,
+      "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen3moe",
+        "families": [
+          "qwen3moe"
+        ],
+        "parameter_size": "30.5B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2048
+      },
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "git_commit": "2c2b2ba285fbca0ea3e83262e600fb15a159f14c",
+    "git_status": "?? evals/",
+    "dataset_sha256": "634b4acbb3c1083584409b71cf2fc944b210f324adee90dd9e88a8d502970fc7",
+    "assessment_prompt_sha256": "0ed72dfd9fa5214e31bd610d114deefd5dbaff04419701895dc7c08cbb5fa66c",
+    "packages": {
+      "langchain": "1.4.2",
+      "langchain-ollama": "1.1.0",
+      "langgraph": "1.2.12",
+      "pydantic": "2.13.5"
+    },
+    "assessment_config": {
+      "batch_size": 1,
+      "retry_batch_size": 1,
+      "max_retries": 2,
+      "confirm_no_match": true
+    },
+    "planned_cases": 8,
+    "finished_at": "2026-10-18T23:16:14.472921+00:00"
+  },
+  "cases": [
+    {
+      "id": "unrelated_financials",
+      "category": "unrelated_evidence",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "rationale": "Revenue and headcount do not establish training completion. Absence of relevant evidence does not establish no_match."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "status": "insufficient_evidence",
+            "evidence_ids": [],
+            "reason": "The provided evidence (E1) only contains information about annual revenue ($8 million) and number of employees (42), but does not include any data about fire-safety training completion rates. Criterion C1 requires information about annual fire-safety training completion being below 90% of employees, which is not present in the supplied evidence."
+          }
+        },
+        "source_assessments": {
+          "application:financials": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "insufficient_evidence",
+              "evidence_ids": [],
+              "reason": "The provided evidence (E1) only contains information about annual revenue ($8 million) and number of employees (42), but does not include any data about fire-safety training completion rates. Criterion C1 requires information about annual fire-safety training completion being below 90% of employees, which is not present in the supplied evidence."
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [
+            "C1"
+          ],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "complete": true,
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag a concern when annual fire-safety training completion is below 90% of employees.",
+              "source_id": "guideline:training",
+              "source_label": "",
+              "classification": "concern",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "application:financials",
+              "source_label": "",
+              "quote": "The applicant reported annual revenue of $8 million and 42 employees.",
+              "locator": "paragraph:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "application:financials",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern when annual fire-safety training completion is below 90% of employees.",
+                "source_id": "guideline:training",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:financials",
+                "source_label": "",
+                "quote": "The applicant reported annual revenue of $8 million and 42 employees.",
+                "locator": "paragraph:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "insufficient_evidence",
+              "evidence_ids": [],
+              "reason": "The provided evidence (E1) only contains information about annual revenue ($8 million) and number of employees (42), but does not include any data about fire-safety training completion rates. Criterion C1 requires information about annual fire-safety training completion being below 90% of employees, which is not present in the supplied evidence."
+            }
+          ],
+          "elapsed_seconds": 26.466
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern when annual fire-safety training completion is below 90% of employees.",
+                "source_id": "guideline:training",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:financials",
+                "source_label": "",
+                "quote": "The applicant reported annual revenue of $8 million and 42 employees.",
+                "locator": "paragraph:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "application:financials": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "insufficient_evidence",
+                  "evidence_ids": [],
+                  "reason": "The provided evidence (E1) only contains information about annual revenue ($8 million) and number of employees (42), but does not include any data about fire-safety training completion rates. Criterion C1 requires information about annual fire-safety training completion being below 90% of employees, which is not present in the supplied evidence."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "insufficient_evidence",
+              "evidence_ids": [],
+              "reason": "The provided evidence (E1) only contains information about annual revenue ($8 million) and number of employees (42), but does not include any data about fire-safety training completion rates. Criterion C1 requires information about annual fire-safety training completion being below 90% of employees, which is not present in the supplied evidence."
+            }
+          ],
+          "elapsed_seconds": 1.05
+        }
+      ],
+      "elapsed_seconds": 27.516,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "insufficient_evidence",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 0,
+        "reference_checks_passed": 0,
+        "false_positive_findings": 0,
+        "reason": "The provided evidence (E1) only contains information about annual revenue ($8 million) and number of employees (42), but does not include any data about fire-safety training completion rates. Criterion C1 requires information about annual fire-safety training completion being below 90% of employees, which is not present in the supplied evidence."
+      }
+    },
+    {
+      "id": "unrelated_lexical_overlap",
+      "category": "unrelated_evidence",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [],
+        "findings": [],
+        "rationale": "The training population and subject differ. Accountants completing cybersecurity training says nothing about forklift training."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "status": "no_match",
+            "evidence_ids": [
+              "E1"
+            ],
+            "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+          }
+        },
+        "source_assessments": {
+          "hr:2025": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "complete": true,
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a strength when all forklift operators completed certified forklift safety training during 2025.",
+              "source_id": "skill:workplace-safety",
+              "source_label": "",
+              "classification": "strength",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "hr:2025",
+              "source_label": "",
+              "quote": "During 2025, all office accountants completed cybersecurity training. No forklift-operator training records were provided.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "hr:2025",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength when all forklift operators completed certified forklift safety training during 2025.",
+                "source_id": "skill:workplace-safety",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "hr:2025",
+                "source_label": "",
+                "quote": "During 2025, all office accountants completed cybersecurity training. No forklift-operator training records were provided.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+            }
+          ],
+          "elapsed_seconds": 1.23
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength when all forklift operators completed certified forklift safety training during 2025.",
+                "source_id": "skill:workplace-safety",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "hr:2025",
+                "source_label": "",
+                "quote": "During 2025, all office accountants completed cybersecurity training. No forklift-operator training records were provided.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "hr:2025": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+            }
+          ],
+          "elapsed_seconds": 1.333
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a strength when all forklift operators completed certified forklift safety training during 2025.",
+                "source_id": "skill:workplace-safety",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "hr:2025",
+                "source_label": "",
+                "quote": "During 2025, all office accountants completed cybersecurity training. No forklift-operator training records were provided.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "hr:2025": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+            }
+          ],
+          "elapsed_seconds": 1.101
+        }
+      ],
+      "elapsed_seconds": 3.665,
+      "score": {
+        "status_correct": false,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": false,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 0,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "Criterion C1 requires evidence that all forklift operators completed certified forklift safety training during 2025. Evidence E1 states that 'No forklift-operator training records were provided' and only mentions that 'During 2025, all office accountants completed cybersecurity training.' The absence of forklift operator training records directly contradicts the requirement for certification completion, making this a no_match rather than insufficient evidence."
+      }
+    },
+    {
+      "id": "contradiction_unresolved",
+      "category": "contradictions",
+      "expected": {
+        "status": "insufficient_evidence",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [],
+        "rationale": "Equally authoritative contemporaneous reports conflict. Both must be cited and the conflict cannot be resolved from these inputs."
+      },
+      "result": {
+        "findings": [
+          {
+            "criterion_id": "C1",
+            "criterion": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+            "criterion_source": "guideline:property",
+            "criterion_source_label": "",
+            "classification": "concern",
+            "facts": [
+              {
+                "evidence_id": "E1",
+                "source": "inspection:a",
+                "source_label": "",
+                "locator": "line:1",
+                "quote": "Warehouse A sprinkler system: inoperable on 2025-06-30.",
+                "context": "Independent qualified inspection. Same inspection time and authority as inspection B; no precedence or correction is documented."
+              }
+            ],
+            "reason": "The evidence directly supports the criterion: 'Warehouse A sprinkler system: inoperable on 2025-06-30.' This confirms that the warehouse sprinkler system was indeed inoperable on the specified date (2025-06-30), which triggers the flag for concern as stated in criterion C1."
+          }
+        ],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "status": "matched",
+            "evidence_ids": [
+              "E1"
+            ],
+            "reason": "The evidence directly supports the criterion: 'Warehouse A sprinkler system: inoperable on 2025-06-30.' This confirms that the warehouse sprinkler system was indeed inoperable on the specified date (2025-06-30), which triggers the flag for concern as stated in criterion C1."
+          }
+        },
+        "source_assessments": {
+          "inspection:a": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion: 'Warehouse A sprinkler system: inoperable on 2025-06-30.' This confirms that the warehouse sprinkler system was indeed inoperable on the specified date (2025-06-30), which triggers the flag for concern as stated in criterion C1."
+            }
+          },
+          "inspection:b": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence shows that the warehouse sprinkler system was 'fully operational on 2025-06-30,' which directly contradicts the criterion's requirement for an inoperable system on that date. Since the system was operational, there is no basis to flag a concern as required by C1."
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [
+            "C1"
+          ],
+          "no_match": [],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "complete": true,
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+              "source_id": "guideline:property",
+              "source_label": "",
+              "classification": "concern",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "inspection:a",
+              "source_label": "",
+              "quote": "Warehouse A sprinkler system: inoperable on 2025-06-30.",
+              "locator": "line:1",
+              "context": "Independent qualified inspection. Same inspection time and authority as inspection B; no precedence or correction is documented."
+            },
+            {
+              "id": "E2",
+              "source_id": "inspection:b",
+              "source_label": "",
+              "quote": "Warehouse A sprinkler system: fully operational on 2025-06-30.",
+              "locator": "line:1",
+              "context": "Independent qualified inspection. Same inspection time and authority as inspection A; no precedence or correction is documented."
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:a",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+                "source_id": "guideline:property",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:a",
+                "source_label": "",
+                "quote": "Warehouse A sprinkler system: inoperable on 2025-06-30.",
+                "locator": "line:1",
+                "context": "Independent qualified inspection. Same inspection time and authority as inspection B; no precedence or correction is documented."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion: 'Warehouse A sprinkler system: inoperable on 2025-06-30.' This confirms that the warehouse sprinkler system was indeed inoperable on the specified date (2025-06-30), which triggers the flag for concern as stated in criterion C1."
+            }
+          ],
+          "elapsed_seconds": 1.173
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:b",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+                "source_id": "guideline:property",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:b",
+                "source_label": "",
+                "quote": "Warehouse A sprinkler system: fully operational on 2025-06-30.",
+                "locator": "line:1",
+                "context": "Independent qualified inspection. Same inspection time and authority as inspection A; no precedence or correction is documented."
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence shows that the warehouse sprinkler system was 'fully operational on 2025-06-30,' which directly contradicts the criterion's requirement for an inoperable system on that date. Since the system was operational, there is no basis to flag a concern as required by C1."
+            }
+          ],
+          "elapsed_seconds": 1.053
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+                "source_id": "guideline:property",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:a",
+                "source_label": "",
+                "quote": "Warehouse A sprinkler system: inoperable on 2025-06-30.",
+                "locator": "line:1",
+                "context": "Independent qualified inspection. Same inspection time and authority as inspection B; no precedence or correction is documented."
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:b",
+                "source_label": "",
+                "quote": "Warehouse A sprinkler system: fully operational on 2025-06-30.",
+                "locator": "line:1",
+                "context": "Independent qualified inspection. Same inspection time and authority as inspection A; no precedence or correction is documented."
+              }
+            },
+            "source_assessments": {
+              "inspection:a": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence directly supports the criterion: 'Warehouse A sprinkler system: inoperable on 2025-06-30.' This confirms that the warehouse sprinkler system was indeed inoperable on the specified date (2025-06-30), which triggers the flag for concern as stated in criterion C1."
+                }
+              },
+              "inspection:b": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The evidence shows that the warehouse sprinkler system was 'fully operational on 2025-06-30,' which directly contradicts the criterion's requirement for an inoperable system on that date. Since the system was operational, there is no basis to flag a concern as required by C1."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion: 'Warehouse A sprinkler system: inoperable on 2025-06-30.' This confirms that the warehouse sprinkler system was indeed inoperable on the specified date (2025-06-30), which triggers the flag for concern as stated in criterion C1."
+            }
+          ],
+          "elapsed_seconds": 1.146
+        }
+      ],
+      "elapsed_seconds": 3.372,
+      "score": {
+        "status_correct": false,
+        "required_evidence_covered": false,
+        "atomic_findings_correct": false,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": false,
+        "expected_status": "insufficient_evidence",
+        "actual_status": "matched",
+        "expected_findings": 0,
+        "actual_findings": 1,
+        "required_evidence_count": 2,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [
+          "E2"
+        ],
+        "reference_checks": 5,
+        "reference_checks_passed": 5,
+        "false_positive_findings": 1,
+        "reason": "The evidence directly supports the criterion: 'Warehouse A sprinkler system: inoperable on 2025-06-30.' This confirms that the warehouse sprinkler system was indeed inoperable on the specified date (2025-06-30), which triggers the flag for concern as stated in criterion C1."
+      }
+    },
+    {
+      "id": "contradiction_explicit_correction",
+      "category": "contradictions",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E2"
+        ],
+        "findings": [],
+        "rationale": "The explicit correction resolves the conflict for the same date. This is not missing evidence or an exclusion from scope."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "status": "no_match",
+            "evidence_ids": [
+              "E2"
+            ],
+            "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional."
+          }
+        },
+        "source_assessments": {
+          "inspection:original": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion. Evidence E1 states 'Warehouse A sprinkler system was inoperable on 2025-06-30' which matches the criterion C1 that requires flagging a concern if the warehouse sprinkler system was inoperable on 2025-06-30. The date and condition exactly match the requirement."
+            }
+          },
+          "inspection:correction": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional."
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "complete": true,
+          "decision_ready": false,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [
+          {
+            "source_id": "inspection:original",
+            "criterion_id": "C1",
+            "source_status": "matched",
+            "case_status": "no_match"
+          }
+        ],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+              "source_id": "guideline:property",
+              "source_label": "",
+              "classification": "concern",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "inspection:original",
+              "source_label": "",
+              "quote": "Report R1: Warehouse A sprinkler system was inoperable on 2025-06-30.",
+              "locator": "line:1",
+              "context": ""
+            },
+            {
+              "id": "E2",
+              "source_id": "inspection:correction",
+              "source_label": "",
+              "quote": "Signed correction to R1 by its original inspector, issued 2025-07-01: the inoperable entry was a transcription error. The sprinkler system was fully operational on 2025-06-30. This correction supersedes R1.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:original",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+                "source_id": "guideline:property",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:original",
+                "source_label": "",
+                "quote": "Report R1: Warehouse A sprinkler system was inoperable on 2025-06-30.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion. Evidence E1 states 'Warehouse A sprinkler system was inoperable on 2025-06-30' which matches the criterion C1 that requires flagging a concern if the warehouse sprinkler system was inoperable on 2025-06-30. The date and condition exactly match the requirement."
+            }
+          ],
+          "elapsed_seconds": 1.264
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:correction",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+                "source_id": "guideline:property",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:correction",
+                "source_label": "",
+                "quote": "Signed correction to R1 by its original inspector, issued 2025-07-01: the inoperable entry was a transcription error. The sprinkler system was fully operational on 2025-06-30. This correction supersedes R1.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional."
+            }
+          ],
+          "elapsed_seconds": 1.11
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+                "source_id": "guideline:property",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:original",
+                "source_label": "",
+                "quote": "Report R1: Warehouse A sprinkler system was inoperable on 2025-06-30.",
+                "locator": "line:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:correction",
+                "source_label": "",
+                "quote": "Signed correction to R1 by its original inspector, issued 2025-07-01: the inoperable entry was a transcription error. The sprinkler system was fully operational on 2025-06-30. This correction supersedes R1.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:original": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence directly supports the criterion. Evidence E1 states 'Warehouse A sprinkler system was inoperable on 2025-06-30' which matches the criterion C1 that requires flagging a concern if the warehouse sprinkler system was inoperable on 2025-06-30. The date and condition exactly match the requirement."
+                }
+              },
+              "inspection:correction": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional. Although E1 initially suggested inoperability, E2 supersedes this finding by stating the sprinkler system was fully operational on 2025-06-30, thus negating the condition required for a concern under C1."
+            }
+          ],
+          "elapsed_seconds": 1.62
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a concern if the warehouse sprinkler system was inoperable on 2025-06-30.",
+                "source_id": "guideline:property",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:original",
+                "source_label": "",
+                "quote": "Report R1: Warehouse A sprinkler system was inoperable on 2025-06-30.",
+                "locator": "line:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:correction",
+                "source_label": "",
+                "quote": "Signed correction to R1 by its original inspector, issued 2025-07-01: the inoperable entry was a transcription error. The sprinkler system was fully operational on 2025-06-30. This correction supersedes R1.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:original": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence directly supports the criterion. Evidence E1 states 'Warehouse A sprinkler system was inoperable on 2025-06-30' which matches the criterion C1 that requires flagging a concern if the warehouse sprinkler system was inoperable on 2025-06-30. The date and condition exactly match the requirement."
+                }
+              },
+              "inspection:correction": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional."
+            }
+          ],
+          "elapsed_seconds": 0.956
+        }
+      ],
+      "elapsed_seconds": 4.95,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 3,
+        "reference_checks_passed": 3,
+        "false_positive_findings": 0,
+        "reason": "The evidence shows that the warehouse sprinkler system was fully operational on 2025-06-30, which directly contradicts the criterion's requirement for flagging a concern when the system was inoperable on that date. The correction explicitly states that the 'inoperable entry' was a transcription error, confirming the system was actually functional."
+      }
+    },
+    {
+      "id": "exception_qualifies",
+      "category": "exceptions",
+      "expected": {
+        "status": "no_match",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [],
+        "rationale": "The rule applies to this occupied building but its explicit exception defeats the concern. Certification is four months old and exceeds the 10-year threshold."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "status": "no_match",
+            "evidence_ids": [
+              "E1",
+              "E2"
+            ],
+            "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01, which meets the condition of an occupied building with a roof older than 20 years. However, a licensed engineer certified on 2025-03-01 that Building A's roof had 12 years of remaining useful life, which exceeds the required minimum of 10 years and falls within the past 12 months. Since the exception condition is met (a licensed engineer certified at least 10 years of remaining useful life within the past 12 months), the concern is not flagged under C1. Therefore, the status is no_match."
+          }
+        },
+        "source_assessments": {
+          "application:building": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01. This meets the condition of an occupied building with a roof older than 20 years, but there is no evidence provided that a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Since the exception condition is not met, the concern is flagged as no_match."
+            }
+          },
+          "engineering:roof": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The criterion requires that for an occupied building, a roof older than 20 years should be flagged as a concern, unless a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. The evidence shows that on 2025-03-01, a licensed engineer certified Building A's roof had 12 years of remaining useful life. Since 12 years exceeds the required minimum of 10 years of remaining useful life, and this certification was within the past 12 months (as of 2025-07-01), the condition for not flagging a concern is met. Therefore, there is no concern flagged under C1."
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "complete": true,
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "For an occupied building, flag a concern for a roof older than 20 years, except when a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Assess as of 2025-07-01.",
+              "source_id": "skill:roof",
+              "source_label": "",
+              "classification": "concern",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "application:building",
+              "source_label": "",
+              "quote": "Building A is occupied and its roof is 25 years old as of 2025-07-01.",
+              "locator": "line:1",
+              "context": ""
+            },
+            {
+              "id": "E2",
+              "source_id": "engineering:roof",
+              "source_label": "",
+              "quote": "On 2025-03-01 a licensed engineer certified Building A's roof had 12 years of remaining useful life.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "application:building",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "For an occupied building, flag a concern for a roof older than 20 years, except when a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Assess as of 2025-07-01.",
+                "source_id": "skill:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:building",
+                "source_label": "",
+                "quote": "Building A is occupied and its roof is 25 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01. This meets the condition of an occupied building with a roof older than 20 years, but there is no evidence provided that a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Since the exception condition is not met, the concern is flagged as no_match."
+            }
+          ],
+          "elapsed_seconds": 1.41
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "engineering:roof",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "For an occupied building, flag a concern for a roof older than 20 years, except when a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Assess as of 2025-07-01.",
+                "source_id": "skill:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "engineering:roof",
+                "source_label": "",
+                "quote": "On 2025-03-01 a licensed engineer certified Building A's roof had 12 years of remaining useful life.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The criterion requires that for an occupied building, a roof older than 20 years should be flagged as a concern, unless a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. The evidence shows that on 2025-03-01, a licensed engineer certified Building A's roof had 12 years of remaining useful life. Since 12 years exceeds the required minimum of 10 years of remaining useful life, and this certification was within the past 12 months (as of 2025-07-01), the condition for not flagging a concern is met. Therefore, there is no concern flagged under C1."
+            }
+          ],
+          "elapsed_seconds": 1.804
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "For an occupied building, flag a concern for a roof older than 20 years, except when a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Assess as of 2025-07-01.",
+                "source_id": "skill:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:building",
+                "source_label": "",
+                "quote": "Building A is occupied and its roof is 25 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "engineering:roof",
+                "source_label": "",
+                "quote": "On 2025-03-01 a licensed engineer certified Building A's roof had 12 years of remaining useful life.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "application:building": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01. This meets the condition of an occupied building with a roof older than 20 years, but there is no evidence provided that a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Since the exception condition is not met, the concern is flagged as no_match."
+                }
+              },
+              "engineering:roof": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The criterion requires that for an occupied building, a roof older than 20 years should be flagged as a concern, unless a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. The evidence shows that on 2025-03-01, a licensed engineer certified Building A's roof had 12 years of remaining useful life. Since 12 years exceeds the required minimum of 10 years of remaining useful life, and this certification was within the past 12 months (as of 2025-07-01), the condition for not flagging a concern is met. Therefore, there is no concern flagged under C1."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01, which meets the condition of an occupied building with a roof older than 20 years. However, a licensed engineer certified on 2025-03-01 that Building A's roof had 12 years of remaining useful life, which exceeds the required minimum of 10 years and falls within the past 12 months. Since the exception condition is met (a licensed engineer certified at least 10 years of remaining useful life within the past 12 months), the concern is not flagged under C1. Therefore, the status is no_match."
+            }
+          ],
+          "elapsed_seconds": 1.851
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "For an occupied building, flag a concern for a roof older than 20 years, except when a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Assess as of 2025-07-01.",
+                "source_id": "skill:roof",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "application:building",
+                "source_label": "",
+                "quote": "Building A is occupied and its roof is 25 years old as of 2025-07-01.",
+                "locator": "line:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "engineering:roof",
+                "source_label": "",
+                "quote": "On 2025-03-01 a licensed engineer certified Building A's roof had 12 years of remaining useful life.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "application:building": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01. This meets the condition of an occupied building with a roof older than 20 years, but there is no evidence provided that a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. Since the exception condition is not met, the concern is flagged as no_match."
+                }
+              },
+              "engineering:roof": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The criterion requires that for an occupied building, a roof older than 20 years should be flagged as a concern, unless a licensed engineer certified at least 10 years of remaining useful life within the past 12 months. The evidence shows that on 2025-03-01, a licensed engineer certified Building A's roof had 12 years of remaining useful life. Since 12 years exceeds the required minimum of 10 years of remaining useful life, and this certification was within the past 12 months (as of 2025-07-01), the condition for not flagging a concern is met. Therefore, there is no concern flagged under C1."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1",
+                "E2"
+              ],
+              "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01, which meets the condition of an occupied building with a roof older than 20 years. However, a licensed engineer certified on 2025-03-01 that Building A's roof had 12 years of remaining useful life, which exceeds the required minimum of 10 years and falls within the past 12 months. Since the exception condition is met (a licensed engineer certified at least 10 years of remaining useful life within the past 12 months), the concern is not flagged under C1. Therefore, the status is no_match."
+            }
+          ],
+          "elapsed_seconds": 1.587
+        }
+      ],
+      "elapsed_seconds": 6.652,
+      "score": {
+        "status_correct": true,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": true,
+        "expected_status": "no_match",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 2,
+        "required_evidence_found": 2,
+        "missing_required_evidence": [],
+        "reference_checks": 4,
+        "reference_checks_passed": 4,
+        "false_positive_findings": 0,
+        "reason": "The evidence shows that Building A is occupied and its roof is 25 years old as of 2025-07-01, which meets the condition of an occupied building with a roof older than 20 years. However, a licensed engineer certified on 2025-03-01 that Building A's roof had 12 years of remaining useful life, which exceeds the required minimum of 10 years and falls within the past 12 months. Since the exception condition is met (a licensed engineer certified at least 10 years of remaining useful life within the past 12 months), the concern is not flagged under C1. Therefore, the status is no_match."
+      }
+    },
+    {
+      "id": "exception_scope_exclusion",
+      "category": "exceptions",
+      "expected": {
+        "status": "not_applicable",
+        "required_evidence_ids": [
+          "E1"
+        ],
+        "findings": [],
+        "rationale": "The explicit fryer scope excludes this premises. No service history is needed to establish the exclusion."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {
+          "C1": {
+            "criterion_id": "C1",
+            "status": "no_match",
+            "evidence_ids": [
+              "E1"
+            ],
+            "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+          }
+        },
+        "source_assessments": {
+          "inspection:operations": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [
+            "C1"
+          ],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [],
+          "unconfirmed_no_match": [],
+          "complete": true,
+          "decision_ready": true,
+          "errors": []
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "This rule applies only to commercial kitchens with deep-fat fryers. Flag a concern when the hood suppression system has not been serviced in the past six months.",
+              "source_id": "system:restaurant-scope",
+              "source_label": "",
+              "classification": "concern",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "inspection:operations",
+              "source_label": "",
+              "quote": "This premises operates exclusively as a cold-food sandwich shop. It has no deep-fat fryers and no hot-cooking equipment.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:operations",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "This rule applies only to commercial kitchens with deep-fat fryers. Flag a concern when the hood suppression system has not been serviced in the past six months.",
+                "source_id": "system:restaurant-scope",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:operations",
+                "source_label": "",
+                "quote": "This premises operates exclusively as a cold-food sandwich shop. It has no deep-fat fryers and no hot-cooking equipment.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+            }
+          ],
+          "elapsed_seconds": 1.074
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "This rule applies only to commercial kitchens with deep-fat fryers. Flag a concern when the hood suppression system has not been serviced in the past six months.",
+                "source_id": "system:restaurant-scope",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:operations",
+                "source_label": "",
+                "quote": "This premises operates exclusively as a cold-food sandwich shop. It has no deep-fat fryers and no hot-cooking equipment.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:operations": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+            }
+          ],
+          "elapsed_seconds": 1.097
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "This rule applies only to commercial kitchens with deep-fat fryers. Flag a concern when the hood suppression system has not been serviced in the past six months.",
+                "source_id": "system:restaurant-scope",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:operations",
+                "source_label": "",
+                "quote": "This premises operates exclusively as a cold-food sandwich shop. It has no deep-fat fryers and no hot-cooking equipment.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:operations": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "no_match",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+            }
+          ],
+          "elapsed_seconds": 0.954
+        }
+      ],
+      "elapsed_seconds": 3.124,
+      "score": {
+        "status_correct": false,
+        "required_evidence_covered": true,
+        "atomic_findings_correct": true,
+        "reference_integrity": true,
+        "coverage_complete": true,
+        "passed": false,
+        "expected_status": "not_applicable",
+        "actual_status": "no_match",
+        "expected_findings": 0,
+        "actual_findings": 0,
+        "required_evidence_count": 1,
+        "required_evidence_found": 1,
+        "missing_required_evidence": [],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "Criterion C1 applies only to commercial kitchens with deep-fat fryers, but evidence E1 states that the premises operates exclusively as a cold-food sandwich shop with no deep-fat fryers and no hot-cooking equipment. This directly contradicts the applicable condition for C1, making it inapplicable to this specific case."
+      }
+    },
+    {
+      "id": "multiple_concerns_one_source",
+      "category": "multiple_findings",
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [
+          {
+            "id": "building_a",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "id": "building_b",
+            "evidence_ids": [
+              "E2"
+            ]
+          }
+        ],
+        "rationale": "A and B each warrant a separate concern; C does not. A single combined finding fails the requested output granularity even if it cites both roofs."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {},
+        "source_assessments": {
+          "schedule:buildings": {}
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [
+            "C1"
+          ],
+          "unconfirmed_no_match": [],
+          "complete": false,
+          "decision_ready": false,
+          "errors": [
+            {
+              "stage": "source",
+              "source_id": "schedule:buildings",
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            },
+            {
+              "stage": "source",
+              "source_id": "schedule:buildings",
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            },
+            {
+              "stage": "source",
+              "source_id": "schedule:buildings",
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            }
+          ]
+        },
+        "source_coverage": {
+          "sources": 1,
+          "criteria": 1,
+          "expected_pairs": 1,
+          "missing": [
+            {
+              "source_id": "schedule:buildings",
+              "criterion_id": "C1"
+            }
+          ],
+          "complete": false
+        },
+        "disagreements": [],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.",
+              "source_id": "guideline:roofs",
+              "source_label": "",
+              "classification": "concern",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "schedule:buildings",
+              "source_label": "",
+              "quote": "Building A is occupied and has a 24-year-old roof.",
+              "locator": "row:1",
+              "context": ""
+            },
+            {
+              "id": "E2",
+              "source_id": "schedule:buildings",
+              "source_label": "",
+              "quote": "Building B is occupied and has a 31-year-old roof.",
+              "locator": "row:2",
+              "context": ""
+            },
+            {
+              "id": "E3",
+              "source_id": "schedule:buildings",
+              "source_label": "",
+              "quote": "Building C is occupied and has a 5-year-old roof.",
+              "locator": "row:3",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "schedule:buildings",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.",
+                "source_id": "guideline:roofs",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building A is occupied and has a 24-year-old roof.",
+                "locator": "row:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building B is occupied and has a 31-year-old roof.",
+                "locator": "row:2",
+                "context": ""
+              },
+              "E3": {
+                "id": "E3",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building C is occupied and has a 5-year-old roof.",
+                "locator": "row:3",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Building A is occupied and has a 24-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "Building B is occupied and has a 31-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E3"
+              ],
+              "reason": "Building C is occupied but has a 5-year-old roof, which does not exceed the 20-year threshold specified in criterion C1. Therefore, this building does not meet the criteria for flagging a separate concern."
+            }
+          ],
+          "elapsed_seconds": 2.571
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "schedule:buildings",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.",
+                "source_id": "guideline:roofs",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building A is occupied and has a 24-year-old roof.",
+                "locator": "row:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building B is occupied and has a 31-year-old roof.",
+                "locator": "row:2",
+                "context": ""
+              },
+              "E3": {
+                "id": "E3",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building C is occupied and has a 5-year-old roof.",
+                "locator": "row:3",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Building A is occupied and has a 24-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "Building B is occupied and has a 31-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E3"
+              ],
+              "reason": "Building C is occupied but has a 5-year-old roof, which does not exceed the 20-year threshold specified in criterion C1. Therefore, it does not meet the requirement for flagging a separate concern."
+            }
+          ],
+          "elapsed_seconds": 2.35
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "schedule:buildings",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.",
+                "source_id": "guideline:roofs",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building A is occupied and has a 24-year-old roof.",
+                "locator": "row:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building B is occupied and has a 31-year-old roof.",
+                "locator": "row:2",
+                "context": ""
+              },
+              "E3": {
+                "id": "E3",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building C is occupied and has a 5-year-old roof.",
+                "locator": "row:3",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Building A is occupied and has a 24-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "Building B is occupied and has a 31-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E3"
+              ],
+              "reason": "Building C is occupied but has a 5-year-old roof, which does not exceed the 20-year threshold specified in criterion C1. Therefore, it does not meet the requirement for flagging a separate concern."
+            }
+          ],
+          "elapsed_seconds": 2.333
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.",
+                "source_id": "guideline:roofs",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building A is occupied and has a 24-year-old roof.",
+                "locator": "row:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building B is occupied and has a 31-year-old roof.",
+                "locator": "row:2",
+                "context": ""
+              },
+              "E3": {
+                "id": "E3",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building C is occupied and has a 5-year-old roof.",
+                "locator": "row:3",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "schedule:buildings": {}
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Building A is occupied and has a 24-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "Building B is occupied and has a 31-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E3"
+              ],
+              "reason": "Building C is occupied but has a 5-year-old roof, which does not exceed the 20-year threshold specified in criterion C1. Therefore, it does not meet the requirement for flagging a separate concern."
+            }
+          ],
+          "elapsed_seconds": 2.649
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.",
+                "source_id": "guideline:roofs",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building A is occupied and has a 24-year-old roof.",
+                "locator": "row:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building B is occupied and has a 31-year-old roof.",
+                "locator": "row:2",
+                "context": ""
+              },
+              "E3": {
+                "id": "E3",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building C is occupied and has a 5-year-old roof.",
+                "locator": "row:3",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "schedule:buildings": {}
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Building A is occupied and has a 24-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "Building B is occupied and has a 31-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E3"
+              ],
+              "reason": "Building C is occupied but has a 5-year-old roof, which does not exceed the 20-year threshold specified in criterion C1. Therefore, it does not meet the requirement for flagging a separate concern."
+            }
+          ],
+          "elapsed_seconds": 2.39
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Flag a separate concern for each occupied building whose roof is more than 20 years old.",
+                "source_id": "guideline:roofs",
+                "source_label": "",
+                "classification": "concern",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building A is occupied and has a 24-year-old roof.",
+                "locator": "row:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building B is occupied and has a 31-year-old roof.",
+                "locator": "row:2",
+                "context": ""
+              },
+              "E3": {
+                "id": "E3",
+                "source_id": "schedule:buildings",
+                "source_label": "",
+                "quote": "Building C is occupied and has a 5-year-old roof.",
+                "locator": "row:3",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "schedule:buildings": {}
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "Building A is occupied and has a 24-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "Building B is occupied and has a 31-year-old roof, which exceeds the 20-year threshold specified in criterion C1. This meets the requirement for flagging a separate concern for occupied buildings with roofs more than 20 years old."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "no_match",
+              "evidence_ids": [
+                "E3"
+              ],
+              "reason": "Building C is occupied but has a 5-year-old roof, which does not exceed the 20-year threshold specified in criterion C1. Therefore, it does not meet the requirement for flagging a separate concern."
+            }
+          ],
+          "elapsed_seconds": 2.366
+        }
+      ],
+      "elapsed_seconds": 14.661,
+      "score": {
+        "status_correct": false,
+        "required_evidence_covered": false,
+        "atomic_findings_correct": false,
+        "reference_integrity": true,
+        "coverage_complete": false,
+        "passed": false,
+        "expected_status": "matched",
+        "actual_status": "missing",
+        "expected_findings": 2,
+        "actual_findings": 0,
+        "required_evidence_count": 2,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [
+          "E1",
+          "E2"
+        ],
+        "reference_checks": 0,
+        "reference_checks_passed": 0,
+        "false_positive_findings": 0,
+        "reason": "No accepted case assessment."
+      }
+    },
+    {
+      "id": "multiple_strengths_across_sources",
+      "category": "multiple_findings",
+      "expected": {
+        "status": "matched",
+        "required_evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "findings": [
+          {
+            "id": "north",
+            "evidence_ids": [
+              "E1"
+            ]
+          },
+          {
+            "id": "south",
+            "evidence_ids": [
+              "E2"
+            ]
+          }
+        ],
+        "rationale": "Each warehouse qualifies independently, requiring two strength records under C1. Cross-source consolidation must preserve the separate findings."
+      },
+      "result": {
+        "findings": [],
+        "criterion_assessments": {},
+        "source_assessments": {
+          "inspection:north": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+            }
+          },
+          "inspection:south": {
+            "C1": {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+            }
+          }
+        },
+        "coverage": {
+          "total": 1,
+          "matched": [],
+          "no_match": [],
+          "insufficient_evidence": [],
+          "not_applicable": [],
+          "missing": [
+            "C1"
+          ],
+          "unconfirmed_no_match": [],
+          "complete": false,
+          "decision_ready": false,
+          "errors": [
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            },
+            {
+              "stage": "case",
+              "source_id": null,
+              "criterion_ids": [
+                "C1"
+              ],
+              "error": "Unrequested or duplicate criterion ID: C1"
+            }
+          ]
+        },
+        "source_coverage": {
+          "sources": 2,
+          "criteria": 1,
+          "expected_pairs": 2,
+          "missing": [],
+          "complete": true
+        },
+        "disagreements": [],
+        "inputs": {
+          "criteria": [
+            {
+              "id": "C1",
+              "text": "Record a separate strength for each warehouse with monitored automatic sprinklers covering 100% of its floor area.",
+              "source_id": "skill:fire-protection",
+              "source_label": "",
+              "classification": "strength",
+              "context": ""
+            }
+          ],
+          "evidence": [
+            {
+              "id": "E1",
+              "source_id": "inspection:north",
+              "source_label": "",
+              "quote": "North warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+              "locator": "line:1",
+              "context": ""
+            },
+            {
+              "id": "E2",
+              "source_id": "inspection:south",
+              "source_label": "",
+              "quote": "South warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+              "locator": "line:1",
+              "context": ""
+            }
+          ]
+        }
+      },
+      "calls": [
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:north",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a separate strength for each warehouse with monitored automatic sprinklers covering 100% of its floor area.",
+                "source_id": "skill:fire-protection",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:north",
+                "source_label": "",
+                "quote": "North warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+            }
+          ],
+          "elapsed_seconds": 1.203
+        },
+        {
+          "payload": {
+            "stage": "source",
+            "scope": "inspection:south",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a separate strength for each warehouse with monitored automatic sprinklers covering 100% of its floor area.",
+                "source_id": "skill:fire-protection",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:south",
+                "source_label": "",
+                "quote": "South warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+            }
+          ],
+          "elapsed_seconds": 1.236
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a separate strength for each warehouse with monitored automatic sprinklers covering 100% of its floor area.",
+                "source_id": "skill:fire-protection",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:north",
+                "source_label": "",
+                "quote": "North warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:south",
+                "source_label": "",
+                "quote": "South warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:north": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+                }
+              },
+              "inspection:south": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+            }
+          ],
+          "elapsed_seconds": 2.406
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a separate strength for each warehouse with monitored automatic sprinklers covering 100% of its floor area.",
+                "source_id": "skill:fire-protection",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:north",
+                "source_label": "",
+                "quote": "North warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:south",
+                "source_label": "",
+                "quote": "South warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:north": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+                }
+              },
+              "inspection:south": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+            }
+          ],
+          "elapsed_seconds": 2.205
+        },
+        {
+          "payload": {
+            "stage": "case",
+            "scope": "whole_case",
+            "user_request": "Assess the supplied underwriting criteria. Preserve each independent qualifying finding and its supporting evidence.",
+            "criteria": {
+              "C1": {
+                "id": "C1",
+                "text": "Record a separate strength for each warehouse with monitored automatic sprinklers covering 100% of its floor area.",
+                "source_id": "skill:fire-protection",
+                "source_label": "",
+                "classification": "strength",
+                "context": ""
+              }
+            },
+            "evidence_spans": {
+              "E1": {
+                "id": "E1",
+                "source_id": "inspection:north",
+                "source_label": "",
+                "quote": "North warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              },
+              "E2": {
+                "id": "E2",
+                "source_id": "inspection:south",
+                "source_label": "",
+                "quote": "South warehouse has monitored automatic sprinklers covering 100% of its floor area.",
+                "locator": "line:1",
+                "context": ""
+              }
+            },
+            "source_assessments": {
+              "inspection:north": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E1"
+                  ],
+                  "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+                }
+              },
+              "inspection:south": {
+                "C1": {
+                  "criterion_id": "C1",
+                  "status": "matched",
+                  "evidence_ids": [
+                    "E2"
+                  ],
+                  "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+                }
+              }
+            }
+          },
+          "output": [
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E1"
+              ],
+              "reason": "The evidence directly supports the criterion. E1 states 'North warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that each warehouse with monitored automatic sprinklers covering 100% of its floor area must be recorded as a separate strength. The evidence confirms that the North warehouse meets this specific condition, providing clear support for the criterion."
+            },
+            {
+              "criterion_id": "C1",
+              "status": "matched",
+              "evidence_ids": [
+                "E2"
+              ],
+              "reason": "The evidence directly supports the criterion. Evidence E2 states 'South warehouse has monitored automatic sprinklers covering 100% of its floor area,' which exactly matches the requirement in C1 that a separate strength be recorded for each warehouse with monitored automatic sprinklers covering 100% of its floor area. The evidence confirms both the presence of monitored automatic sprinklers and that they cover 100% of the floor area for the South warehouse."
+            }
+          ],
+          "elapsed_seconds": 2.199
+        }
+      ],
+      "elapsed_seconds": 9.25,
+      "score": {
+        "status_correct": false,
+        "required_evidence_covered": false,
+        "atomic_findings_correct": false,
+        "reference_integrity": true,
+        "coverage_complete": false,
+        "passed": false,
+        "expected_status": "matched",
+        "actual_status": "missing",
+        "expected_findings": 2,
+        "actual_findings": 0,
+        "required_evidence_count": 2,
+        "required_evidence_found": 0,
+        "missing_required_evidence": [
+          "E1",
+          "E2"
+        ],
+        "reference_checks": 2,
+        "reference_checks_passed": 2,
+        "false_positive_findings": 0,
+        "reason": "No accepted case assessment."
+      }
+    }
+  ]
+}

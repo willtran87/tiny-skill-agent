@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "description": "Synthetic contrast cases for missing information versus affirmative negative evidence; authored before the focused evaluation run.",
+  "cases": [
+    {
+      "id": "missing_inspection_records", "category": "missing_evidence",
+      "criteria": [{"id": "C1", "text": "Record a strength if every elevator received its annual safety inspection during 2025.", "source_id": "policy:elevators", "classification": "strength"}],
+      "evidence": [{"id": "E1", "source_id": "application", "locator": "line:1", "quote": "No elevator inspection records were supplied with the application. Whether inspections occurred is not known."}],
+      "expected": {"status": "insufficient_evidence", "required_evidence_ids": [], "findings": [], "rationale": "Missing records do not establish that inspections did not occur. This criterion evaluates inspection activity, not submission of records."}
+    },
+    {
+      "id": "explicit_activity_did_not_occur", "category": "affirmative_negative",
+      "criteria": [{"id": "C1", "text": "Record a strength if every elevator received its annual safety inspection during 2025.", "source_id": "policy:elevators", "classification": "strength"}],
+      "evidence": [{"id": "E1", "source_id": "manager:declaration", "locator": "line:1", "quote": "The building manager confirms that Elevator A did not receive a safety inspection at any time during 2025."}],
+      "expected": {"status": "no_match", "required_evidence_ids": ["E1"], "findings": [], "rationale": "An explicit statement that the activity did not occur disproves the all-elevators condition, unlike absent records."}
+    },
+    {
+      "id": "explicit_documentation_requirement", "category": "affirmative_negative",
+      "criteria": [{"id": "C1", "text": "Record a strength if inspection certificates for all elevators were supplied with the application. This criterion concerns submission of certificates, not whether inspections occurred.", "source_id": "policy:documentation", "classification": "strength"}],
+      "evidence": [{"id": "E1", "source_id": "application:receipt", "locator": "line:1", "quote": "The application administrator confirms that no elevator inspection certificates were supplied with the application."}],
+      "expected": {"status": "no_match", "required_evidence_ids": ["E1"], "findings": [], "rationale": "The criterion explicitly evaluates document submission. Confirmed absence of submitted certificates disproves that condition without implying that inspections did not occur."}
+    },
+    {
+      "id": "measured_below_threshold", "category": "affirmative_negative",
+      "criteria": [{"id": "C1", "text": "Flag a concern if Building A's roof is more than 20 years old as of 2025-07-01.", "source_id": "policy:roof", "classification": "concern"}],
+      "evidence": [{"id": "E1", "source_id": "inspection:roof", "locator": "line:1", "quote": "Building A's roof is 5 years old as of 2025-07-01."}],
+      "expected": {"status": "no_match", "required_evidence_ids": ["E1"], "findings": [], "rationale": "The supplied age for the correct building and date is below the threshold, directly disproving the concern condition."}
+    }
+  ]
+}

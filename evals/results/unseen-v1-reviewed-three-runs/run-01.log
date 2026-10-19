@@ -1,0 +1,96 @@
+START cyber_remote_access_unknown
+  source questionnaire:it: 2.8s
+  source broker:email: 2.3s
+  case whole_case: 3.1s
+  case whole_case: 3.0s
+  decision_review whole_case: 2.9s
+RESULT cyber_remote_access_unknown: PASS; status=insufficient_evidence; findings=0/0
+START property_pump_service_unknown
+  source survey:equipment: 2.7s
+  source facilities:email: 1.9s
+  case whole_case: 2.7s
+  decision_review whole_case: 2.7s
+RESULT property_pump_service_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_driver_screening_unknown
+  source fleet:application: 2.1s
+  source broker:followup: 2.0s
+  case whole_case: 2.2s
+  decision_review whole_case: 2.3s
+RESULT auto_driver_screening_unknown: PASS; status=insufficient_evidence; findings=0/0
+START gl_subcontract_limit_unknown
+  source contractor:schedule: 2.4s
+  source broker:certificate_request: 2.2s
+  case whole_case: 2.8s
+  decision_review whole_case: 2.7s
+RESULT gl_subcontract_limit_unknown: PASS; status=insufficient_evidence; findings=0/0
+START auto_incident_rate_calculation
+  source lossrun:2025: 2.4s
+  source fleet:2025: 2.1s
+  case whole_case: 3.5s
+  decision_review whole_case: 3.7s
+  decision_review whole_case: 2.7s
+RESULT auto_incident_rate_calculation: FAIL; status=insufficient_evidence; findings=0/1
+START property_reserves_exact_threshold
+  source finance:certified: 3.4s
+  case whole_case: 6.8s
+  decision_review whole_case: 3.8s
+  decision_review whole_case: 5.2s
+RESULT property_reserves_exact_threshold: FAIL; status=insufficient_evidence; findings=0/1
+START property_roof_exact_boundary
+  source survey:unit7: 2.8s
+  case whole_case: 2.9s
+  decision_review whole_case: 2.6s
+RESULT property_roof_exact_boundary: PASS; status=no_match; findings=0/0
+START cyber_patch_coverage_boundary
+  source security:patch_export: 3.7s
+  case whole_case: 3.5s
+  decision_review whole_case: 3.0s
+RESULT cyber_patch_coverage_boundary: FAIL; status=insufficient_evidence; findings=0/1
+START property_alarm_equal_reports
+  source alarm:provider_a: 3.4s
+  source alarm:provider_b: 2.2s
+  case whole_case: 3.6s
+  case whole_case: 3.6s
+  case whole_case: 3.3s
+  decision_review whole_case: 2.8s
+RESULT property_alarm_equal_reports: PASS; status=insufficient_evidence; findings=0/0
+START cyber_backup_immutability_conflict
+  source security:signed_attestation: 3.7s
+  source infrastructure:signed_attestation: 2.8s
+  case whole_case: 3.8s
+  case whole_case: 3.5s
+  decision_review whole_case: 3.0s
+RESULT cyber_backup_immutability_conflict: PASS; status=insufficient_evidence; findings=0/0
+START auto_mileage_corrected_denominator
+  source lossrun:northline: 2.7s
+  source fleet:original_mileage: 2.5s
+  source fleet:signed_correction: 3.8s
+  case whole_case: 3.8s
+  decision_review whole_case: 3.1s
+RESULT auto_mileage_corrected_denominator: PASS; status=no_match; findings=0/0
+START property_later_repair_does_not_rewrite_history
+  source inspection:historical: 3.5s
+  source contractor:repair: 2.2s
+  case whole_case: 3.4s
+  case whole_case: 3.2s
+  case whole_case: 3.2s
+  decision_review whole_case: 3.5s
+  decision_review whole_case: 3.2s
+  decision_review whole_case: 3.0s
+RESULT property_later_repair_does_not_rewrite_history: FAIL; status=missing; findings=0/1
+START property_electrical_exception
+  source schedule:building: 4.0s
+  source electrical:completion: 2.2s
+  case whole_case: 4.3s
+  case whole_case: 3.4s
+  decision_review whole_case: 3.3s
+  decision_review whole_case: 3.0s
+  decision_review whole_case: 2.9s
+RESULT property_electrical_exception: FAIL; status=no_match; findings=0/0
+START cyber_service_account_exception
+  source identity:account: 3.9s
+  source security:rotation: 3.2s
+  case whole_case: 4.8s
+  decision_review whole_case: 3.4s
+RESULT cyber_service_account_exception: FAIL; status=insufficient_evidence; findings=0/0
+START gl_hot_work_scope_exclusion
